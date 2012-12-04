@@ -1,0 +1,1649 @@
+\documentclass[11pt]{book}
+\usepackage[top=1.5in,left=1.0in,right=1.0in,bottom=1.5in]{geometry}
+\usepackage{amsmath,amsthm,amssymb,amsfonts,enumerate}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{hyperref}
+\usepackage[pdftex]{graphicx}
+\usepackage{color}
+
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{0.3cm}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definición}
+\numberwithin{definition}{section}
+
+\makeatletter
+\def\th@definition{ \thm@notefont{} \thm@headpunct{.\\} }
+\def\th@theorem{ \thm@notefont{} \thm@headpunct{.\\} }
+\def\th@plain{ \thm@notefont{\normalfont} \thm@headpunct{.\\} }
+\makeatother
+
+\theoremstyle{theorem}
+\newtheorem{theorem}{Teorema}
+\newtheorem{lemma}{Lema}
+\newtheorem{proposition}{Proposición}
+\newtheorem{corollary}{Corolario}
+\numberwithin{theorem}{section}
+\numberwithin{lemma}{section}
+\numberwithin{corollary}{section}
+
+\theoremstyle{plain}
+\newtheorem{example}{Ejemplo}
+\numberwithin{example}{section}
+\newtheorem{remark}{Nota}
+
+\renewcommand\qedsymbol{$\blacksquare$}
+
+\newcommand{\N}{{\ensuremath{\mathbb{N}}}}
+\newcommand{\Z}{{\ensuremath{\mathbb{Z}}}}
+\newcommand{\Q}{{\ensuremath{\mathbb{Q}}}}
+\newcommand{\R}{{\ensuremath{\mathbb{R}}}}
+\newcommand{\C}{{\ensuremath{\mathbb{C}}}}
+% \newcommand{\vect}[1]{\vec{#1}} % vectors
+
+\begin{document}
+
+\title{Sistemas Dinámicos Planos}
+\author{Jorge A. Torres}
+\maketitle
+
+\tableofcontents
+
+\chapter{Introducción}
+\label{cap:introduccion}
+
+\section{Conceptos Básicos}
+
+\begin{definition}[Espacio de tiempo] $T \subseteq \mathbb{Z}$ o $T \subseteq \mathbb{R}$ es un \emph{espacio de tiempo} si $T$ es un semigrupo aditivo. Esto es, $0 \in T$ y $t + s \in T$ para todo $t,s \in T$.
+\end{definition}
+    
+\begin{definition}[Sistema dinámico] \label{def:dynamicalsystem}
+Un sistema din\'amico es una tupla $\left( T, M, \Phi \right)$, donde $T$ es un espacio de tiempo, $M$ es un manifold y $\Phi : T \times M \rightarrow M : \left( t, x \right) \mapsto \Phi^t \left( x \right)$ satisface las propiedades:
+  \begin{enumerate}[(D1)]
+    \item $\Phi \left( 0, x \right) = \Phi \left( x \right)$ para todo $x \in
+    M$. (equivalentemente $\Phi^0 = \text{id}_M$)
+    
+    \item $\Phi \left( t_2, \Phi \left( x, t_1 \right) \right) = \Phi \left(
+    t_1 + t_2, x \right)$ para todo $x \in M$ y $t_1, t_2 \in T$.
+    (equivalentemente, $\Phi^{t_1} \circ \Phi^{t_2} = \Phi^{t_1 + t_2}$).
+  \end{enumerate}
+
+  El conjunto $M$ es llamado {\emph{espacio de estados (o de fase)}} y
+  $\Phi$ un {\emph{operador de evoluci\'on}}.
+\end{definition}
+
+\begin{figure} \label{fig:evolutionoperator} \centering
+    \includegraphics[scale=0.5]{figures/evolutionoperator.png}    
+    \caption{Operador de evolución.}
+\end{figure}
+
+Algunas observaciones:
+
+\begin{enumerate}[-]
+  \item A la colecci\'on $\left\{ \Phi^t \right\}_t$ determinada por $\Phi$ se
+  le llama tambi\'en {\emph{flujo}}. Dado $x_0 \in M$ (estado inicial),
+  decimos que $x_0$ ``fluye'' a trav\'es de la curva $t \mapsto \Phi^t \left(
+  x_0 \right)$ en el espacio de fase $M$ (ver figura \ref{fig:evolutionoperator}).
+
+  \item Si $T \subseteq \mathbb{Z}$ decimos que el sistema din\'amico es
+  {\emph{discreto}} y si $T \subseteq \mathbb{R}$ entonces se dice
+  {\emph{continuo}}.
+
+  \item Cuando $\Phi$ es una funci\'on de clase $C^k$, $k \geq 1$,
+  decimos que el sistema din\'amico es {\emph{suave}}.
+
+  \item Si el operador de evoluci\'on $\Phi^t$ est\'a definido para $t < 0$
+  (es decir, $- t \in T$ para todo $t \in T$) decimos que el sistema
+  din\'amico es {\emph{invertible}} y se tiene que $\left( \Phi^t \right)^{-
+  1} = \Phi^{- t}$ para $t \in T$.
+
+  N\'otese que si $\left( T, M, \Phi \right)$ es un sistema din\'amico
+  invertible suave, entonces cada funci\'on $\Phi^t : M \rightarrow M$ es un
+  difeomorfismo.
+
+  \item Por la propiedad (D2), un sistema din\'amico discreto queda
+  completamente determinado por $f := \Phi^1$ y la evoluci\'on se obtiene
+  por iteraci\'on, ya que
+  \[ \Phi^2 = \Phi^1 \circ \Phi^1 = f \circ f = f^2 \]
+  y en general $\Phi^k = f^k$ para todo $k \geq 0$ (y $k \leq 0$ si
+  el sistema es invertible).
+
+  \item Un {\emph{sistema din\'amico local}} a aquel donde $\Phi$ pueda no
+  estar definida en todo $M \times T$, sino en $U \subseteq M \times T$. En
+  tal caso, pedimos que $M \times \left\{ 0 \right\} \subseteq U$ y que las
+  propiedades (D1) y (D2) se satisfagan siempre que $\left( x, t \right) \in
+  U$.
+
+  Es decir, dado $x \in M$ existe $I_x := \left\{ t \in T : \left( t, x
+  \right) \in U \right\} \subseteq T$ y $\Phi^t : I_x \rightarrow M$ est\'a
+  definido para $t \in I_x$.
+
+  Llamamos indistintamente ``sistema din\'amico'' a un sistema como en la
+  definici\'on \ref{def:dynamicalsystem} o a un sistema din\'amico local y se
+  asume siempre que las propiedades de evoluci\'on se cumplen cuando los
+  t\'erminos involucrados est\'an en el dominio de definici\'on.
+\end{enumerate}
+
+En lo que sigue supondremos que $\left( T, M, \Phi \right)$ es un sistema
+din\'amico.
+
+Dado un $x_0 \in M$, estado inicial, deseamos estudiar la geometr\'{\i}a del
+conjunto de todos los posibles estados futuros y pasados del sistema
+din\'amico, obtenidos a partir de $x_0$ haciendo uso del operador de
+evoluci\'on $\Phi$.
+
+\begin{definition}
+  \label{def:orbit}La {\emph{\'orbita (o trayectoria) positiva
+  $\gamma^+_{x_0}$}}, {\emph{\'orbita negativa $\gamma^-_{x_0}$}} y
+  {\emph{\'orbita $\gamma_{x_0}$}} de $x_0$ (o a trav\'es de $x_0$) son
+  los subconjuntos del espacio de estados $M$, definidos por
+  \[ \gamma^+_{x_0} := \left\{ \Phi \left( t, x \right) : t \in I_{x_0},
+     t \geq 0 \right\} = \left\{ \Phi^t \left( x_0 \right) \right\}_{t
+     \in I_{x_0}, t \geq 0}, \]
+  \[ \gamma^-_{x_0} := \left\{ \Phi^t \left( x_0 \right) \right\}_{t \in
+     I_{x_0}, t \leq 0}, \]
+  \[ \gamma_{x_0} := \gamma_{x_0}^+ \cup \gamma_{x_0}^- = \left\{ \Phi
+     \left( t, x \right) : t \in I_{x_0} \right\} = \left\{ \Phi^t \left( x_0
+     \right) \right\}_{t \in I_{x_0}} . \]
+  Una \'orbita que consiste de un solo punto se llama {\emph{\'orbita
+  constante}}.
+\end{definition}
+
+La \'orbita positiva $\gamma^+_{x_0}$ est\'a constitu\'{\i}da por todos los
+posibles estados futuros $x_t$ a los que puede evolucionar el sistema
+din\'amico luego de $x_0$, en tanto la \'orbita negativa $\gamma_{x_0}^-$
+corresponde a todos los estados pasados $x_t$.
+
+Mientras que las \'orbitas de un sistema din\'amico continuo son curvas en el
+espacio $M$ parametrizadas por $t$ y orientadas en la direcci\'on de
+crecimiento, las de un sistema din\'amico discreto son sucesiones de puntos
+$\ldots ., f^{- 1} \left( x_0 \right), x_0, f \left( x_0 \right), f^2 \left(
+x_0 \right), \ldots$ indizadas por enteros.
+
+\begin{figure} \centering \label{fig:orbits}
+    \includegraphics[scale=0.5]{figures/orbit-continuous.png}
+    \includegraphics[scale=0.5]{figures/orbit-discrete.png}    
+    \caption{Órbitas en un sistema dinámico continuo y uno discreto.}
+\end{figure}
+
+Si dados $x, y \in M$ existe un $t_0 \in T$ tal que $\Phi \left( t_0, x
+\right) = y$ entonces $\gamma_x = \gamma_y$ y diremos que las \'orbitas a
+trav\'es de $x$ y $y$ son equivalentes.
+
+\begin{definition}
+  \label{def:equilibrium}Un punto $x \in M$ es un {\emph{equilibrio}} (o
+  {\emph{punto fijo}}) si $\gamma_x = \left\{ x \right\}$ (es decir,
+  $\Phi^t \left( x \right) = x$ para todo $t \in T$).
+\end{definition}
+
+Lo anterior implica que un sistema din\'amico puesto en un equilibrio $x
+\in M$, permanece all\'{\i} por siempre. Rec\'{\i}procamente, las \'orbitas
+constantes corresponden a equilibrios del sistema.
+
+\begin{definition}
+  \label{def:periodicorbit}Una {\emph{\'orbita peri\'odica (o ciclo) $O$}}
+  es una \'orbita no constante para la cual existe $t_0 \in T$ tal que
+  $\Phi^{t + t_0} \left( x_0 \right) = \Phi^t \left( x_0 \right)$ para todo $t
+  \in T$ y $x_0 \in O$.
+  
+  El m\'{\i}nimo $t_0$ que satisface lo anterior se llama
+  {\emph{per\'{\i}odo de la \'orbita.}}
+\end{definition}
+
+Esto es, si el sistema din\'amico evoluciona desde un $x_0$ en un ciclo $O$,
+regresar\'a exactamente a este punto $x_0$ a las $t_0$ unidades de tiempo. Por
+tanto, una \'orbita peri\'odica de un sistema continuo es una curva
+{\emph{cerrada}} en el espacio de fase.
+
+\begin{figure} \label{fig:cycle} \centering
+    \includegraphics[scale=0.5]{figures/orbit-cycle.png}
+    \caption{Una órbita periódica (ciclo) $L_0$ a través de $x_0$.}
+\end{figure}
+
+\begin{definition}
+  \label{def:phasediagram}Al dibujar la colecci\'on de todas las \'orbitas
+  (con sus direcciones) obtenemos un {\emph{diagrama de fase}}.
+\end{definition}
+
+N\'otese que por la equivalencia de \'orbitas, el diagrama de fase es una
+partici\'on del espacio de estados en \'orbitas.
+
+En la pr\'actica, solo unas \'orbitas representativas son dibujadas pues, en general,
+resulta imposible graficar la totalidad de las \'orbitas de un sistema din\'amico.
+
+\section{Algunos ejemplos}
+\subsection{Ecuaciones diferenciales}
+\subsection{Iteración de polinomios complejos}
+\subsection{Autómata celular}
+\subsection{Ecuación logística}
+
+% TODO:
+% - Ejemplos básicos (ec. dif de segundo orden, ec. logística)
+% - Iteración de polinomios complejos
+
+\chapter{Sistemas Planos Autónomos}
+\label{cap:sistemasplanosautonomos}
+
+\section{Propiedades Generales}
+\label{sec:propiedades_generales}
+
+Sea $I \subseteq \R$ un intervalo y $x,y:I \rightarrow \R$ funciones de clase $C^1$ en la variable $t$, a la que nos referiremos generalmente como el \textit{tiempo}.
+Sean también $$f_i : \R^2 \rightarrow \R: (x_1, x_2) \rightarrow f_i(x_1, x_2); \hspace{0.5in} i \in \{1,2\}$$ funciones en dos variables.
+
+Llamamos \emph{sistema dinámico plano (autónomo)} al par de ecuaciones diferenciales simultáneas de la forma
+
+\begin{equation} \label{eq:sistema_dinamico_plano_v0}
+\left\{
+    \begin{array}{l}
+        \dot{x_1} = f_1(x_1, x_2) \\
+        \dot{x_2} = f_2(x_1, x_2)
+    \end{array} \right.
+\end{equation}
+
+Si utilizamos notación vectorial, podemos escribir $x = (x_1, x_2)$, $\dot{x} = (\dot{x_1}, \dot{x_2})$ y $f = (f_1, f_2)$, de modo que la ecuación \ref{eq:sistema_dinamico_plano_v0} obtiene ahora la forma más compacta
+
+\begin{equation} \label{eq:sistema_dinamico_plano}
+    \dot{x} = f(x)
+\end{equation}
+
+Una \emph{solución} de la ecuación anterior está constituída, entonces, por un par de funciones diferenciables $x_1(t)$ y $x_2(t)$ (o equivalentemente, una función vectorial $x(t)$) tal que $x_1'(t) = f_1(x_1(t), x_2(t))$ y $x_2'(t) = f_2(x_1(t), x_2(t))$ para todo $t \in I$ (o equivalentemente $\dot{x} = f(x(t))$ para $t \in I$).
+
+Nótese que la gráfica de cualquier solución de \ref{eq:sistema_dinamico_plano} es una curva en el espacio tridimensional $(t,x)=(t,x_1,x_2)$ que identificamos con un subconjunto de $\R^3$.
+
+\begin{definition}[Problema de Valor Inicial]\label{def:pvi}
+Un \emph{problema de valor inicial} para el sistema \ref{eq:sistema_dinamico_plano} es un problema de la forma
+
+\begin{equation} \label{eq:pvi}
+ \dot{x} = f(x); \hspace{0.5in} x(t_0) = x^0.
+\end{equation}
+
+\end{definition}
+
+Como la función $f$ no depende explícitamente del tiempo $t$ (el sistema es autónomo), no hay pérdida de generalidad al suponer siempre que la condición inicial del problema de valor inicial \ref{eq:pvi} está especificada para $t_0 = 0$. Esta propiedad es conocida como la propiedad de \emph{traslación}.
+
+\begin{lemma}[Propiedad de traslación] Supongamos que $x(t)$ es una solución de la ecuación \ref{eq:sistema_dinamico_plano} en un intervalo $I$, entonces $x(t-t_0)$ es también una solución.
+\begin{proof}Hacemos $\tau = t - t_0$ y como $t$ no ocurre explícitamente en $f(x)$ entonces el lado derecho de la ecuación no cambia sino por reemplazar $t$ por $\tau$. De esta manera, $\phi(\tau)$ es solución de la ecuación transformada.
+\end{proof}
+\end{lemma}
+
+Aunque las soluciones trasladadas $x(t)$ y $x(t-t_0)$ son diferentes corresponden a las mismas curvas en el diagrama de fase, como veremos más adelante.
+
+Ahora, con el fin de estudiar un sistema dinámico plano como \ref{eq:sistema_dinamico_plano} es necesario garantizar la existencia de la solución $x(t)$ y, más aún, su unicidad con el fin de remover cualquier ambigüedad al tratar de definir un operador de evolución como se explicó en el capítulo anterior.
+
+Como veremos a continuación, la continuidad de $f$ no es suficiente para ello.
+
+\begin{example}Considérese el problema de valor inicial
+    
+$$
+\left\{
+    \begin{array}{l}
+        \dot{x} = (\dot{x_1}, \dot{x_2}) = (\sqrt{x_1}, 0), \\
+        x(0) = 0.
+    \end{array}
+\right.
+$$
+
+Es claro que la ecuación diferencial tiene infinidad de soluciones, pero aún el PVI, con la condición prescrita $x(0) = 0$ carece de solución única. Es fácil verificar que $x(t) \equiv 0$ y $y(t) = (\frac{t^2}{4}, 0) $ son ambas soluciones del PVI.
+\end{example}
+
+El siguiente teorema, que es una generalización a dos dimensiones de un resultado clásico del análisis de ecuaciones diferenciales de primer orden, demuestra que esta dificultad puede resolverse suponiendo que $f$ es de clase por lo menos $C^1$.
+
+\begin{theorem}[Existencia y Unicidad] \label{teo:existenciayunicidad} Supongamos que $f$ es una función de clase $C^1$ definida en $\R^2$. Entonces para cualquier $x^0 \in \R^2$ existe un intervalo (posiblemente infinito) $I_{x^0} \equiv (\alpha_{x^0}, \beta_{x^0})$ que contiene a $t_0 = 0$ y una \emph{única} solución $\phi(t,x^0)$ del problema de valor inicial \ref{def:pvi} definida para todo $t \in I_{x^0}$ que satisface la condición $\phi(0, x^0) = x^0$ y es, además, de clase $C^1$.
+\end{theorem}
+
+En estas condiciones, la solución $\phi(t,x)$ es un operador de evolución como en la definición \ref{def:dynamicalsystem}.
+
+A continuación introducimos el oscilador armónico lineal, que será utilizado en adelante.
+
+\begin{example}[Oscilador armónico lineal] \label{ej:osciladorarmonico} Considérese la ecuación de segundo orden $\ddot{y} + y = 0$ que puede transformarse en el par de ecuaciones de primer orden
+
+\begin{equation} \label{eq:osciladorarmonico}
+	\begin{array}{l}
+		\dot{x_1} = x_2 \\
+		\dot{x_2} = -x_1.
+	\end{array}
+\end{equation}
+
+El teorema \ref{teo:existenciayunicidad} garantiza la existencia de las soluciones de este sistema para cualquier valor prescrito en $t_0 = 0$. Por ejemplo, para $x^0 = (x_1^0,x_2^0) = (0,1)$ la solución del sistema es $x_1(t) = \sin(t)$ y $x_2(t) = \cos(t)$.
+\end{example}
+
+La figura \ref{fig:osciladorarmonico} (a) ilustra la gráfica de la solución del oscilador armónico en el espacio tridimensional $(t,x_1,x_2)$ tal que pasa por $(0,1)$ en $t_0 = 0$. Las componentes $x_1(t), x_2(t)$ de la solución aparecen también en la figura \ref{fig:osciladorarmonico} (c).
+
+En general, a la curva solución $x(t)$ tal que $x(0) = x^0$ se le llamará \emph{trayectoria} a través de $x^0$.
+
+Como el sistema es autónomo (la función $f$ es independiente de $t$) resulta natural considerar las proyecciones de las trayectorias sobre el plano $x_1x_2$ a las que llamaremos \emph{órbitas}. Una órbita típica del oscilador armónico aparece en la figura \ref{fig:osciladorarmonico} (b).
+
+\begin{figure}
+\centering \label{fig:osciladorarmonico}
+    \includegraphics[scale=0.5]{figures/osciladorarmonico-solucion.jpg} (a) \\
+    \includegraphics[scale=0.5]{figures/osciladorarmonico-orbita.jpg} (b) \\
+    \includegraphics[scale=0.5]{figures/osciladorarmonico-soluciones.jpg} (c) \\
+    \caption{Oscilador armónico lineal: (a) trayectoria a través de $(0,1)$, (b) órbita circular que resulta de proyectar la trayectoria en el plano $xy$ y campo de direcciones, (c) gráficas de las soluciones $x(t), y(t)$ vs $t$.}
+\end{figure}
+
+Ahora, aún cuando contamos con el teorema \ref{teo:existenciayunicidad} para asegurarnos de que existen funciones $x_1(t), x_2(t)$ que satisfacen el sistema, resulta, en general, muy complicado hallar fórmulas cerradas explícitas para tales funciones. Por este motivo resulta de suma importancia y es el objetivo principal de este documento, el estudio cualitativo de las soluciones (su comportamiento) aún sin tener acceso a las mismas de antemano.
+
+La independencia de $t$ nos permite iniciar este estudio a través de lo que llamaremos \emph{campo de direcciones}: si consideramos cualquier solución $(x_1(t),x_2(t))$ de \ref{eq:sistema_dinamico_plano} como la posición en el plano de una partícula en el instante $t$, entonces el par de ecuaciones $\dot{x_1} = f_1(x_1,x_2)$ y $\dot{x_2} = f_2(x_1,x_2)$ implican que $(\dot{x_1}(t),\dot{x_2}(t))$ es el vector tangente al punto $(x_1,x_2)$; es decir, puede entenderse como la velocidad de la partícula en ese instante. Así pues, el campo vectorial definido por 
+
+$$ V(x_1,x_2) = (\dot{x_1}, \dot{x_2})$$
+
+nos permite describir el comportamiento aproximado de la trayectoria de la partícula (esto es, una solución del sistema) para cualquiera condiciones iniciales aún sin conocer las funciones $x_1(t)$ o $x_2(t)$.
+
+\begin{example} \label{ej:sistemahiperbolas}
+Volvemos al oscilador armónico \ref{ej:osciladorarmonico}, cuyo campo de direcciones aparece en la figura \ref{fig:osciladorarmonico} (c).
+Al observar el campo no resulta difícil imaginar que todas las órbitas deben ser círculos con centro en $(0,0)$, pero este estudio puede formalizarse a partir del estudio de su campo vectorial:
+
+$$ V(x_1,x_2) = (x_2, -x_1). $$
+
+Empezamos por notar que si $V(x_1,x_2) = (0,0)$ entonces $x_1 = x_2 = 0$ y estamos hablando de la solución $x(t) = 0$ que satisface la condición inicial $x^0 = 0$. Si en cambio $(x_1(t),x_2(t))$ es cualquier otra solución a través de $x^0 \neq 0$ entonces debe cumplirse que 
+
+$$
+\begin{array}{ccl}
+	\dfrac{d}{dt} || (x_1(t),x_2(t))  ||^2 & = & 2x_1(t)\dot{x_1}(t) + 2x_2(t)\dot{x_2}(t) \\
+									   & = & 2x_1(t)x_2(t) - 2x_2(t)x_1(t) \\
+									   & = & 0.
+\end{array}
+$$
+
+Y por lo tanto se debe cumplir para todo $t$ que
+
+$$ ||(x_1(t), x_2(t))||^2 = ||x^0||^2. $$
+
+Es decir, la solución está en el círculo de radio $||x^0||$ centrado en el origen, como se quería verificar.
+\end{example}
+
+\begin{figure}[h] \centering
+    \includegraphics[scale=0.5]{figures/osciladorarmonico-diagramafase.jpg}
+    \caption{Diagrama de fase del oscilador armónico lineal.}
+\end{figure}
+
+\begin{example}
+Haremos un análisis similar al del ejemplo anterior para la ecuación de segundo orden $$ \ddot{y} - y = 0$$ que puede transformarse en el sistema de ecuaciones de primer orden:
+
+$$
+\begin{array}{l}
+	\dot{x_1} = x_2 \\
+	\dot{x_2} = x_1
+\end{array}
+$$
+
+Notamos que las órbitas en el plano de fase satisfacen
+
+$$ \dfrac{dx_2}{dx_1} = \frac{x_1}{x_2}. $$
+
+Integrando produce la familia de hipérbolas
+
+$$ x^2 - y^2 = c $$
+
+donde $c$ es una constante.
+
+En particular, cuando $c = 0$ obtenemos la solución constante $x = y = 0$ correspondiente a la órbita. Todas las demás órbitas son no constantes.
+
+\begin{figure}[!ht] \centering
+	\includegraphics[scale=0.5]{figures/linearsystem-hyperbolas.jpg}
+	\caption{Diagrama de fase del sistema para la ecuación de segundo orden $\ddot{x} - x = 0$.}
+\end{figure}
+
+\end{example}
+
+\section{Clasificación de las soluciones}
+
+Por el teorema \ref{teo:existenciayunicidad} una solución del sistema autónomo plano $\dot{x} = f(x)$ que satisface $x(0) = x^0$ es única. 
+
+A continuación consideramos tres tipos básicos para tales soluciones.
+
+\subsection{Puntos Críticos}
+
+\begin{definition}[Punto Crítico] Una solución constante $x(t) = x^0$ se llama \emph{punto crítico}, \emph{solución de equilibrio} o también \emph{punto (solución) estacionario}.
+\end{definition}
+
+Como todo punto crítico $\bar{x} = (x_1,x_2)$ satisface $\dot{\bar{x}} = 0$ entonces puede hallarse resolviendo $f(x) = 0$. Es decir, el par de ecuaciones algebraicas
+$$ f_1(x_1, x_2) = 0, \hspace{0.2in} f_2(x_1, x_2) = 0.$$
+
+Por supuesto, las órbitas en el plano de fase correspondientes a soluciones de equilibrio son órbitas constantes (constan de un sólo punto).
+
+En el capítulo siguiente se estudiará el comportamiento de todas las soluciones de un sistema lineal (y más adelante no lineal), lo que nos permitirá hacer una clasificación aún más completa de los puntos de equilibrio. Por ahora, los catalogamos en estables o inestables según sea el comportamiento de soluciones (órbitas) ``cercanas'' a la de equilibrio.
+
+\begin{definition}[Punto crítico estable]Un punto crítico $\bar{x}$ se dice \emph{estable} si dado $\epsilon > 0$ existe un $\delta > 0$ tal que para cualquier solución $x = x(t)$ del sistema tal que $|| x(0) - \bar{x} || < \delta$ se cumple que
+$$ || x(t) - \bar{x} || < \epsilon$$
+para todo $t \geq 0$.
+
+Un punto que no es estable se dice \emph{inestable}.
+\end{definition}
+
+Intuitivamente, una solución de equilibrio es estable si toda solución (órbita) que comienza suficientemente cerca de la misma permanece cerca todo el tiempo.
+
+\begin{definition}[Punto crítico asintóticamente estable]Un punto crítico $\bar{x}$ se dice \emph{asintóticamente estable} si es estable y existe $\delta > 0$ tal que para toda solución $x = x(t)$ del sistema tal que $|| x(0) - \bar{x} || < \delta$ se tiene $$\lim_{t \to \infty} x(t) = \bar{x}. $$
+\end{definition}
+
+Lo anterior implica que la trayectoria de toda solución que comience suficientemente cerca de un punto asintóticamente estable no sólo debe permanecer cerca sino que a la larga converge al equilibrio $\bar{x}$. Debido al teorema de existencia y unicidad \ref{teo:existenciayunicidad}, estas trayectorias no pueden llegar a $\bar{x}$ en un tiempo finito.
+
+\begin{figure}[!ht] \centering 
+	\includegraphics[scale=0.5]{figures/equilibrium-stable.jpg}(a) \\
+	\includegraphics[scale=0.5]{figures/equilibrium-asymptoticallystable.jpg}(b) \\
+	\includegraphics[scale=0.5]{figures/equilibrium-unstable.jpg}(c)
+	\caption{(a) Equilibrio estable. (b) Equilibrio asintóticamente estable. (c) Equilibrio inestable.}
+\end{figure}
+
+\begin{example}
+La única solución de equilibrio del oscilador armónico (ejemplo \ref{ej:osciladorarmonico}) y el sistema plano del ejemplo \ref{ej:sistemahiperbolas} es $\bar{x} = \bar{x}(t) = 0$.
+
+El equilibrio del oscilador armónico es un ejemplo de un equilibrio estable que no es asintóticamente estable pues dado $\epsilon > 0$ todas las soluciones en el disco $D := D(0, \delta)$ permanecen dentro del disco $D$ para cualquier $0 < \delta \leq \epsilon$. Sin embargo, toda órbita es periódica distinta de $\gamma(0)$ y no tiende de a $0$.
+
+El equilibrio del sistema del ejemplo \ref{ej:sistemahiperbolas} es inestable. Sin embargo, el sistema presenta un comportamiento interesante: hay toda una familia de soluciones $x(t)$ tales que $x(t) \to 0$ aún cuando el equilibrio no es asintóticamente estable.
+
+\end{example}
+
+
+\subsection{Soluciones Periódicas}
+
+Ya nos hemos encontrado antes con soluciones periódicas de sistemas planos (por ejemplo, en el oscilador armónico \ref{eq:osciladorarmonico}). En esta sección formalizamos el concepto y probamos la equivalencia entre las órbitas cerradas (ciclos) en el espacio de fase y las soluciones periódicas.
+
+\begin{definition}[Solución Periódica] Una solución $x = x(t)$ del sistema $\dot{x} = f(x)$ se dice \emph{periódica} si existe un $T > 0$ tal que $x(t+T) = x(t)$ para todo $t$. En tal caso, al mínimo valor de $T$ se le llama \textit{período} de la solución.
+\end{definition}
+
+En la definición no se admite el caso $T=0$, esto es, las soluciones constantes no están consideradas de manera explícita como periódicas.
+
+Resulta evidente que toda solución periódica produce órbitas cerradas (ciclos) en el espacio de fase. Mostraremos a continuación que el recíproco también es cierto.
+
+\begin{lemma}
+Toda solución periódica de la ecuación autónoma \ref{eq:sistema_dinamico_plano} $\dot{x} = f(x)$ corresponde a un ciclo del espacio de fase y todo ciclo corresponde a una solución periódica.
+\end{lemma}
+\begin{proof}
+La primera parte es trivial. Para la segunda parte, supongamos que $\gamma$ es una órbita cerrada (ciclo) en el espacio de fase y que $x^0 \in \gamma$.
+Por el teorema \ref{teo:existenciayunicidad} hay una solución $x = x(t)$ tal que $x(0) = x^0$ cuya trayectoria es precisamente el ciclo $C$ y, por unicidad, no puede contener ningún punto crítico, de manera que $|| f(x) || \geq a > 0$ para todo $x \in C$.
+Esto es equivalente a que $|| \dot{x} || \geq a > 0$ así que debe tenerse para algún $t = T$ que $x(T) = x^0$ de nuevo. Queremos probar que $T$ es el período de la solución, es decir, que $x(t+T) = x(t)$ para todo $t \in \R$. Para ello, considérese $t = nT + t_1$ donde $n \in \Z$ y $0 < t_1 < T$. Por la propiedad de traslación como $x(t)$ es una solución con $x(t_1) = x^1$ entonces $x(t - nT)$ es una solución con $x(t - nT) = x^1$. Es decir, $$ x(t_1) = x(t_1 + nT)$$ para todo $t_1$ tal que $0 < t_1 < T$.
+
+Esto implica que $x$ es $T$-periódica.
+\end{proof}
+
+\subsection{Curvas Integrales}
+
+En general, las demás soluciones de un sistema plano producen órbitas arbitrarias en el plano de fase que no se cruzan.
+A menudo es posible integrar las ecuaciones de un sistema plano para obtener una familia de curvas integrales (soluciones) de manera implícita.
+
+Supóngase que el sistema plano está dado, como en \ref{eq:sistema_dinamico_plano} por el par de ecuaciones
+
+$$
+\begin{array}{l}
+	\dot{x_1} = f_1(x_1,x_2) \\
+	\dot{x_2} = f_2(x_1,x_2)
+\end{array}
+$$
+
+Entonces
+
+\begin{equation} \label{eq:ecprimerordencurvaintegral}
+	\dfrac{dx_2}{dx_1} = \frac{dx_2/dt}{dx_1/dt} = \frac{\dot{x_2}}{\dot{x_1}} = \dfrac{f_2(x_1,x_2)}{f_1(x_1,x_2)}.
+\end{equation}
+
+La ecuación \ref{eq:ecprimerordencurvaintegral} es una ecuación diferencial de primer orden para $x_1$ o $x_2$ y las órbitas de las soluciones del sistema plano corresponden a las curvas integrales de esta ecuación diferencial.
+
+\begin{example}
+Volvemos al oscilador armónico del ejemplo \ref{ej:osciladorarmonico} que corresponde al sistema:
+
+$$
+\begin{array}{l}
+	\dot{x_1} = x_2 \\
+	\dot{x_2} = -x_1
+\end{array}
+$$
+
+En este caso la ecuación \ref{eq:ecprimerordencurvaintegral} es
+
+$$ \dfrac{dx_2}{dx_1} = \frac{-x_1}{x_2}.$$
+
+Si se separan las variables y se integra se encuentra que las soluciones deben satisfacer:
+
+$$ \frac{1}{2}x_1^2 + \frac{1}{2}x_2^2 = c.$$
+
+Es decir, el conjunto de curvas integrales es una familia de círculos centrados en el origen con radio $2c$ para $c \in \R^+$. El punto de equilibrio $x = 0$ se obtiene cuando $c = 0$.
+
+Esto coincide con lo que ya habíamos visto antes.
+\end{example}
+
+
+\begin{figure}[!ht] \centering
+	\includegraphics[scale=0.5]{figures/orbita-arco.jpg}
+	\includegraphics[scale=0.5]{figures/orbita-periodica.jpg}
+	\caption{Una órbita arbitraria y un ciclo.}
+\end{figure}
+
+\section{Propiedades Topológicas}
+
+\begin{definition}Dos sistemas $\dot{x} = f(x)$ y $\dot{x} = g(x)$ definidos en $U \subseteq \R^2$ y $V \subseteq \R^2$, respectivamente, son \emph{topológicamente equivalentes} si existe un homeomorfismo $\phi : U \to V$ que envía cada órbita $\gamma_f \subseteq U$ de $f$ en cada una de las órbitas $\gamma_g \subseteq V$ de $g$ y preserva la dirección de avance del tiempo.
+\end{definition}
+
+% TODO: otras propiedades, ejemplos
+
+\section{Ejemplos Clásicos}
+
+% TODO: Van der Pol, Lotka-Volterra
+
+\begin{example}[Péndulo matemático] \label{ej:pendulo}
+Supongamos que una masa $m$ se encuentra unida al extremo inferior de una varilla de longitud $l$. Sabemos que el arco $s$ de un círculo de radio $l$ se relaciona con el ángulo central $\theta$ mediante la fórmula $s = l\theta$, de manera que la aceleración angular está dada por
+
+$$ a = \dfrac{d^2s}{dt^2} = l \dfrac{d^\theta}{dt^2}.$$
+
+En ausencia de fuerzas externas o amortiguamiento, las única fuerza que actúa sobre la masa es su peso $mg$, cuya componente tangencial es $-mg\sin\theta$, así que por la segunda ley de Newton:
+
+$$ ml \dfrac{d^2\theta}{dt^2} = ma = -mg\sin\theta.$$
+
+% TODO: figura
+
+De donde se deduce la ecuación de segundo orden para $\theta$:
+
+\begin{equation} \label{eq:pendulo0}
+	\dfrac{d^2\theta}{dt^2} + \frac{g}{l}\sin\theta = 0,
+\end{equation}
+
+Dependiendo de la longitud $l$ de la varilla, la razón $g/l$ cambia, de manera que la ecuación \ref{eq:pendulo0} puede reescribirse como
+
+\begin{equation} \label{eq:pendulo}
+	\dfrac{d^2\theta}{dt^2} + \lambda\sin\theta = 0.
+\end{equation}
+
+A menudo se asumirá que $\lambda = 1$ al estudiar el péndulo matemático.
+
+Los detalles de la estabilidad, así como el diagrama de fase del péndulo se estudiarán más adelante en el ejemplo \ref{ej:estabilidadpendulo}.
+
+Sabemos que la ecuación \ref{eq:pendulo} puede reescribirse como un sistema plano haciendo $x_1 = \theta$ y $x_2 = \dot{\theta}$ obteniendo así:
+
+\begin{equation}
+	\begin{array}{l}
+		\dot{x_1} = x_2 \\
+		\dot{x_2} = -\lambda \sin\theta.
+	\end{array}
+\end{equation}
+
+Debido a que el término $\sin\theta$ hace que la ecuación anterior sea no lineal, a veces se aproxima, para $\theta$ pequeño, $\sin(\theta) \approx \theta$, obteniéndose en lugar de \ref{eq:pendulo} la ecuación lineal
+
+$$ \ddot{\theta} + \lambda\theta = 0,$$
+
+conocida como oscilador armónico lineal y que se estudia con detalle a partir del ejemplo \label{ej:osciladorarmonico}.
+\end{example}
+
+
+\chapter{Sistemas Lineales}
+
+Nos concentramos, en este capítulo en sistemas planos $\dot{x} = f(x)$ donde la función $f: \R^2 \to \R^2$ es un mapeo lineal. Es decir, el sistema tiene la forma:
+
+\begin{equation} \label{eq:sistemalineal}
+	\begin{array}{l}
+		\dot{x_1} = a_{11}x_1 + a_{12}x_2 \\
+		\dot{x_2} = a_{21}x_1 + a_{22}x_2,
+	\end{array}
+\end{equation}
+
+donde cada $a_{ij} \in \R$.
+
+Si hacemos
+
+$$ A = \left(
+\begin{array}{ll}
+	a_{11} & a_{12} \\
+	a_{21} & a_{22}
+\end{array}
+\right),
+$$
+
+podemos reescribir el sistema \ref{eq:sistemalineal} en la forma vectorial equivalente
+
+\begin{equation} \label{eq:sistemalinealv}
+	\dot{x} = f(x) = Ax.
+\end{equation}
+
+Supondremos, en este capítulo que $\det(A) \neq 0$, es decir, $A$ es no singular, de manera que desde ya podemos anticipar que el \emph{único} punto crítico del sistema será $\bar{x} = 0$.
+
+\section{Propiedades de las soluciones}
+
+A continuación hacemos un repaso de algunos resultados importantes acerca de las soluciones de sistemas lineales planos autónomos. Las pruebas de los resultados se pueden encontrar en cualquier texto elemental de ecuaciones diferenciales, como podría ser ??.
+
+\theorem{Todo solución $X$ de un sistema lineal plano tiene la forma $$ X = c_1u+ c_2v, $$ donde $u, v$ son soluciones linealmente independientes de \ref{eq:sistemalinealv} y $c_1, c_2$ son constantes.}
+
+En vista del teorema anterior, el problema se reduce a encontrar dos soluciones $X_1, X_2$ que sean linealmente independientes. Tal conjunto de soluciones se conoce como \emph{conjunto fundamental de soluciones} y a $X = c_1u + c_2v$ se le conoce como \textit{solución general}.
+
+Las constantes $c_1$ y $c_2$ quedan determinadas una vez se especifica la condición inicial $x(0) = x^0$.
+
+\begin{lemma}[Criterio para la independencia lineal de soluciones]
+Dos soluciones $u$ y $v$ del sistema \ref{eq:sistemalinealv} definidas sobre un intervalo $I$ son linealmente independientes si y sólo si el determinante \emph{wronskiano}
+
+$$ W(u,v)(t) = \left|
+	\begin{array}{ll}
+		u_1(t) & v_1(t) \\
+		u_2(t) & v_2(t)
+	\end{array}
+\right|$$
+
+es no nulo para toda $t \in I$.
+\end{lemma}
+
+\begin{example}
+Consideremos el sistema plano
+
+$$
+	\begin{array}{l}
+		\dot{x_1} = x_1 + 3x_2 \\
+		\dot{x_2} = 5x_1 + 3x_2
+	\end{array},
+$$
+
+que tiene forma vectorial
+
+$$ \dot{x} = \left(
+	\begin{array}{ll}
+		1 & 3 \\ 5 & 3
+	\end{array}
+\right) x.$$
+
+Es fácil verificar que las funciones $u(t) = (e^{-2t}, -e^{-2t})$ y $v(t) = (3e^{6t}, 5e^{6t})$ son soluciones del sistema.
+
+Más aún, estas soluciones son linealmente independientes y forman un conjunto fundamental de soluciones pues
+
+$$
+	W(u,v)(t) =
+\left|
+	\begin{array}{ll}
+		e^{-2t} & 3e^{6t} \\
+		-e^{-2t} & 5e^{6t}
+	\end{array}
+\right| = 5e^{4t} + 3e^{4t} = 8e^{4t} \neq 0,
+$$
+
+para todo $t \in \R$.
+
+Esto significa que toda solución del sistema tiene la forma
+
+$$ x(t) = \left( \begin{array}{l} x_1(t) \\ x_2(t) \end{array} \right)
+= c_1 \left( \begin{array}{l} e^{-2t} \\ -e^{-2t} \end{array} \right) + c_2 \left( \begin{array}{l} 3e^{6t} \\ 5e^{6t} \end{array} \right).$$
+\end{example}
+
+Por analogía a la teoría de ecuaciones diferenciales lineales de primer orden (ver, por ejemplo, ??), buscamos soluciones del sistema \ref{eq:sistemalinealv} que tengan la forma
+\begin{equation} \label{eq:solexponencial}
+x(t) = (k_1e^{\lambda t}, k_2e^{\lambda t}).
+\end{equation}
+
+Supongamos que $x$ es una solución forma \ref{eq:solexponencial}. Entonces
+
+$$ \dot{x} = (k_1 \lambda e^{\lambda t}, k_2 \lambda e^{\lambda t}). $$
+
+Si reemplazamos $x$ y $\dot{x}$ en la ecuación $\dot{x} = f(x) = Ax$ y hacemos $K = (k_1, k_2)$ obtenemos
+
+$$
+	K \lambda e^{\lambda t} = A (Ke^{\lambda t}).
+$$
+
+Como $e^{\lambda t} \neq 0$ podemos dividir ambos lados de la ecuación anterior por $e^{\lambda t}$ y reordenando se obtiene
+
+$$ AK = \lambda K$$
+
+o equivalentemente
+
+\begin{equation} \label{eq:ecvalorpropio}
+	(A - \lambda I) K = 0.
+\end{equation}
+
+Lo anterior significa que si $x = x(t)$ es una solución de la forma propuesta, entonces $\lambda$ y $K$ deben satisfacer \ref{eq:ecvalorpropio}. Es decir, $\lambda$ debe ser un valor propio de $A$ y $K$ un vector propio asociado a este valor propio $\lambda$.
+
+En estas condiciones, $$ x = K e^{\lambda t}$$ es siempre solución de $\dot{x} = Ax$.
+
+El resto de esta sección está dedicado a la obtención de dos soluciones que sean linealmente independientes $u$ y $v$ de manera que podamos escribir siempre la solución general de la forma antes descrita en términos de estas dos soluciones.
+
+En virtud de lo anterior es lógico que las soluciones dependan de la forma de los valores propios de $A$: estos pueden ser reales y distintos, reales repetidos o complejos conjugados, ya que $\det(A - \lambda I) = 0$ es una ecuación algebraica de segundo grado.
+
+\subsection{Ecuación Característica}
+
+Para hallar los valores propios $\lambda$ de la matriz $A$ 2x2 del sistema \ref{eq:sistemalinealv} computamos las raíces de la ecuación característica $\det(A - \lambda I) = 0$.
+
+Notamos que
+\begin{eqnarray*}
+	\det(A - \lambda I) & = &  \left| \begin{array}{ll} a_{11} - \lambda & a_{12} \\ a_{21} & a_{22} - \lambda \end{array} \right| \\ 
+	& = & (a_{11} - \lambda)(a_{22} - \lambda) - a_{12}a_{21} \\
+	& = & \lambda^2 - (a_{11} + a_{22})\lambda + (a_{11}a_{22} - a_{12}a_{21}).
+\end{eqnarray*}
+
+Si escribimos $\Delta = \det(A) = a_{11}a_{22} - a_{12}a_{21}$ y $\tau = a_{11} + a_{22}$, la traza de $A$, entonces la ecuación característica es:
+
+\begin{equation} \label{eq:eccaracteristica}
+	\lambda^2 - \tau \lambda + \Delta = 0.
+\end{equation}
+
+Por lo tanto los valores propios de $A$ son $\lambda_{1,2} = (\tau \pm \sqrt{\tau^2 - 4\Delta}) / 2 $ que pueden ser reales distintos, reales repetidos y complejos conjugados según $\tau^2 - 4\Delta$ sea positivo, cero o negativo.
+
+\subsection{Solución General} \label{subsec:soluciongeneral}
+
+Enunciamos, sin prueba, un teorema acerca de la solución general del sistema para cada uno de estos casos.
+
+\begin{theorem}[Solución para valores propios reales distintos]Si $\tau^2 - 4\Delta > 0$ entonces la ecuación característica \ref{eq:eccaracteristica} tiene dos raíces reales $\lambda_1$ y $\lambda_2$ distintas y la solución general del sistema lineal plano $\dot{x} = Ax$ está dada por
+
+\begin{equation} \label{eq:solvlrspropiosdistintos}
+x = x(t) = c_1(K_1 e^{\lambda_1 t}) + c_2(K_2 e^{\lambda_2 t}),
+\end{equation}
+
+donde $K_1$ es un vector propio asociado al valor propio $\lambda_1$ y $K_2$ uno asociado al valor propio $\lambda_2$.
+\end{theorem}
+
+\begin{theorem}[Solución para valores propios reales repetidos]Si $\tau^2 - 4\Delta = 0$ entonces la ecuación característica \ref{eq:eccaracteristica} tiene una raíz real $\lambda_1$ de multiplicidad dos.
+
+\begin{itemize}
+
+\item Si existen dos vectores propios linealmente independientes $K_1, K_2$ asociados a $\lambda_1$ entonces la solución general del sistema lineal plano $\dot{x} = Ax$ está dada por
+
+\begin{equation} \label{eq:solvlrspropiosrepetidos1}
+x = x(t) = c_1(K_1 e^{\lambda_1 t}) + c_2(K_2 e^{\lambda_1 t}).
+\end{equation}
+
+\item Si sólo se tiene un vector propio linealmente independiente $K_1$ entonces la solución general del sistema lineal plano $\dot{x} = Ax$ tiene la forma
+
+\begin{equation} \label{eq:solvlrspropiosrepetidos2}
+x = x(t) = c_1(K_1 e^{\lambda_1 t}) + c_2(K_1 t e^{\lambda_1 t} + Pe^{\lambda_1 t}),
+\end{equation}
+
+donde $P$ es un vector tal que $(A-\lambda_1I)P=K_1$.
+\end{itemize}
+
+\end{theorem}
+
+
+\begin{theorem}[Solución para valores propios complejos conjugados]Si $\tau^2 - 4\Delta < 0$ entonces la ecuación característica \ref{eq:eccaracteristica} tiene dos raíces complejas conjugadas $\lambda_{1,2} = a \pm i b$ y la solución general del sistema lineal plano $\dot{x} = Ax$ está dada por
+
+\begin{equation} \label{eq:solvlrspropioscomplejos}
+x = x(t) = c_1 e^{a t}(B_1 \cos(bt) - B_2 \sin(bt)) + c_2 e^{a t}(B_2 \cos(bt) + B_1 \sin(bt)),
+\end{equation}
+
+donde $K_1 = B_1 + iB_2$ es un vector propio asociado al valor propio $\lambda_1$.
+\end{theorem}
+
+\section{Clasificación y estabilidad de puntos críticos ($\Delta \neq 0$)} \label{sec:estabilidadlineal}
+
+Si $A$ es no singular ($\det(A) = \Delta \neq 0$, el único punto crítico del sistema lineal plano $\dot{x} = f(x) = Ax$ es $\bar{x} = 0$.
+
+El comportamiento cualitativo de las soluciones que no son de equilibrio, en un sistema lineal, es muy similar y nos permite establecer una clasificación para el punto crítico $\bar{x} = 0$.
+
+Hemos visto ya en ejemplos anteriores que algunas soluciones se alejan o acercan a los puntos críticos, otras se enrollan alrededor del punto crítico, etc. A continuación justificaremos cada uno de estos posibles casos según sean los valores propios de $A$ (como se vio en la sección anterior).
+
+\subsection{Valores propios reales distintos y negativos (nodo estable)}
+Consideramos el caso $\tau^2 - 4\Delta > 0$ y $\lambda_1, \lambda_2$ son valores propios de $A$ tales que $\lambda_1 < 0, \lambda_2 < 0$.
+
+En este caso, toda solución es de la forma \ref{eq:solvlrspropiosdistintos}:
+
+$$ x = c_1(K_1 e^{\lambda_1 t}) + c_2(K_2 e^{\lambda_2 t}). $$
+
+Podemos reescribir la solución como
+
+$$ x = e^{\lambda_1 t} [ c_1 K_1 + c_2K_2 e^{(\lambda_2 - \lambda_1)t} ].$$
+
+Supongamos sin pérdida de generalidad que $\lambda_2 < \lambda_1 < 0$, entonces de acuerdo a la ecuación anterior $x(t) \to 0$ cuando $t \to \infty$.
+A largo plazo, $x(t) \approx c_1K_1e^{\lambda_1 t}$ y por lo tanto si $c_1 \neq 0$ entonces $x \to 0$ a lo largo de la recta determinada por el vector propio $K_1$.
+Si en cambio, $c_1 = 0$ entonces $x(t) = c_2 K_2 e^{\lambda_2 t}$ y $x \to 0$ desde una de las direcciones determinadas por el vector propio $K_2$.
+
+En particular si el punto inicial $x^0$ está en alguna de las rectas determinadas por $K_1$ o $K_2$ la solución tiende a 0 a través de la recta.
+
+En cualquier caso, $x \to 0$ y decimos que el punto crítico $\bar{x} = 0$ es un \emph{nodo (estable)} o \emph{sumidero nodal}.
+
+% TODO: figure
+
+\subsection{Valores propios reales distintos y positivos (nodo inestable)}
+
+Como antes, $\tau^2 - 4\Delta > 0$ pero ahora $\lambda_1 > 0$ y $\lambda_2 > 0$.
+Toda solución solución puede escribirse también como
+
+$$ x = e^{\lambda_1 t} [ c_1 K_1 + c_2K_2 e^{(\lambda_2 - \lambda_1)t} ].$$
+
+Supondremos, de nuevo, que $\lambda_1 > \lambda_2$. Entonces a largo plazo $|x(t)| \approx |c_1 K_1 e^{\lambda_1 t}| \to \infty$ cuando $t \to \infty$.
+
+El patrón de las trayectorias es idéntico al caso anterior pero estas se alejan del punto crítico $\bar{x} = 0$ en lugar de acercarse. En este caso el punto crítico $\bar{x} = 0$ se llama \emph{nodo (inestable)} o \emph{sumidero nodal}.
+% TODO: figure
+
+\subsection{Valores propios reales distintos y de signo opuesto (punto de silla)}
+
+De nuevo la solución es de la forma
+
+$$ x = c_1(K_1 e^{\lambda_1 t}) + c_2(K_2 e^{\lambda_2 t}). $$
+
+Suponemos que $\lambda_2 < \lambda_1$.
+
+Si $c_1 = 0$ (por ejemplo, cuando $x^0$ está sobre la recta determinada por $K_2$) entonces como $\lambda_2 < 0$, $x \to 0$ a lo largo de esta recta.
+Si $c_2 = 0$ (por ejemplo, cuando $x^0$ está sobre la recta determinada por $K_1$) entonces dado que $\lambda_1 >0$, $||x|| \to \infty$ a lo largo de la recta determinada por $K_1$.
+
+Las soluciones que parten de otros puntos iniciales, para las cuales $c_1 \neq 0$ y $c_2 \neq 0$ el término dominante en la solución es $e^{\lambda_1 t}$ y como $\lambda_1 > 0$ entonces las soluciones se hacen no acotadas a medida que aumenta $t$ de manera asintótica a la recta determinada por $K_1$.
+
+Resumiendo, las soluciones que no comienzan en ninguna de las rectas determinadas por $K_1$ o $K_2$ son tales que $||x|| \to \infty$ y lo hacen de manera asintótica a la recta determinada por $K_1$. De otro lado, las únicas soluciones que tienden al punto de equilibrio $\bar{x} = 0$ son aquellas que comienzan sobre la recta determinada por $K_2$ y lo a lo largo de dicha recta.
+
+En este caso, el punto crítico se llama \emph{punto de silla} y es, evidentemente, un equilibrio inestable.
+
+% TODO: figure
+
+\subsection{Valor propio real repetido (nodo degenerado)}
+
+En este caso $\tau^2 - 4\Delta = 0$ y hay un único valor propio real de multiplicidad dos: $\lambda_{1,2} = \lambda$.
+
+\subsubsection{Dos vectores propios linealmente independientes (nodo propio degenerado)}
+
+Si se pueden conseguir dos vectores propios $K_1$ y $K_2$ linealmente independientes asociados al valor propio $\lambda$ entonces toda solución es de la forma \ref{eq:solvlrspropiosrepetidos1}, que puede reescribirse como
+$$ x = (c_1K_1 + c_2K_2)e^{\lambda t}.$$
+
+En este caso el punto crítico $\bar{x} = 0$ se dice \emph{nodo propio}, \emph{nodo degenerado} o \emph{punto estrella} y es estable o inestable según $\lambda < 0$ o $\lambda > 0$ respectivamente.
+
+% TODO: figure
+
+\subsubsection{Un solo vector linealmente independiente (nodo impropio degenerado)}
+
+En este caso apenas es posible conseguir un vector propio $K_1$ linealmente independiente asociado al valor propio $\lambda$. Las soluciones, según la fórmula \ref{eq:solvlrspropiosrepetidos2}, son de la forma:
+$$ x =c_1(K_1 e^{\lambda t}) + c_2(K_1 t e^{\lambda t} + Pe^{\lambda t}). $$
+
+El comportamiento de todas las soluciones $x = x(t)$ es similar: la recta determinada por $K_1$ es una asíntota y $||x|| \to 0$ si $\lambda < 0$ o $||x|| \to \infty$ si $\lambda > 0$.
+
+Si $\lambda < 0$ entonces el punto crítico $\bar{x} = 0$ se llama \emph{nodo impropio estable} o simplemente \emph{nodo degenerado estable} y si $\lambda > 0$ el punto crítico $\bar{x} = 0$ se llama \emph{nodo impropio inestable} o \emph{nodo generado inestable}.
+
+% TODO: figure
+
+\subsection{Valores propios complejos conjugados (centro, punto de espiral)}
+
+Finalmente, estamos en el caso en el que $\tau^2 - 4\Delta < 0$ y los valores propios de $A$ son complejos conjugados: $\lambda_{1,2} = a \pm ib$.
+
+Si $K_1 = B_1 + iB_2$ es un vector propio asociado al valor propio $\lambda_1 = a + ib$ entonces, por la fórmula \ref{eq:solvlrspropioscomplejos} la solución es de la forma
+
+$$ x = c_1 e^{a t}(B_1 \cos(bt) - B_2 \sin(bt)) + c_2 e^{a t}(B_2 \cos(bt) + B_1 \sin(bt)).$$
+
+\subsubsection{Valor propio imaginario puro}
+Cuando $\tau = 0$, $\lambda_1$ es un imaginario puro y la solución se puede escribir como
+
+$$ x = C_1 \cos(bt) + C_2 \sin(bt), $$
+
+donde $C_1$ y $C_2$ son vectores constantes. Esto implica que todas las soluciones son periódicas con período $2\pi / b$ y es fácil ver que corresponden a elipses centradas en el origen.
+
+En este caso el punto crítico $\bar{x} = 0$ se llama \emph{centro} y la orientación de todas las órbitas es la misma.
+
+\subsubsection{Valor propio con parte real no nula}
+
+Si $\tau \neq 0$ entonces los valores propios tienen parte real $a \neq 0$ y las órbitas del sistema son espirales que se alejan o acercan todas al punto crítico $\bar{x} = 0$ debido al término $e^{a t}$ que aparece en la solución.
+
+El punto crítico se llama un \emph{punto espiral} y es estable cuando $\lambda < 0$ e inestable cuando $\lambda > 0$.
+
+Cuando el punto espiral es estable se le llama también \emph{sumidero espiral} y cuando es inestable \emph{fuente espiral}.
+
+% TODO: figure
+
+\section{Clasificación y estabilidad de puntos críticos ($\Delta = 0$)}
+
+Cuando el sistema plano es $\dot{x} = f(x) = Ax$ con $A$ una matriz singular (i.e. $\det(A) = \Delta = 0$) entonces es un resultado elemental del álgebra lineal que hay una infinidad de puntos críticos (soluciones a $Ax = 0$) además del origen $x = 0$.
+
+Las soluciones en la sección \ref{subsec:soluciongeneral} siguen siendo válidas en este caso, aunque se advierte ya de la ecuación característica \ref{eq:eccaracteristica} que los valores propios son $\lambda_1 = 0$ y $\lambda_2 \in \R$.
+
+Consideramos a continuación varios casos.
+
+\subsection{A es la matriz cero ($A = 0$)}
+En este caso todo punto $x \in \R^2$ es un punto crítico, así que toda trayectoria en el plano de fase es trivial.
+% TODO: figure
+
+\subsection{$\lambda_1 = 0, \lambda_2 < 0$}
+Es posible demostrar que en este caso el sistema es topológicamente equivalente (ver Kocak teorema 8.16 p239) a uno con matriz de coeficientes
+
+$$ A = \left( \begin{array}{ll} -1 & 0 \\ 0 & 0 \end{array} \right).$$
+
+Por lo tanto, el diagrama de fase es similar a la figura \ref{fig:xx}, donde todo punto $(0,x_2)$ es de equilibrio.
+% TODO: figure
+
+\subsection{$\lambda_1 = 0, \lambda_2 > 0$}
+De nuevo, como en ((ver Kocak teorema 8.16 p239)) es posible verificar que este sistema es topológicamente equivalente a uno con matriz de coeficientes
+
+$$ A = \left( \begin{array}{ll} 1 & 0 \\ 0 & 0 \end{array} \right).$$
+
+Por lo tanto, el diagrama de fase es similar a la figura \ref{fig:xx}, donde todo punto $(0,x_2)$ es de equilibrio pero el sentido de las flechas es contrario al del caso anterior.
+% TODO: figure
+
+\subsection{$\lambda_1 = \lambda_2 = 0$}
+En este caso tanto $\Delta$ como $\tau$ son nulos. Esto es, $a_{11}a_{22} - a_{12}a_{21} = 0$ y también $a_{11} + a_{22} = 0$.
+Es posible analizar el comportamiento de las soluciones y puntos de equilibrio a partir de estas ecuaciones considerando los distintos casos $a_{11} = 0$ o $a_{11} \neq 0$, etc.
+
+Sin embargo, cualquiera sea el caso el sistema es equivalente ((ver Kocak teorema 8.16 p239)) a uno con matriz de coeficientes
+
+$$ A = \left( \begin{array}{ll} 0 & 1 \\ 0 & 0 \end{array} \right),$$
+
+cuyo diagrama de fase aparece es como a continuación.
+% TODO: figure
+
+\begin{remark}Aunque no se dijo explícitamente para cada caso, es claro que todos los puntos de equilibrio son \emph{inestables} si $\Delta = 0$.
+\end{remark}
+
+\section{Criterio de estabilidad para sistemas lineales}
+Resumimos los resultados de las dos secciones previas:
+
+\begin{theorem}[Criterio de estabilidad para sistemas lineales] \label{teo:criterioestabilidadlineales}
+Sea $\dot{x} = f(x) = Ax$ un sistema plano lineal y $\bar{x}$ un punto de equilibrio del mismo.
+
+\begin{enumerate}[(a)]
+	\item Si $\det(A) \neq 0$ y todos los valores propios de $A$ tienen parte real negativa o son imaginarios puros, $\bar{x} = 0$ es un punto crítico asintóticamente estable (y por tanto estable).
+	\item Si $\det(A) = 0$ o hay valores propios de $A$ con parte real positiva, el punto crítico $\bar{x}$ es inestable.
+\end{enumerate}
+
+Debido a lo anterior a menudo la clasificación de puntos críticos y estabilidad se realiza según los valores propios de $A$ tenga o no parte real no nula.
+
+\begin{definition}[Matriz hiperbólica] Decimos que $A$ es \emph{hiperbólica} si todos sus valores propios tienen parte real no nula.
+\end{definition}
+
+% TODO: figure (parabola)
+
+Con esta definición, notamos que la estabilidad de un punto de equilibrio de un sistema lineal con matriz de coeficientes hiperbólica depende exclusivamente del signo de la parte real.
+
+\end{theorem}
+
+\chapter{Sistemas No Lineales}
+Consideramos en este capítulo sistemas planos autónomos $\dot{x} = f(x)$ donde $f$ es una función no necesariamente lineal en $x = (x_1,x_2)$.
+
+Supondremos $f$ de al menos clase $C^1$ de manera que sea posible considerar la linealización de $f$ mediante su derivada (matriz jacobiana) y estudiar las propiedades de este sistema lineal con el objetivo de deducir información sobre el comportamiento del sistema original.
+
+A continuación formalizamos el concepto de linealización mediante expansión en serie de Taylor (sección \ref{sec:linealizacion}).
+
+\section{Linealización} \label{sec:linealizacion}
+
+Consideremos un sistema plano como en la ecuación \ref{eq:sistema_dinamico_plano_v0}, de la forma
+
+\begin{equation}
+	\dot{x} = f(x) = (f_1(x_1,x_2), f_2(x_1,x_2)),
+\end{equation}
+
+donde $f$ es una función arbitraria de clase $C^1$.
+
+En este caso no necesariamente el sistema tiene un punto crítico en $x = 0$ y mucho menos debe ser el único.
+
+\begin{example}Como vimos en el ejemplo \ref{ej:pendulo}, el péndulo matemático está descrito por la ecuación diferencial de segundo orden $\ddot{x} + \sin(x) = 0$ que puede escribirse en forma vectorial con $x = (x_1,x_2)$ como
+
+$$
+\begin{array}{lll}
+	\dot{x_1} & = & x_2 \\
+	\dot{x_2} & = & -\sin(x_1).
+\end{array}
+$$
+
+Por lo tanto el péndulo matemático tiene un punto crítico en $(x_1,x_2) = (0,0)$ pero también en todos los puntos $(n\pi, 0)$ para $n \in \Z$.
+\end{example}
+
+Supongamos entonces que $x^1, x^2, ..., x^n, ...$ son puntos críticos del sistema $\dot{x} = f(x)$ y que son aislados (es decir, existe una vecindad  $V_i$ de $x^i$ donde $x^i$ es el único punto crítico).
+
+Sea $\bar{x}$ uno de estos puntos críticos y supongamos que $f$ es diferenciable en $\bar{x}$. Entonces podemos expandir $f$ como serie de Taylor alrededor de $f$ y escribir para $x$ cerca de $\bar{x}$:
+
+\begin{equation} \label{eq:expansiontaylor1}
+	f(x) = f(\bar{x}) + Df(\bar{x})(x - \bar{x}) + h(x)
+\end{equation}
+
+donde $|| \frac{h(x)}{x - \bar{x}}|| \to 0$ cuando $x \to \bar{x}$.
+
+Ahora, como $\bar{x}$ es un punto crítico entonces $f(\bar{x}) = 0$ y la fórmula \ref{eq:expansiontaylor1} se reduce a 
+
+\begin{equation}
+	f(x) = Df(\bar{x})(x - \bar{x}) + h(x).
+\end{equation}
+
+Por lo tanto, el sistema no lineal, cerca de $\bar{x}$ es
+
+$$ \dot{x} = f(x) = Df(\bar{x})(x - \bar{x}) + h(x).$$
+
+Si a continuación introducimos el cambio de coordenadas $y = x - \bar{x}$ entonces tenemos 
+
+\begin{equation} \label{eq:cuasilineal}
+	\dot{y} = Df(\bar{x})y + g(y).
+\end{equation}
+
+En la ecuación \ref{eq:cuasilineal}, $g(0) = 0$ y $Dg(0) = 0$ así que el Teorema del Valor Medio implica que $g(y)$ es ``pequeño'' en comparación a $y$ cerca del origen. Más precisamente, dado $m > 0$ existe $\delta > 0$ tal que 
+
+$$ ||g(y)|| \leq m||y||$$
+
+siempre que $||y|| < \delta$.
+
+En otras palabras, $g(y)$ puede hacerse tan pequeño como se desee tomando $y$ suficientemente pequeño. Por esta razón resulta natural pensar que la estabilidad de $\bar{x}$ pueda describirse en términos del sistema lineal
+
+\begin{equation} \label{eq:linealizacion}
+	\dot{y} = Df(\bar{x})y.
+\end{equation}
+
+Si $Df(\bar{x})$ es invertible, el único punto crítico es $\bar{y} = 0$ y puede clasificarse según los criterios vistos en la sección \ref{sec:estabilidadlineal}.
+Se quisiera poder llegar a las mismas conclusiones para $\bar{x}$, pero esto no será siempre posible como se verá más adelante.
+
+\section{Criterio de estabilidad para sistemas no lineales}
+A partir de la linealización de $f$ en un punto crítico $\bar{x}$ es posible determinar la estabilidad del mismo de manera análoga al caso lineal (teorema \ref{teo:criterioestabilidadlineales}).
+
+El siguiente teorema, cuya prueba puede encontrarse en (Kocak p267,272), describe la estabilidad en dos casos particulares.
+
+\begin{theorem}[Criterio de estabilidad para sistemas no lineales] \label{teo:criterioestabilidadnolineales}
+Sea $f$ de clase $C^1$, $\dot{x} = f(x)$ un sistema plano y $\bar{x}$ un punto crítico del mismo.
+
+\begin{enumerate}[(a)]
+	\item Si todos los valores propios de $Df(\bar{x})$ tienen parte real negativa, entonces $\bar{x}$ es un punto crítico asintóticamente estable (y por lo tanto, estable).
+	\item Si al menos un valor propio de $Df(\bar{x})$ tiene parte real positiva entones $\bar{x}$ es un punto crítico inestable.
+\end{enumerate}
+\end{theorem}
+
+\begin{example} \label{ex:nolinealhiperbolico}
+Considérese el sistema no lineal
+
+$$ \begin{array}{l} \dot{x_1} = x_1^2 + x_2^2 - 6 \\ \dot{x_2} = x_1^2 - x_2 \end{array}. $$
+
+Los puntos críticos son $(\sqrt{2}, 2)$ y $(-\sqrt{2}, 2)$ y la matriz jacobiana $Df(x)$ está dada por
+
+$$ Df(x) = \left( \begin{array}{ll} 2x_1 & 2x_2 \\ 2x_1 & -1 \end{array} \right).$$
+
+Sean
+
+$$
+	A_1 = Df((\sqrt{2},2)) = \left(\begin{array}{ll} 2\sqrt{2} & 4 \\ 2\sqrt{2} & -1 \end{array} \right), \hspace{8pt}
+	A_2 = Df((-\sqrt{2},2)) = \left(\begin{array}{ll} -2\sqrt{2} & 4 \\ -2\sqrt{2} & -1 \end{array} \right).	
+$$
+
+$A_1$ tiene un valor propio real positivo pues $\det(A_1) < 0$ así que puede concluirse que $(\sqrt{2}, 2)$ es un punto crítico inestable.
+Por otro lado, $A_2$ tiene determinante positivo y traza negativa, así que ambos valores propios tienen partes reales negativas. Por el criterio de estabilidad, $(-\sqrt{2},2)$ es un punto crítico estable.
+
+El diagrama de fase de este sistema no lineal aparece en la figura XX.
+% TODO: figure
+
+\end{example}
+
+Nótese que el teorema \ref{teo:criterioestabilidadnolineales} no ofrece información alguna para cuando hay valores propios con parte real nula. Esto no es casualidad pues en tal caso no es posible determinar la naturaleza del punto crítico a partir de la linealización, como ilustra el siguiente ejemplo.
+
+\begin{example} \label{ex:nolinealnohiperbolico}
+Sea $\mu \in \R$ arbitrario y consideremos el sistema no lineal
+
+$$
+	\begin{array}{l}
+		\dot{x_1} = x_2 + \mu x_1(x_1^2 + x_2^2) \\
+		\dot{x_2} = x_1 + \mu x_2(x_1^2 + x_2^2).
+	\end{array}
+$$
+
+La linealizacíon del sistema en el punto crítico $\bar{x} = 0$ es $\dot{x} = Df(\bar{x})x = \left( \begin{array}{ll} 0 & 1 \\ -1 & 0 \end{array} \right) x,$ sin importar el valor de $\mu$.
+Los valores propios de $Df(\bar{x})$ son $\lambda_{1,2} = \pm i$, de manera que no podemos utilizar el criterio de estabilidad pues tienen parte real nula. La razón la ofrece el siguiente argumento.
+
+Notemos que
+
+$$ \dfrac{d}{dt} (x_1^2 + x_2^2) = 2\mu(x_1^2 + x_2^2)^2. $$
+
+Entonces, si $\mu < 0$, $||x(t)|| \to 0$ cuando $t \to \infty$ y por lo tanto $\bar{x} = 0$ es asintóticamente estable.
+Si en cambio $\mu > 0$ entonces $||x(t) \to \infty$ cuando $t \to \infty$ y el punto crítico $\bar{x} = 0$ resulta ser inestable.
+
+Esta dependencia de $\mu$ no aparece en la linealización del sistema y por lo tanto este ejemplo demuestra que el teorema \ref{teo:criterioestabilidadnolineales} es tan preciso como es posible.
+\end{example}
+
+
+\section{Clasificación de puntos críticos}
+
+Quisiéramos repetir la clasificación hecha en la sección \ref{sec:estabilidadlineal} para los puntos críticos de sistemas no lineales y nombrar los puntos críticos como nodos, puntos de silla, centros, etc.
+
+Por supuesto, la idea es utilizar la linealización para tal fin, sin que sea necesario resolver el sistema de manera explícita.
+
+Desde el principio sabemos que esta tarea no es tan sencilla como en el caso lineal: el ejemplo \ref{ex:nolinealnohiperbolico} demuestra que cuando hay valores propios con parte real nula no podemos ni siquiera determinar utilizando solo la matriz jacobiana la estabilidad del punto crítico, mucho menos deducir si se trata de un centro, punto espiral, nodo, etc.
+
+Por el contrario, si se vuelve al diagrama de fase del ejemplo \ref{ex:nolinealhiperbolico} notamos que no sólo pudimos deducir, utilizando el criterio de estabilidad, la estabilidad de los puntos críticos sino que estos coinciden, además con el tipo de punto crítico del sistema linealizado. Por ejemplo, para $\bar{x} = (-\sqrt{2},2)$ el sistema lineal tiene un punto de espiral y este es el mismo comportamiento que presenta el punto crítico en el sistema no lineal.
+
+Podría pensarse, entonces, que las dificultades aparecen únicamente cuando la matriz jacobiana $Df(\bar{x})$ no es hiperbólica, es decir, tiene valores propios con parte real nula y que, en caso contrario, las soluciones del sistema no lineal tienen el mismo comportamiento geométrico que las del sistema lineal correspondiente. En efecto, este es el caso, como se verá a continuación.
+
+\subsection{Puntos críticos hiperbólicos}
+
+\begin{definition}Un punto crítico $\bar{x}$ de un sistema plano $\dot{x} = f(x)$ es \emph{hiperbólico} si la matriz jacobiana en ese punto, $Df(\bar{x})$ es hiperbólica (tiene valores propios todos con parte real no nula).
+\end{definition}
+
+Ya sabemos del ejemplo \ref{ex:nolinealnohiperbolico} que en puntos críticos no hiperbólicos puede ser imposible conocer el comportamiento de las soluciones en vecindad del mismo a partir de la linealización. El caso es contrario cuando se trata de puntos hiperbólicos, como demuestra el siguiente teorema.
+
+\begin{theorem}[Hartman-Grobman] \label{teo:hartmangrobman}
+Sea $f$ de clase $C^1$ y $\bar{x}$ un punto crítico \emph{hiperbólico} del sistema plano $\dot{x} = f(x)$. Entonces hay una vecindad de $\bar{x}$ en la cual $\dot{x} = f(x)$ es topológicamente equivalente a su linealización $\dot{x} = Df(\bar{x})x$.
+\end{theorem}
+
+El teorema anterior garantiza, entonces, que para puntos críticos hiperbólicos el comportamiento del sistema no lineal cerca del punto es ``idéntico'' al del sistema lineal correspondiente y por tanto todas las nociones antes vistan coinciden.
+
+Para puntos críticos no hiperbólicos es necesario utilizar otras técnicas (o hallar las soluciones del sistema) para determinar el comportamiento.
+
+Combinando el teorema \ref{teo:hartmangrobman} con el criterio de estabilidad (teorema \ref{teo:criterioestabilidadnolineales}) es posible construir la tabla \ref{tab:clasificacionequilibrios}, que clasifica los equilibrios de sistemas no lineales (por supuesto, también aplica para lineales).
+
+\begin{table}[ht!]
+	\begin{tabular}{|c|c|c|c|c|}
+		\hline
+		\textbf{Vlrs propios de $Df(\bar{x})$} & \multicolumn{2}{|c|}{\textbf{Linealización}} & \multicolumn{2}{|c|}{\textbf{Sistema no lineal}} \\
+		\hline
+		 & \textbf{Tipo} &\textbf{Estabilidad} & \textbf{Tipo} & \textbf{Estabilidad} \\
+		\hline
+		\multicolumn{5}{|c|}{\textit{Equilibrios Hiperbólicos}} \\
+		\hline
+		$\lambda_1 > \lambda_2 > 0$ & nodo & inestable & nodo & inestable \\
+		$\lambda_1 < \lambda_2 < 0$ & nodo & A. E. & nodo & A. E. \\
+		$\lambda_2 < 0 < \lambda_1$ & punto silla & inestable & punto silla & inestable \\
+		$\lambda_{1,2} = a \pm ib, a > 0$ & punto espiral & inestable & punto espiral & inestable \\
+		$\lambda_{1,2} = a \pm ib, a < 0$ & punto espiral & A. E. & punto espiral & A. E. \\
+
+		\hline
+		\multicolumn{5}{|c|}{\textit{Equilibrios no Hiperbólicos}} \\
+		\hline
+		$\lambda_1 = \lambda_2 >0$ & nodo propio o impropio & inestable & nodo o punto espiral & inestable \\
+		$\lambda_1 = \lambda_2 < 0$ & nodo propio o impropio & A. E. & nodo o punto espiral & A. E. \\
+		$\lambda_{1,2} = \pm ib$ & centro & estable & centro o punto espiral & \textbf{?} \\
+		\hline
+	\end{tabular}
+	\label{tab:clasificacionequilibrios}
+	\caption{Clasificación de equilibrios en sistemas no lineales.}
+\end{table}
+
+\section{Análisis de estabilidad para algunos sistemas conocidos}
+
+\begin{example}[Péndulo matemático] \label{ej:estabilidadpendulo}
+
+\end{example}
+
+
+\chapter{Teorema de Poincaré-Bendixson}
+
+\section{Conjuntos límite y nociones básicas}
+
+Ya hemos encontrado diversos tipos de órbitas en sistemas planos: órbitas periódicas de la forma $\gamma_{\bar{x}} = \{\bar{x}\}$ en el caso de equilibrios $\bar{x}$, órbitas periódicas y órbitas que se ``alejan'' hacia infinito.
+De hecho la situación es más rica, existen órbitas límites a las cuales se acercan arbitrariamente órbitas cercanas (por ejemplo, vistas en el diagrama de fase ??). Esto no es inusual y se trata de hecho es una situación típica en el plano.
+
+Hemos estudiado también lo que sucede con soluciones que empiezan ``cerca'' de puntos de equilibrio y hemos visto que algunas tienden a dichos puntos de equilibrio cuando $t \to \infty$ (o más precisamente $t \to \beta_{x_0}$) cuando los puntos son asintóticamente estables, se alejan (cuando los equilibrios son inestables) o corresponden a órbitas periódicas en el caso de equilibrios que son centros.
+
+Formalizamos esto con el concepto de $\alpha$-límite y $\omega$-límite.
+
+\begin{definition}Dado $x \in \R^n$ definimos los conjuntos $\alpha$-límite y $\omega$-límite de $x$ respectivamente por:
+
+$$
+	\alpha(x) = \lim_{t \to \alpha_{x}^+}{\phi(t,x)},
+$$
+
+$$
+	\omega(x) = \lim_{t \to \beta_{x}^-}{\phi(t,x)},
+$$
+
+donde $\phi(t,x)$ es el flujo a través de $x$ e $I_x = (\alpha_x, \beta_x)$ es el intervalo de definición de la solución a través de $x$ garantizada por el teorema de existencia.
+\end{definition}
+
+Debido a que si $x$ es un punto de la órbita $\gamma$ entonces $\phi(t,x) \in \gamma$ para todo $t$ por definición de órbita, utilizamos indistintamente la notación $\omega(x)$ u $\omega(\gamma)$ para denotar el conjunto límite de dicha órbita.
+
+Ahora, la discusión precedente, implica, entonces, que las órbitas $\gamma$ cercanas a puntos de equilibrio asintóticamente estables $\bar{x}$ tienen conjunto límite $\omega(\gamma) = \{\bar{x}\}$. Si $\bar{x}$ no es asintóticamente estable podría suceder que $\gamma$ sea no acotada (y se aleja a infinito), $\gamma$ es periódica y en este caso coincide con su conjunto límite $\omega(\gamma)$ o bien, $\gamma$ se acerca arbitrariamente a otra órbita $\tau$ que debe ser periódica.
+
+Este tipo de comportamientos límite de las órbitas se han evidenciado hasta ahora en los ejemplos estudiados pero resulta que, de hecho, el comportamiento de las órbitas en el plano es siempre uno de este tipo, como asegura el Teorema de Poincaré-Bendixson que probaremos en la sección siguiente.
+
+Sin pérdida de generalidad trabajaremos únicamente con las semiórbitas positivas $\gamma^+$ (obviando $t < 0$) y solo con conjuntos $\omega$-límite. Resultados idénticos aplican para conjuntos $\alpha$-límite y semiórbitas negativas $\gamma^-$ generalmente con tan solo ``reversar'' el tiempo con una transformación $t \to -t$.
+
+Introducimos ahora la noción de conjunto invariante.
+
+\begin{definition} \label{def:conjuntoinvariante}
+Un conjunto $A \subseteq \R^2$ es \emph{invariante} respecto al sistema $\dot{x} = f(x)$ si $\phi(t,x) \in A$ para todo $x \in A$ y $t \in I_x$.
+\end{definition}
+
+Equivalentemente, $A$ es un conjunto invariante si es una unión de órbitas.
+
+% TODO: ejemplos
+
+\begin{lemma} \label{lem:orbitaslimite}
+Sea $\gamma^+(x)$ la semiórbita positiva de un punto $x \in \R^2$. Si $\gamma^+(x)$ es acotada entonces:
+
+	\begin{enumerate}[(a)]
+		\item $\omega(x)$ es no vacío, compacto y conexo.
+		\item $d(\phi(t,x), \omega(x)) \to 0$ cuando $t \to \infty$.
+		\item $\omega(x)$ es un conjunto invariante del sistema plano. En particular, si $y \in \omega(x)$ entonces $\gamma^+(y) \subseteq \omega(x)$.
+	\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+\begin{enumerate}[(a)]
+	\item Sea $x \in \R^2$. Probaremos que: (i) $\omega(x)$ es no vacío, (ii) acotado (iii) cerrado (iv) conexo.
+
+	(i) Construimos la sucesión $(x_i)$ definida por $ x_i:= \phi(i, x), i \in \N$. Como $\{x_i\}_i \subseteq \gamma^+(x)$ y $\gamma^+(x)$ está acotada por hipótesis entonces la sucesión también está acotada. Por lo tanto, existe una subsucesión convergente, digamos, a $p$. Claramente, $p \in \omega(x)$ por definición así que $\omega(x) \neq \emptyset$.
+
+	(ii) Si $\omega(x)$ fuera no acotado entonces existirían sucesiones $(t_i)$ tales que $\phi(t_i, x)$ es no acotada cuando $i \to \infty$ (o de lo contrario $\omega(x)$ sería acotado), pero como $\phi(t_i, x) \in \gamma^+(x)$ para todo $i$ entonces esto implica que la semiórbita positiva $\gamma^+(x)$ es no acotada, una contradicción.
+
+	(iii) Que $\omega(x)$ es cerrado se sigue de un típico argumento de puntos límites tomando una sucesión $y_i \in \omega(x)$ que converge a $p$ y considerando las respectivas sucesiones $\phi(t_k^{(i)}, x)$ tales que $\phi(t_k^{(i)}, x) \to y_i$ cuando $i \to \infty$. Se puede construir entonces una sucesión de algunos de tales $t_k^{(i)}$ tal que $\phi(t_k^{(i)}, x) \to p$, probando así que $p \in \omega(x)$.
+
+	(iv) Para ver que $\omega(x)$ es conexo supongamos que $\omega(x) = A \cup B$ con $A,B$ subconjuntos no vacíos, acotados, cerrados y disjuntos de $\R^n$.
+	Como $A$ y $B$ son cerrados y disjuntos entonces $d(A,B) = \delta > 0$. Ya que $A$ y $B$ están formados por puntos $\omega$-límite entonces existen sucesiones de tiempos $(t_i^A)$ y $(t_i^B)$ tales que
+
+$$ d(A, \phi(t_i^A, x)) < \frac{\delta}{2}, \text{ y } d(B, \phi(t_i^B, x)) < \frac{\delta}{2}$$
+
+lo que implica que
+
+$$ d(A, \phi(t_i^B, x)) > \frac{\delta}{2}. $$
+
+Por continuidad de la función distancia $d$ y $\phi$ se sigue que existe una sucesión $(\tau_j)$ de tiempos tal que
+
+$$ d(A, \phi(\tau_j, x)) = \frac{\delta}{2}. $$
+
+Como $(\phi(\tau_j, x))_j$ es una sucesión acotada debe tener una subsucesión convergente. Podemos suponer que $(\phi(\tau_j, x))_j$ misma converge a $z$ cuando $j \to \infty$ , pero entonces $z \in \omega(x)$ por definición y $z$ satisface que $d(z,A) = \delta/2$ de manera que $z \notin A$ y también
+
+$$ d(z,B) \geq d(A,B) - d(z,A) = \delta/2$$
+
+así que $z \notin B$. Esto es una contradicción pues $\omega(x) = A \cup B$.
+
+\item Veamos ahora que $d(\phi(t,x), \omega(x)) \to 0$ cuando $t \to \infty$. Supongamos que no, entonces existe $\delta > 0$ y una sucesión $(t_i)$ tal que 
+
+$$ d(\phi(t_i, x), \omega(x)) \geq \delta > 0.$$
+
+Como la sucesión $(\phi(t_i, x))$ está en un conjunto acotado admite una subsucesión convergente. Sin pérdida de generalidad podemos suponer que $(\phi(t_i, x))$ misma es convergente, digamos, a $p$ cuando $t \to \infty$. Claramente $\p \in \omega(x)$ pero entonces por la desigualdad anterior y la continuidad de la distancia $d$ y $\phi$ debe tenerse que
+
+$$ d(p, \omega(x)) > 0,$$
+
+una contradicción pues $p \in \omega(x)$.
+
+\item Finalmente veamos que $\omega(x)$ es invariante. Consideramos únicamente invariancia positiva: es decir, debemos ver que dado $u \in \omega(x)$ entonces todo $v = \phi(t, u)$ está en $\omega(x)$ para todo $t > 0$. La invariancia negativa (es decir, para $t < 0$) se prueba análogamente.
+
+Por definición existe una sucesión $t_i$ tal que
+
+$$ x_i = \phi(t_i, x) \to u$$
+
+cuando $i \to \infty$. Consideramos la sucesión
+
+$$ y_i := \phi(t, x_i) = \phi(t, \phi(t_i, x)).$$
+
+Como $\phi$ es continua en ambos argumentos entonces
+
+$$ y_i \to \phi(t, u) = v$$
+
+cuando $i \to \infty$.
+
+Pero también $ \phi(t, \phi(t_i, x)) = \phi(t + t_i, x) $ por la propiedad de semigrupo del espacio de tiempos de un sistema dinámico. Esto implica que si hacemos $\tau_i := t + t_i$ entonces
+
+$$ \phi(\tau_i, x) \to v$$
+
+cuando $i \to \infty$ lo que significa que $v \in \omega(x)$ por definición de punto de $\omega$-límite.
+\end{enumerate}
+\end{proof}
+
+\begin{corollary}[Transitividad] Sean $x,y,z \in \R^2$. Si $z \in \omega(y)$ y $y \in \omega(x)$ entonces $z \in \omega(x)$.
+\end{corollary}
+
+\section{Teorema de Poincaré-Bendixson}
+
+Como hemos dicho, el Teorema de Poincaré-Bendixson permite clasificar completamente el comportamiento límite de la órbita de cualquier punto $x \in \R^2$ en un sistema dinámico plano.
+
+La idea es que la órbita $\gamma(x)$ de un punto $x$ puede ser no acotada (en cuyo caso, la órbita se ``aleja'' a infinito) o bien es acotada y sucede una de dos posibilidades: el conjunto límite $\omega(\gamma)$ consta de un número finito de puntos críticos y $\gamma$ tiende a uno de ellos cuando $t \to \infty$ o $\omega(\gamma)$ es una órbita periódica.
+
+Por supuesto si $\gamma$ ya es una órbita periódica entonces $\gamma = \omega(\gamma)$. En caso contrario, nos encontramos precisamente con lo que se conoce como órbita ``límite'' que es necesariamente periódica.
+
+Que el sistema esté definido sobre $\R^2$ es de vital importancia: este tipo de comportamiento es exclusivo de los sistemas dinámicos planos, como ilustra el ejemplo ??. La razón de esto yace en el Teorema de la Curva de Jordan (\ref{teo:curvadejordan}) que aplica únicamente a curvas planas.
+
+En el camino a la prueba del teorema, utilizaremos la noción de segmento transversal.
+
+\begin{definition}Un segmento cerrado rectilíneo $L$ es \emph{transversal} a $\dot{x} = f(x)$ si el vector $f$ no se anula en $L$ (no hay equilibrios en $L$) y es no tangente a $L$ en todo punto de $L$.
+\end{definition}
+
+\begin{figure}[h] \centering
+    \includegraphics[scale=1.0]{figures/transversal.png}
+\end{figure}
+
+Es claro que en vecindad de un punto regular $x$ (es decir, $f(x) \neq 0$) siempre es posible construir un segmento transversal $L$ por la continuidad de $f$.
+
+El resultado clave que involucra conjuntos $\omega$-límite y transversales es el siguiente.
+
+\begin{lemma} \label{lem:transversalexistencias}
+
+Sea $p \in \omega(x)$ y $L$ un segmento transversal a través de $p$. Para todo $\epsilon > 0$ existe una vecindad $V_\epsilon(p)$ tal que toda órbita que pasa a través de un punto interior de $V_\epsilon(p)$ para $t = 0$ cruza a $L$ para algún tiempo $s$, $|s| < \epsilon$. 
+\end{lemma}
+\begin{proof}
+Sea $a \in \R^2$ un vector ortogonal al segmento $L$, de manera que para todo punto $q \in L$ se tiene
+
+$$ \langle a, q-p \rangle = 0.$$
+
+Definamos la función $g(x,s)$ por
+
+$$ g(x,s) := \langle a, \phi(s, x) - p \rangle.$$
+
+Claramente $g$ es suave y está definida cerca de $(p,0)$ y $g(p,0) = 0$. Además, $g_s(p,0) = \langle a, f(p) \rangle \neq 0$ pues $L$ es un segmento transversal a $f$.
+
+Bajo estas hipótesis el teorema de la función implícita garantiza la existencia de una función $\tau: x \mapsto \tau(x)$ suave tal que $\tau(p) = 0$ definida en una vecindad $V_\epsilon(p)$ y tal que en dicha vecindad se satisface
+
+$$ g(x, \tau(x)) = 0. $$
+
+O lo que es lo mismo, si $y$ es cualquier punto en $V_\epsilon(p)$ entonces con el tiempo $s = \tau(y)$ se obtiene que $\phi(s, y)$ está en $L$.
+
+\end{proof}
+
+\begin{proposition}Dado $x \in \R^2$ y un segmento transversal $L$ la intersección $\omega(x) \cap L$ contiene a lo más un punto.
+\end{proposition}
+
+\begin{proof}
+Supongamos que $\omega(x) \cap L$ es no vacío y sea $q \in \omega(x) \cap L$. Por definición de $\omega$-límite existe una sucesión $t_k$ de tiempos tal que $\phi(t_k, x) \to q$ cuando $k \to \infty$. Por el lema anterior para cada uno de estos $t_k$ existe un $s_k$ con $|s_k| > |t_k|$ tal que $x_k = \phi(t_k + s_k, x)$ está en $L$.
+
+Consideramos dos casos:
+
+(i) Si $(x_k)_k$ es una sucesión constante entonces la órbita de $x$ es periódica y $\omega(x) = \gamma(x)$, así que el $\omega$-límite de $x$ solo puede intersectar a $L$ en el valor constante $(x_k)_k$ y por lo tanto $\omega(x) \cap L = \{q\}$.
+
+(ii) Si $(x_k)_k$ no es constante consideremos dos puntos sucesivos $x_k$ y $x_{k+1}$ donde $\omega(x)$ intersecta a $L$, como en la figura \ref{fig:transversalintersections}. Notamos que a lo largo de $L$ el campo vectorial $f$ siempre apunta en la misma dirección o de lo contrario por continuidad de $f$ existiría un punto $z \in L$ tal que $f(z) = 0$ o $f(z)$ está en la dirección de $L$ pero esto contradice que $L$ es transversal a $f$.
+Ahora, el segmento de órbita entre $x_k$ y $x_{k+1}$ junto con el segmento rectilíneo entre esos dos puntos forma una curva cerrada $C$, de manera que como consecuencia del Teorema de la Curva de Jordan divide al plano $\R^2$ en dos componentes conexas.
+
+Como se ve en la figura, debido a la dirección de $f$ sobre el segmento entre $x_k$ y $x_{k+1}$ la semiórbita positiva $\gamma^+(x_k)$ está contenida en la componente no acotada. Esto implica que la siguiente intersección $x_{k+2}$ de la órbita con $L$ está fuera del segmento entre $x_k$ y $x_{k+1}$, así que los puntos $x_k$, $x_{k+1}$ y $x_{k+2}$ están ordenados en la transversal $L$.
+
+Esto implica que $(x_k)_k$ es una sucesión monótona sobre un segmento rectilíneo $L$ así que puede tener a lo más un punto de acumulación en $L$ y por tanto $\omega(x) \cap L = \{q\}$.
+
+\end{proof}
+
+\begin{figure}[h] \centering \label{fig:transversalintersections}
+    \includegraphics[scale=0.8]{figures/transversal-intersections.png}
+\end{figure}
+
+\begin{theorem}[Poincaré-Bendixson] \label{teo:poincarebendixson} Sea $f:\R^2 \to \R^2$ una función de clase $C^1$. Para el sistema plano $\dot{x} = f(x)$, si la semiórbita positiva $\gamma^+(x)$ de algún punto $x$ está acotada y $\omega(x)$ no contiene puntos críticos entonces $\omega(x)$ es una órbita periódica (órbita límite).
+\end{theorem}
+
+\begin{proof}
+Del lema \ref{lem:orbitaslimite} se sigue que $\omega(x)$ es no vacío, compacto y conexo. Sea $p \in \omega(x)$, se sigue por transitividad que $\omega(p) \subseteq \omega(x)$. Ahora sea $q \in \omega(p)$. Por hipótesis, $q$ no es un punto crítico así que existe un segmento transversal a $f$, $L$, a través de $q$.  Como $q \in \omega(p)$ existe una sucesión de tiempos $(t_k)$ tal que $\phi(t_k, p) \to q$ cuando $k \to \infty$.
+
+Por el lema \ref{lem:transversalexistencias} podemos suponer de una vez que $\phi(t_k, p) \in L$ para todo $k \in \N$. Ahora, como $p \in \omega(x)$ entonces $\gamma^+(p) \subseteq \omega(x)$ por lema \ref{lem:orbitaslimite}. Esto es lo mismo que $\phi(t_k, p) \in \omega(x)$ para todo $k \in \N$.
+
+Ahora, como $\phi(t_k, p) \in \omega(x) \cap L$ entonces por la proposición precedente,
+
+$$ \phi(t_k, p) = q  \hspace{0.5in} \forall k \in \N.$$
+
+Esto implica que $\gamma(p)$ es una órbita periódica y ya sabemos que $\gamma(p) \subseteq \omega(x)$. Resta probar la otra contención.
+Si $\omega(x) \backslash \gamma(p) \neq \emptyset$ entonces como $\omega(x)$ es conexo se sigue que cada vecindad de $\gamma(p)$ contiene puntos de $\omega(x)$ que no están en $\gamma(p)$.
+Ahora, estas vecindades pueden tomarse suficientemente pequeñas para que no contengan puntos críticos, de manera que existan segmentos transversales a $f$, $L'$ conteniendo uno de estos puntos que están en $\omega(x)$ y un punto de $\gamma(p)$. Por lo tanto $\omega(x) \cap L'$ contiene al menos dos puntos pues $\gamma(p) \subseteq \omega(x)$ pero esto contradice la proposición anterior.
+Debe tenerse entonces que $\omega(x) \backslash \gamma(p) = \emptyset$ así que $\omega(x) = \gamma(p)$, es decir, el $\omega$-límite de $x$ es una órbita periódica.
+
+\end{proof}
+
+Estamos en condiciones de probar que las únicas posibilidades para los conjuntos $\omega$-límite de una órbita son las consideradas al inicio del capítulo como ejemplos típicos.
+
+\begin{corollary} \label{teo:poincarebendixson2} Sea $f: \R^2 \to \R^2$ de clase $C^1$. Para el sistema plano $\dot{x} = f(x)$ si la semiórbita positiva $\gamma^+$ de un punto $x$ está contenida en un conjunto compacto $K$ de $\R^2$ donde hay a lo más un número finito de puntos críticos, entonces se cumple alguno de estos:
+
+	\begin{enumerate}[(a)]
+		\item $\omega(\gamma^+)$ consiste de un solo punto crítico  y $\gamma^+$ se aproxima a este cuando $t \to \infty$;
+		\item $\omega(\gamma^+)$ es una órbita periódica;
+		\item $\omega(\gamma^+)$ consiste de un número finito de puntos críticos y órbitas que tienden a estos puntos cuando $t \to \pm \infty$.
+	\end{enumerate}
+\end{corollary}
+
+\begin{proof}
+\begin{enumerate}[(a)]
+	\item Como $\omega(\gamma^+) \subseteq \overline{\gamma^+} \subseteq K$ entonces $\omega(\gamma^+)$ contiene a lo más un número finito de puntos críticos. Si contiene alguno entonces debe ser necesariamente un solo punto crítico pues $\omega(x)$ es conexo (no puede ser unión de varios puntos críticos). Claramente $\gamma^+$ tiende a este punto crítico cuando $t \to \infty$.
+	\item Supongamos ahora que $\omega(\gamma^+)$ no contiene puntos críticos. Por teorema \ref{teo:poincarebendixson} $\omega(\gamma^+)$ debe ser una órbita periódica.
+	\item Asumimos ahora que $\omega(\gamma^+)$ contiene un número finito de puntos críticos pero ninguna órbita periódica. Sea $\gamma_0$ cualquier órbita en $\omega(\gamma^+)$. Por el caso (a) debe tenerse que $\alpha(\gamma_0)$ o $\omega(\gamma_0)$ consisten de un único punto crítico y por lo tanto $\gamma_0$ tiende a uno de estos cuando $t \to \pm \infty$.
+\end{enumerate}
+\end{proof}
+
+% TODO: ejemplos
+
+\chapter{Bifurcaciones}
+Ya hemos estudiado y clasificado el comportamiento cualitativo global de sistemas lineales y local en sistemas no lineales, cerca de puntos críticos. En general, en presencia de equilibrios hiperbólicos esta clasificación está completa. En caso contrario es necesario hacer un análisis propio del sistema.
+
+Consideramos ahora sistemas que dependen de un parámetro $\lambda$, de la forma
+
+\begin{equation} \label{eq:sistemabifurcacion}
+	\dot{x} = f(x, \lambda).
+\end{equation}
+
+Podría ocurrir que al variar el parámetro $\lambda$ los puntos críticos del sistema \ref{eq:sistemabifurcacion} aparezcan o desaparezcan, se estabilicen o desestabilicen o cambien de tipo y, en consecuencia, el comportamiento cualitativo del sistema (su diagrama de fase) cambie notablemente.
+
+Ya en el ejemplo \ref{ex:nolinealnohiperbolico}, vimos un sistema en el que siempre aparece el punto crítico $x = 0$ pero éste cambia de estabilidad según el parámetro $\mu$ sea positivo, negativo o nulo.
+
+Las otras posibilidades mencionadas también pueden ocurrir en otros sistemas planos.
+
+\begin{definition} \label{def:bifurcacion}
+Sea $f$ una función que depende continuamente tanto de $x$ como del parámetro $\lambda$. Si un cambio suave en $\lambda$ produce un cambio cualitativo o topológico en el comportamiento del sistema plano $\dot{x} = f(x,\lambda)$, se dice que ha ocurrido una \emph{bifurcación}.
+\end{definition}
+
+Las bifurcaciones pueden clasificarse como locales o globales:
+\begin{itemize}
+	\item Una bifurcación local ocurre cuando el cambio en el parámetro causa un cambio en la estabilidad de un punto de equilibrio.
+
+	Es claro, entonces, que bifurcaciones locales se presentan cuando el sistema linealizado en vecindad de un punto crítico tiene valor propio con parte real que pasa por $0$.
+	Esto es, una bifurcación local ocurre en $(x_0, \lambda_0)$ siempre que $Df(x_0, \lambda_0)$ tenga un valor propio con parte real nula.
+
+	Las bifurcaciones locales pueden determinarse a través del estudio la estabilidad del sistema.
+
+	\item En contraste, las bifurcaciones globales no dependen de la estabilidad local pues se refieren a cambios cualitativos en el comportamiento dentro de conjuntos invariantes más grandes como lo son ciclos límite o trayectorias que se extienden una distancia grande.
+\end{itemize}
+
+La aparición de algunas de estas bifurcaciones (en particular las relacionadas con cliclos límite) requieren que el sistema tenga, cuando menos, dos dimensiones. En particular, la existencia de ciclos límite es el teorema de Poincaré-Bendixson (ver teorema \ref{teo:poincarebendixson}) así que este tipo de bifurcaciones ocurren únicamente desde sistemas planos en adelante.
+
+\section{Bifurcaciones esencialmente unidimensionales en sistemas 2-dimensionales}
+
+Consideramos a continuación algunas bifurcaciones que aparecen también en sistemas dinámicos 1-dimensionales.
+
+\subsection{Bifurcación silla-nodo}
+Ocurre cuando dos puntos críticos colisionan a medida que el parámetro $\lambda$ cambia y se anulan el uno al otro.
+
+El ejemplo prototípico de una bifurcación silla-nodo es el siguiente.
+
+\begin{example}
+$$ 
+	\dot{x_1} = \lambda - x_1^2 \hspace{0.5in} \dot{x_2} = -x_2.
+$$
+
+Los puntos críticos del sistema son $(\sqrt{\lambda}, 0)$ y $(-\sqrt{\lambda}, 0).$
+
+La matriz jacobiana $Df$ es
+
+$$
+Df(\pm \sqrt{\lambda}, 0) = \left( \begin{array}{ll}
+	\mp 2 \sqrt{\lambda} & 0 \\
+	0 & -1
+\end{array} \right),
+$$
+
+que tiene valores propios $-1$ y $\mp 2\sqrt{\lambda}$.
+
+\begin{itemize}
+	\item Si $\lambda > 0$ el punto crítico $(\sqrt{\lambda}, 0)$ es un nodo asintóticamente estable y $(-\sqrt{\lambda}, 0)$ es un punto de silla inestable.
+	\item Mientras $\lambda$ decrece los puntos se acercan unos al otro y en $\lambda = 0$ el sistema tiene un único punto crítico $(0,0)$.
+	\item Cuando $\lambda < 0$ no hay puntos críticos.
+\end{itemize}
+
+\begin{figure}[ht] \centering
+    \includegraphics[scale=0.8]{figures/bifurcations-saddlenode.png}    
+    \caption{Bifurcación de silla-nodo.}
+\end{figure}
+
+Notamos que aún siendo este un sistema plano, el cambio de dinámica ocurre exclusivamente en el eje $x_1$.
+\end{example}
+
+Por supuesto bifurcaciones de este tipo aparecen en sistemas con una forma más general, como en el siguiente teorema. (Kocak p316).
+
+\begin{theorem}Consideremos el sistema
+
+$$ \dot{x_1} = F_1(x_1, x_2, \lambda) \hspace{0.5in} \dot{x_2} = -x_2 + F_2(x_1, x_2, \lambda). $$
+
+con $F=(F_1,F_2)$ al menos de clase $C^1$ que satisface que $F(x,0) = f(x)$ con $f(0) = 0$ y $Df(0) = 0$.
+
+Si
+$$
+	\dfrac{\partial F_1}{\partial \lambda}(0,0,0) \neq 0 \hspace{0.5in}
+	\dfrac{\partial^2 F_1}{\partial x_1^2}(0,0,0) \neq 0	
+$$
+entonces existe una bifurcación de silla-nodo en $\lambda = 0$.
+Cuando $\lambda \dfrac{\partial F_1}{\partial \lambda} \dfrac{\partial^2 F_1}{\partial x_1^2} < 0$ hay dos puntos de equilibrio hiperbólicos (una silla y el otro un nodo asintóticamente estable) y no ha equilibrios cuando $\lambda \dfrac{\partial F_1}{\partial \lambda} \dfrac{\partial^2 F_1}{\partial x_1^2} > 0$.
+\end{theorem}
+
+
+\subsection{Bifurcación transcrítica}
+
+A diferencia de la bifurcación silla-nodo, en una bifurcación transcrítica un punto crítico existe para todo valor del parámetro $\lambda$ pero intercambian su estabilidad con otro punto crítico luego de la ``colisión'' entre ellos.
+
+\begin{example}
+$$ 
+	\dot{x_1} = \lambda x_1 - x_1^2 \hspace{0.5in} \dot{x_2} = -x_2.
+$$
+
+Los puntos críticos son $u = (0, 0)$ y $v = (\lambda, 0)$.
+La matriz jacobiana de $f$ es
+
+$$ Df(x_1,x_2) = \left( \begin{array}{ll}
+	\lambda - 2x_1 & 0 \\
+	0 & -1
+\end{array} \right). $$
+
+\begin{itemize}
+	\item Si $\lambda > 0$ entonces $(0,0)$ es un punto de silla y $(\lambda, 0)$ es un nodo asintóticamente estable.
+	\item Cuando $\lambda = 0$ los nodos colisionan en uno solo: $(0,0)$ que es semiestable.
+	\item Cuando $\lambda < 0$ la estabilidad se intercambia: $(0,0)$ es un nodo asintóticamente estable y $(\lambda, 0)$ un punto de silla.
+\end{itemize}
+
+% TODO: imagen para los distintos valores de \lambda
+\end{example}
+
+\subsection{Bifurcación \textit{pitchfork}}
+
+Ocurre en sistemas dinámicos con simetría. En este tipo de bifurcación el número de equilibrios pasa de 1 a 3 cuando se pasa por el valor de bifurcación del parámetro $\lambda$ y la estabilidad del equilibrio original cambia.
+
+Cuando los otros dos equilibrios que aparecen son estables la bifurcación se dice \emph{supercrítica} y se llama \emph{subcrítica} cuando son inestables.
+
+\begin{example}[Bifurcación \textit{pitchfork} supercrítica]
+Considérese el sistema
+$$ 
+	\dot{x_1} = \lambda x_1 - x_1^3 \hspace{0.5in} \dot{x_2} = -x_2.
+$$
+
+El punto crítico $(0,0)$ aparece siempre. Los otros dos posibles puntos críticos son $(\pm \sqrt{\lambda}, 0)$.
+La matriz jacobiana de $f$ es
+
+$$
+	Df(x_1,x_2) = \left( \begin{array}{ll}
+		\lambda - 3x_1^2 & 0 \\
+		0 & -1
+	\end{array} \right).
+$$
+
+\begin{itemize}
+	\item Para $\lambda < 0$ el único punto crítico es el origen $(0,0)$ y $Df(0,0)$ tiene valores propios $\lambda < 0$ y $-1$, así que es un nodo asintóticamente estable.
+	\item Cuando $\lambda > 0$ el origen $(0,0)$ pierde su estabilidad y aparecen dos nuevos puntos críticos ubicados simétricamente sobre el eje $x_1$. A saber, $(\sqrt{\lambda}, 0)$ y $(-\sqrt{\lambda}, 0)$. 
+
+Como en ambos puntos $Df$ tiene valores propios $-2\lambda$ y $-1$, estos puntos críticos son estables.
+\end{itemize}
+
+\begin{figure}[ht] \centering
+    \includegraphics[scale=0.8]{figures/bifurcations-pitchforksupercritical.png} 
+    \caption{Bifurcación \textit{pitchfork} supercrítica.}
+\end{figure}
+
+\end{example}
+
+\begin{example}[Bifurcación \textit{pitchfork} subcrítica]
+Consideramos una pequeña modificación del sistema del ejemplo anterior:
+
+$$ 
+	\dot{x_1} = \lambda x_1 + x_1^3 \hspace{0.5in} \dot{x_2} = -x_2.
+$$
+
+Ahora el punto crítico $(0,0)$ aparece siempre y, posiblemente, los otros dos puntos críticos $(\pm \sqrt{-\lambda}, 0)$.
+
+\begin{itemize}
+	\item Cuando $\lambda < 0$ hay tres puntos críticos: $(0,0)$ y $(\pm \sqrt{-\lambda}, 0)$. El origen es estable y los otro dos puntos críticos son inestables.
+	\item A medida que $\lambda \to 0$, los tres puntos críticos se acercan hasta que ``colisionan'' y para $\lambda > 0$ el único punto crítico es el origen $(0,0)$ con su estabilidad cambiada: ahora es inestable.
+\end{itemize}
+
+% TODO: imagen
+
+\end{example}
+
+Como para las bifurcaciones silla-nodo tenemos un criterio para la aparición de bifurcaciones \textit{pitchfork} en sistemas con formas más complicadas que las de los ejemplos previos.
+
+\begin{theorem}
+Considérese el sistema plano $\dot{x} = f(x, \lambda) = f(x_1, x_2, \lambda)$ con $f$ una función suficientemente suave en los tres argumentos. Si $-f(x, \lambda) = f(-x, \lambda)$ y se satisfacen las siguientes condiciones en un $\lambda_0$:
+
+$$
+	\dfrac{\partial f}{\partial x_1}(0, \lambda_0) = 0, \dfrac{\partial^2 f}{\partial x_1^2}(0, \lambda_0) = 0, 
+	\dfrac{\partial^3 f}{\partial x_1^3}(0, \lambda_0) \neq 0, 
+$$
+
+y
+
+$$
+	\dfrac{\partial f}{\partial \lambda}(0, \lambda_0) = 0, \dfrac{\partial^2 f}{\partial \lambda x_1}(0, \lambda_0) \neq 0.
+$$
+
+Entonces el sistema presenta una bifurcación \textit{pitchfork} cuando $\lambda$ pasa a través de $\lambda_0$ en el origen.
+La bifurcación es supercrítica si $\dfrac{\partial^3 f}{\partial x_1^3}(0,\lambda_0) > 0$ y subcrítica si $\dfrac{\partial^3 f}{\partial x_1^3}(0,\lambda_0) < 0$.
+\end{theorem}
+% TODO: buscar referencia y prueba
+
+\section{Bifurcaciones que requieren al menos dos dimensiones para ocurrir}
+
+Supongamos que un sistema plano $\dot{x} = f(x, \lambda)$ que depende de un parámetro $\lambda$ tiene un punto fijo en $\bar{x}$ y que la matriz jacobiana $Df(\bar{x}, \lambda)$ tiene valores propios $\mu_1, \mu_2$.
+
+Supongamos además que $\bar{x}$ es estable. Es decir, $\Re(\mu_{1,2}) < 0$, de manera que los eigenvalores se encuentran del lado izquierdo del plano complejo.
+La única manera en la que la estabilidad del punto crítico cambie es cuando estos eigenvalores (al variar el parámetro $\lambda$) crucen el eje imaginario.
+
+\begin{figure}[ht] \centering
+    \includegraphics[scale=0.8]{figures/bifurcations-2dimensional.png} 
+\end{figure}
+
+En particular, si los eigenvalores tienen parte imaginaria nula $\Im(\mu_{1,2}) = 0$ entonces se encuentran sobre el eje real y la única posibilidad es que cambien de signo, lo que corresponde a una de las bifurcaciones estudiadas en la sección anterior.
+De ahí que se dijera que son esencialmente unidimensionales.
+
+Si en cambio los eigenvalores no tienen parte imaginaria nula, lo que únicamente ocurre en sistemas dinámicos de al menos 2 dimensiones, el comportamiento puede ser más amplio y, debido a la parte imaginaria, involucrar la aparición o desaparición de órbitas periódicas (u órbitas límite).
+
+Uno de estas bifurcaciones más comunes es la de Poincaré-Andronov-Hopf, que estudiamos a continuación.
+
+\subsection{Bifurcación de Poincaré-Andronov-Hopf}
+
+Queremos ver qué sucede en vecindad de un equilibrio no hiperbólico con valores propios imaginarios puros. Del teorema de la función implícita se sigue que que bajo perturbaciones pequeñas de $\lambda$ del flujo $f$, el punto crítico no desaparece y no se crean nuevos puntos críticos.
+
+Sin embargo, si el tipo de estabilidad del punto cambia sujeto a estas perturbaciones se presenta una bifurcación que además, bajo ciertas hipótesis, viene acompañada de la aparición o desaparición de una pequeña órbita periódica alrededor del punto crítico.
+
+El siguiente teorema (Kocak p344) establece algunas condiciones para que lo anterior ocurra.
+
+\begin{theorem}[Poincaré-Andronov-Hopf] \label{teo:poincare-andronov-hopf} Sea $\dot{x} = f(x,\lambda) = A(\lambda)x + F(x,\lambda)$ un sistema dinámico de clase al menos $C^3$ con $F(0,\lambda) = 0$ y $\dfrac{\partial F}{\partial x_1}(0, \lambda) = \dfrac{\partial F}{\partial x_2}(0, \lambda) = 0$ para todo $|\lambda|$ suficientemente pequeño. Supóngase que la parte lineal $A(\lambda)$ tiene, en el origen, valores propios $\alpha(\lambda) + i\beta(\lambda)$ con $\alpha(0) = 0$ y $\beta(0) \neq 0$.
+Además, supóngase que estos valores propios cruzan el eje imaginario con velocidad no cero, es decir, $\dfrac{d\alpha}{d\lambda}(0) \neq 0$.
+
+Entonces en cualquier vecindad $U \subseteq \R^2$ del origen $(0,0)$ y dado cualquier $\lambda_0 > 0$ existe un $\bar{\lambda}$ con $|\bar{\lambda}| < \lambda_0$ tal que la ecuación diferencial $\dot{x} = A(\bar{\lambda}) + F(x, \bar{\lambda})$ tiene una orbita periódica no trivial en $U$.
+\end{theorem}
+
+\begin{example} \label{ex:vanderpol-hopf}
+Regresamos al oscilador de Van der Pol, introducido en el ejemplo ??:
+$$
+	\dot{x_1} = x_2, \hspace{0.5in} \dot{x_2} = -x_1 + 2\lambda x_2 - x_1^2 x_2 = (2\lambda - x_1^2)x_2 - x_1.
+$$
+
+Veamos que el oscilador de Van der Pol presenta una bifurcación de Hopf cuando $\lambda$ pasa a través de $0$.
+
+En forma matricial:
+
+$$
+	\begin{pmatrix}\dot{x_1} \\ \dot{x_2}\end{pmatrix} =	\begin{pmatrix}0 & 1 \\ -1 & 2\lambda \end{pmatrix} \begin{pmatrix}x_1 \\ x_2 \end{pmatrix} + \begin{pmatrix} 0 \\ -x_1^2 x_2\end{pmatrix}.
+$$
+
+Por lo tanto
+
+$$
+	A(\lambda) = \begin{pmatrix}0 & 1 \\ -1 & 2\lambda \end{pmatrix}
+$$
+
+y
+
+$$
+	F(x, \lambda) = \begin{pmatrix} 0 \\ -x_1^2 x_2\end{pmatrix}
+$$
+
+que son claramente tres veces continuamente diferenciables en todo $\R^2$.
+
+Ahora,
+
+$$F(0, \lambda) = \begin{pmatrix}0 \\ -x_1^2x_2\end{pmatrix}_{(0,0)} = 0 $$
+
+y
+
+$$ Df(0, \lambda) = \begin{pmatrix} 0 & 0 \\ -2x_1x_2 & -x_1^2 \end{pmatrix}_{(0,0)} = \begin{pmatrix}0 & 0 \\ 0 & 0\end{pmatrix}$$
+
+Los valores propios de la parte lineal $A(\lambda)$ son $\lambda \pm i\sqrt{\lambda^2 - \frac{1}{4}}$ así que $\alpha(\lambda) = \lambda$ y $\beta(\lambda) = \sqrt{\lambda^2 - \frac{1}{4}}$, así que las condiciones $\alpha(0) = 0$ y $\beta(0) \neq 0$ también se satisfacen.
+
+Sólo resta probar que $\dfrac{d \alpha}{d \lambda}(0) \neq 0$ pero esto es claro pues $\alpha'(0) = 1$.
+
+En estas condiciones tenemos una bifurcación de Poincaré-Andronov-Hopf.
+\end{example}
+
+A continuación ofrecemos otra forma de obtener las mismas conclusiones del ejemplo a través de un análisis no lineal similar al hecho antes para varios otros sistemas. Aunque este camino no es aplicable para sistemas arbitrarios, ofrece un punto de vista más elemental de lo que ocurre a medida que $\lambda$ cambia sin requerir toda la maquinaria del teorema de Poincaré-Andronov-Hopf.
+
+\begin{example}[Continuación del ejemplo \ref{ex:vanderpol-hopf}]
+Vemos cómo se comporta la norma $||x(t)||$ de las soluciones:
+
+$$
+	\dfrac{d}{dt} ||x(t)||^2 = \dfrac{d}{dt}(x_1^2 + x_2^2) = (4\lambda - 2x_1^2)x_2^2
+$$
+
+Entonces, si $\lambda \leq 0$ todas las soluciones tienden al origen y si $\lambda > 0$ todas las soluciones tienden a una órbita periódica que es estable (ver teorema \ref{teo:poincarebendixson} de Poincaré-Bendixson).
+
+\end{example}
+
+\begin{figure}[!ht] \centering
+	\includegraphics[scale=0.5]{figures/vanderpol-hopfbifurcation.jpg}
+\end{figure}
+
+% TODO: otra bifurcación 2D
+
+\chapter{Acerca de DYNAMITE}
+
+\end{document}
