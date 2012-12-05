@@ -54,24 +54,26 @@
 \chapter{Introducción}
 \label{cap:introduccion}
 
+Introducción...
+
 \section{Conceptos Básicos}
 
 \begin{definition}[Espacio de tiempo] $T \subseteq \mathbb{Z}$ o $T \subseteq \mathbb{R}$ es un \emph{espacio de tiempo} si $T$ es un semigrupo aditivo. Esto es, $0 \in T$ y $t + s \in T$ para todo $t,s \in T$.
 \end{definition}
     
 \begin{definition}[Sistema dinámico] \label{def:dynamicalsystem}
-Un sistema din\'amico es una tupla $\left( T, M, \Phi \right)$, donde $T$ es un espacio de tiempo, $M$ es un manifold y $\Phi : T \times M \rightarrow M : \left( t, x \right) \mapsto \Phi^t \left( x \right)$ satisface las propiedades:
+Un sistema din\'amico es una tupla $\left( T, M, \phi \right)$, donde $T$ es un espacio de tiempo, $M$ es un manifold y $\phi : T \times M \rightarrow M : \left( t, x \right) \mapsto \phi^t \left( x \right)$ satisface las propiedades:
   \begin{enumerate}[(D1)]
-    \item $\Phi \left( 0, x \right) = \Phi \left( x \right)$ para todo $x \in
-    M$. (equivalentemente $\Phi^0 = \text{id}_M$)
+    \item $\phi \left( 0, x \right) = \phi \left( x \right)$ para todo $x \in
+    M$. (equivalentemente $\phi^0 = \text{id}_M$)
     
-    \item $\Phi \left( t_2, \Phi \left( x, t_1 \right) \right) = \Phi \left(
+    \item $\phi \left( t_2, \phi \left( x, t_1 \right) \right) = \phi \left(
     t_1 + t_2, x \right)$ para todo $x \in M$ y $t_1, t_2 \in T$.
-    (equivalentemente, $\Phi^{t_1} \circ \Phi^{t_2} = \Phi^{t_1 + t_2}$).
+    (equivalentemente, $\phi^{t_1} \circ \phi^{t_2} = \phi^{t_1 + t_2}$).
   \end{enumerate}
 
   El conjunto $M$ es llamado {\emph{espacio de estados (o de fase)}} y
-  $\Phi$ un {\emph{operador de evoluci\'on}}.
+  $\phi$ un {\emph{operador de evoluci\'on}}.
 \end{definition}
 
 \begin{figure} \label{fig:evolutionoperator} \centering
@@ -82,42 +84,42 @@ Un sistema din\'amico es una tupla $\left( T, M, \Phi \right)$, donde $T$ es un 
 Algunas observaciones:
 
 \begin{enumerate}[-]
-  \item A la colecci\'on $\left\{ \Phi^t \right\}_t$ determinada por $\Phi$ se
+  \item A la colecci\'on $\left\{ \phi^t \right\}_t$ determinada por $\phi$ se
   le llama tambi\'en {\emph{flujo}}. Dado $x_0 \in M$ (estado inicial),
-  decimos que $x_0$ ``fluye'' a trav\'es de la curva $t \mapsto \Phi^t \left(
+  decimos que $x_0$ ``fluye'' a trav\'es de la curva $t \mapsto \phi^t \left(
   x_0 \right)$ en el espacio de fase $M$ (ver figura \ref{fig:evolutionoperator}).
 
-  \item Si $T \subseteq \mathbb{Z}$ decimos que el sistema din\'amico es
-  {\emph{discreto}} y si $T \subseteq \mathbb{R}$ entonces se dice
+  \item Si $T \subseteq \Z$ decimos que el sistema din\'amico es
+  {\emph{discreto}} y si $T \subseteq \R$ entonces se dice
   {\emph{continuo}}.
 
-  \item Cuando $\Phi$ es una funci\'on de clase $C^k$, $k \geq 1$,
+  \item Cuando $\phi$ es una funci\'on de clase $C^k$, $k \geq 1$,
   decimos que el sistema din\'amico es {\emph{suave}}.
 
-  \item Si el operador de evoluci\'on $\Phi^t$ est\'a definido para $t < 0$
+  \item Si el operador de evoluci\'on $\phi^t$ est\'a definido para $t < 0$
   (es decir, $- t \in T$ para todo $t \in T$) decimos que el sistema
-  din\'amico es {\emph{invertible}} y se tiene que $\left( \Phi^t \right)^{-
-  1} = \Phi^{- t}$ para $t \in T$.
+  din\'amico es {\emph{invertible}} y se tiene que $\left( \phi^t \right)^{-
+  1} = \phi^{- t}$ para $t \in T$.
 
-  N\'otese que si $\left( T, M, \Phi \right)$ es un sistema din\'amico
-  invertible suave, entonces cada funci\'on $\Phi^t : M \rightarrow M$ es un
+  N\'otese que si $\left( T, M, \phi \right)$ es un sistema din\'amico
+  invertible suave, entonces cada funci\'on $\phi^t : M \rightarrow M$ es un
   difeomorfismo.
 
   \item Por la propiedad (D2), un sistema din\'amico discreto queda
-  completamente determinado por $f := \Phi^1$ y la evoluci\'on se obtiene
+  completamente determinado por $f := \phi^1$ y la evoluci\'on se obtiene
   por iteraci\'on, ya que
-  \[ \Phi^2 = \Phi^1 \circ \Phi^1 = f \circ f = f^2 \]
-  y en general $\Phi^k = f^k$ para todo $k \geq 0$ (y $k \leq 0$ si
+  \[ \phi^2 = \phi^1 \circ \phi^1 = f \circ f = f^2 \]
+  y en general $\phi^k = f^k$ para todo $k \geq 0$ (y $k \leq 0$ si
   el sistema es invertible).
 
-  \item Un {\emph{sistema din\'amico local}} a aquel donde $\Phi$ pueda no
+  \item Un {\emph{sistema din\'amico local}} a aquel donde $\phi$ pueda no
   estar definida en todo $M \times T$, sino en $U \subseteq M \times T$. En
   tal caso, pedimos que $M \times \left\{ 0 \right\} \subseteq U$ y que las
   propiedades (D1) y (D2) se satisfagan siempre que $\left( x, t \right) \in
   U$.
 
   Es decir, dado $x \in M$ existe $I_x := \left\{ t \in T : \left( t, x
-  \right) \in U \right\} \subseteq T$ y $\Phi^t : I_x \rightarrow M$ est\'a
+  \right) \in U \right\} \subseteq T$ y $\phi^t : I_x \rightarrow M$ est\'a
   definido para $t \in I_x$.
 
   Llamamos indistintamente ``sistema din\'amico'' a un sistema como en la
@@ -126,26 +128,26 @@ Algunas observaciones:
   t\'erminos involucrados est\'an en el dominio de definici\'on.
 \end{enumerate}
 
-En lo que sigue supondremos que $\left( T, M, \Phi \right)$ es un sistema
+En lo que sigue supondremos que $\left( T, M, \phi \right)$ es un sistema
 din\'amico.
 
 Dado un $x_0 \in M$, estado inicial, deseamos estudiar la geometr\'{\i}a del
 conjunto de todos los posibles estados futuros y pasados del sistema
 din\'amico, obtenidos a partir de $x_0$ haciendo uso del operador de
-evoluci\'on $\Phi$.
+evoluci\'on $\phi$.
 
 \begin{definition}
   \label{def:orbit}La {\emph{\'orbita (o trayectoria) positiva
   $\gamma^+_{x_0}$}}, {\emph{\'orbita negativa $\gamma^-_{x_0}$}} y
   {\emph{\'orbita $\gamma_{x_0}$}} de $x_0$ (o a trav\'es de $x_0$) son
   los subconjuntos del espacio de estados $M$, definidos por
-  \[ \gamma^+_{x_0} := \left\{ \Phi \left( t, x \right) : t \in I_{x_0},
-     t \geq 0 \right\} = \left\{ \Phi^t \left( x_0 \right) \right\}_{t
+  \[ \gamma^+_{x_0} := \left\{ \phi \left( t, x \right) : t \in I_{x_0},
+     t \geq 0 \right\} = \left\{ \phi^t \left( x_0 \right) \right\}_{t
      \in I_{x_0}, t \geq 0}, \]
-  \[ \gamma^-_{x_0} := \left\{ \Phi^t \left( x_0 \right) \right\}_{t \in
+  \[ \gamma^-_{x_0} := \left\{ \phi^t \left( x_0 \right) \right\}_{t \in
      I_{x_0}, t \leq 0}, \]
-  \[ \gamma_{x_0} := \gamma_{x_0}^+ \cup \gamma_{x_0}^- = \left\{ \Phi
-     \left( t, x \right) : t \in I_{x_0} \right\} = \left\{ \Phi^t \left( x_0
+  \[ \gamma_{x_0} := \gamma_{x_0}^+ \cup \gamma_{x_0}^- = \left\{ \phi
+     \left( t, x \right) : t \in I_{x_0} \right\} = \left\{ \phi^t \left( x_0
      \right) \right\}_{t \in I_{x_0}} . \]
   Una \'orbita que consiste de un solo punto se llama {\emph{\'orbita
   constante}}.
@@ -168,14 +170,14 @@ x_0 \right), \ldots$ indizadas por enteros.
     \caption{Órbitas en un sistema dinámico continuo y uno discreto.}
 \end{figure}
 
-Si dados $x, y \in M$ existe un $t_0 \in T$ tal que $\Phi \left( t_0, x
+Si dados $x, y \in M$ existe un $t_0 \in T$ tal que $\phi \left( t_0, x
 \right) = y$ entonces $\gamma_x = \gamma_y$ y diremos que las \'orbitas a
 trav\'es de $x$ y $y$ son equivalentes.
 
 \begin{definition}
   \label{def:equilibrium}Un punto $x \in M$ es un {\emph{equilibrio}} (o
   {\emph{punto fijo}}) si $\gamma_x = \left\{ x \right\}$ (es decir,
-  $\Phi^t \left( x \right) = x$ para todo $t \in T$).
+  $\phi^t \left( x \right) = x$ para todo $t \in T$).
 \end{definition}
 
 Lo anterior implica que un sistema din\'amico puesto en un equilibrio $x
@@ -185,7 +187,7 @@ constantes corresponden a equilibrios del sistema.
 \begin{definition}
   \label{def:periodicorbit}Una {\emph{\'orbita peri\'odica (o ciclo) $O$}}
   es una \'orbita no constante para la cual existe $t_0 \in T$ tal que
-  $\Phi^{t + t_0} \left( x_0 \right) = \Phi^t \left( x_0 \right)$ para todo $t
+  $\phi^{t + t_0} \left( x_0 \right) = \phi^t \left( x_0 \right)$ para todo $t
   \in T$ y $x_0 \in O$.
   
   El m\'{\i}nimo $t_0$ que satisface lo anterior se llama
@@ -213,23 +215,13 @@ partici\'on del espacio de estados en \'orbitas.
 En la pr\'actica, solo unas \'orbitas representativas son dibujadas pues, en general,
 resulta imposible graficar la totalidad de las \'orbitas de un sistema din\'amico.
 
-\section{Algunos ejemplos}
-\subsection{Ecuaciones diferenciales}
-\subsection{Iteración de polinomios complejos}
-\subsection{Autómata celular}
-\subsection{Ecuación logística}
-
-% TODO:
-% - Ejemplos básicos (ec. dif de segundo orden, ec. logística)
-% - Iteración de polinomios complejos
-
 \chapter{Sistemas Planos Autónomos}
 \label{cap:sistemasplanosautonomos}
 
 \section{Propiedades Generales}
 \label{sec:propiedades_generales}
 
-Sea $I \subseteq \R$ un intervalo y $x,y:I \rightarrow \R$ funciones de clase $C^1$ en la variable $t$, a la que nos referiremos generalmente como el \textit{tiempo}.
+Sea $I \subseteq \R$ un intervalo y $x_1,x_2:I \rightarrow \R$ funciones de clase $C^1$ en la variable $t$, a la que nos referiremos generalmente como el \textit{tiempo}.
 Sean también $$f_i : \R^2 \rightarrow \R: (x_1, x_2) \rightarrow f_i(x_1, x_2); \hspace{0.5in} i \in \{1,2\}$$ funciones en dos variables.
 
 Llamamos \emph{sistema dinámico plano (autónomo)} al par de ecuaciones diferenciales simultáneas de la forma
@@ -317,10 +309,10 @@ Como el sistema es autónomo (la función $f$ es independiente de $t$) resulta n
 
 \begin{figure}
 \centering \label{fig:osciladorarmonico}
-    \includegraphics[scale=0.5]{figures/osciladorarmonico-solucion.jpg} (a) \\
-    \includegraphics[scale=0.5]{figures/osciladorarmonico-orbita.jpg} (b) \\
-    \includegraphics[scale=0.5]{figures/osciladorarmonico-soluciones.jpg} (c) \\
-    \caption{Oscilador armónico lineal: (a) trayectoria a través de $(0,1)$, (b) órbita circular que resulta de proyectar la trayectoria en el plano $xy$ y campo de direcciones, (c) gráficas de las soluciones $x(t), y(t)$ vs $t$.}
+    \includegraphics[scale=1.0]{figures/osciladorarmonico-solucion.pdf}\\(a) \\
+    \includegraphics[scale=1.0]{figures/osciladorarmonico-orbita.pdf}\\(b) \\
+    \includegraphics[scale=0.8]{figures/osciladorarmonico-soluciones.pdf}\\(c) \\
+    \caption{Oscilador armónico lineal: (a) trayectoria a través de $(0,1)$, (b) órbita circular que resulta de proyectar la trayectoria en el plano $x_1x_2$ y campo de direcciones, (c) gráficas de las soluciones $x_1(t), x_2(t)$ vs $t$.}
 \end{figure}
 
 Ahora, aún cuando contamos con el teorema \ref{teo:existenciayunicidad} para asegurarnos de que existen funciones $x_1(t), x_2(t)$ que satisfacen el sistema, resulta, en general, muy complicado hallar fórmulas cerradas explícitas para tales funciones. Por este motivo resulta de suma importancia y es el objetivo principal de este documento, el estudio cualitativo de las soluciones (su comportamiento) aún sin tener acceso a las mismas de antemano.
@@ -355,7 +347,7 @@ Es decir, la solución está en el círculo de radio $||x^0||$ centrado en el or
 \end{example}
 
 \begin{figure}[h] \centering
-    \includegraphics[scale=0.5]{figures/osciladorarmonico-diagramafase.jpg}
+    \includegraphics[scale=0.5]{figures/osciladorarmonico-diagramafase.png}
     \caption{Diagrama de fase del oscilador armónico lineal.}
 \end{figure}
 
@@ -382,7 +374,7 @@ donde $c$ es una constante.
 En particular, cuando $c = 0$ obtenemos la solución constante $x = y = 0$ correspondiente a la órbita. Todas las demás órbitas son no constantes.
 
 \begin{figure}[!ht] \centering
-	\includegraphics[scale=0.5]{figures/linearsystem-hyperbolas.jpg}
+	\includegraphics[scale=0.5]{figures/linearsystem-hyperbolas.png}
 	\caption{Diagrama de fase del sistema para la ecuación de segundo orden $\ddot{x} - x = 0$.}
 \end{figure}
 
@@ -420,11 +412,10 @@ Intuitivamente, una solución de equilibrio es estable si toda solución (órbit
 
 Lo anterior implica que la trayectoria de toda solución que comience suficientemente cerca de un punto asintóticamente estable no sólo debe permanecer cerca sino que a la larga converge al equilibrio $\bar{x}$. Debido al teorema de existencia y unicidad \ref{teo:existenciayunicidad}, estas trayectorias no pueden llegar a $\bar{x}$ en un tiempo finito.
 
-\begin{figure}[!ht] \centering 
-	\includegraphics[scale=0.5]{figures/equilibrium-stable.jpg}(a) \\
-	\includegraphics[scale=0.5]{figures/equilibrium-asymptoticallystable.jpg}(b) \\
-	\includegraphics[scale=0.5]{figures/equilibrium-unstable.jpg}(c)
-	\caption{(a) Equilibrio estable. (b) Equilibrio asintóticamente estable. (c) Equilibrio inestable.}
+\begin{figure}[!ht] \centering
+	\includegraphics[scale=1.0]{figures/equilibrium-stable.pdf}\\(a) \\
+	\includegraphics[scale=1.0]{figures/equilibrium-asymptoticallystable.pdf}\\(b) \\
+	\caption{(a) Equilibrio estable. (b) Equilibrio asintóticamente estable.}
 \end{figure}
 
 \begin{example}
@@ -506,8 +497,7 @@ Esto coincide con lo que ya habíamos visto antes.
 
 
 \begin{figure}[!ht] \centering
-	\includegraphics[scale=0.5]{figures/orbita-arco.jpg}
-	\includegraphics[scale=0.5]{figures/orbita-periodica.jpg}
+	\includegraphics[scale=1.1]{figures/orbita-tipos.pdf}
 	\caption{Una órbita arbitraria y un ciclo.}
 \end{figure}
 
@@ -519,8 +509,6 @@ Esto coincide con lo que ya habíamos visto antes.
 % TODO: otras propiedades, ejemplos
 
 \section{Ejemplos Clásicos}
-
-% TODO: Van der Pol, Lotka-Volterra
 
 \begin{example}[Péndulo matemático] \label{ej:pendulo}
 Supongamos que una masa $m$ se encuentra unida al extremo inferior de una varilla de longitud $l$. Sabemos que el arco $s$ de un círculo de radio $l$ se relaciona con el ángulo central $\theta$ mediante la fórmula $s = l\theta$, de manera que la aceleración angular está dada por
@@ -563,6 +551,12 @@ Debido a que el término $\sin\theta$ hace que la ecuación anterior sea no line
 $$ \ddot{\theta} + \lambda\theta = 0,$$
 
 conocida como oscilador armónico lineal y que se estudia con detalle a partir del ejemplo \label{ej:osciladorarmonico}.
+\end{example}
+
+\begin{example}[Oscilador de Van der Pol]
+\end{example}
+
+\begin{example}[Lotka-Volterra]
 \end{example}
 
 
@@ -783,8 +777,6 @@ En particular si el punto inicial $x^0$ está en alguna de las rectas determinad
 
 En cualquier caso, $x \to 0$ y decimos que el punto crítico $\bar{x} = 0$ es un \emph{nodo (estable)} o \emph{sumidero nodal}.
 
-% TODO: figure
-
 \subsection{Valores propios reales distintos y positivos (nodo inestable)}
 
 Como antes, $\tau^2 - 4\Delta > 0$ pero ahora $\lambda_1 > 0$ y $\lambda_2 > 0$.
@@ -795,7 +787,13 @@ $$ x = e^{\lambda_1 t} [ c_1 K_1 + c_2K_2 e^{(\lambda_2 - \lambda_1)t} ].$$
 Supondremos, de nuevo, que $\lambda_1 > \lambda_2$. Entonces a largo plazo $|x(t)| \approx |c_1 K_1 e^{\lambda_1 t}| \to \infty$ cuando $t \to \infty$.
 
 El patrón de las trayectorias es idéntico al caso anterior pero estas se alejan del punto crítico $\bar{x} = 0$ en lugar de acercarse. En este caso el punto crítico $\bar{x} = 0$ se llama \emph{nodo (inestable)} o \emph{sumidero nodal}.
-% TODO: figure
+
+\begin{figure}[!ht] \label{fig:nodos} \centering
+    \includegraphics[scale=1.0]{figures/nodoestable.pdf}\\(a)\\
+    \includegraphics[scale=1.0]{figures/nodoinestable.pdf}\\(b)\\
+    \includegraphics[scale=1.0]{figures/puntodesilla.pdf}\\(c)\\
+    \caption{(a) Nodo estable, (b) Nodo inestable, (c) Punto de silla.}
+\end{figure}
 
 \subsection{Valores propios reales distintos y de signo opuesto (punto de silla)}
 
@@ -814,8 +812,6 @@ Resumiendo, las soluciones que no comienzan en ninguna de las rectas determinada
 
 En este caso, el punto crítico se llama \emph{punto de silla} y es, evidentemente, un equilibrio inestable.
 
-% TODO: figure
-
 \subsection{Valor propio real repetido (nodo degenerado)}
 
 En este caso $\tau^2 - 4\Delta = 0$ y hay un único valor propio real de multiplicidad dos: $\lambda_{1,2} = \lambda$.
@@ -827,7 +823,10 @@ $$ x = (c_1K_1 + c_2K_2)e^{\lambda t}.$$
 
 En este caso el punto crítico $\bar{x} = 0$ se dice \emph{nodo propio}, \emph{nodo degenerado} o \emph{punto estrella} y es estable o inestable según $\lambda < 0$ o $\lambda > 0$ respectivamente.
 
-% TODO: figure
+\begin{figure}[!ht] \label{fig:nodopropio} \centering
+    \includegraphics[scale=1.0]{figures/nodopropio.pdf}
+    \caption{Nodo propio degenerado.}
+\end{figure}
 
 \subsubsection{Un solo vector linealmente independiente (nodo impropio degenerado)}
 
@@ -838,7 +837,10 @@ El comportamiento de todas las soluciones $x = x(t)$ es similar: la recta determ
 
 Si $\lambda < 0$ entonces el punto crítico $\bar{x} = 0$ se llama \emph{nodo impropio estable} o simplemente \emph{nodo degenerado estable} y si $\lambda > 0$ el punto crítico $\bar{x} = 0$ se llama \emph{nodo impropio inestable} o \emph{nodo generado inestable}.
 
-% TODO: figure
+\begin{figure}[!ht] \label{fig:nodoimpropio} \centering
+    \includegraphics[scale=1.0]{figures/nodoimpropio.pdf}
+    \caption{Nodo impropio degenerado.}
+\end{figure}
 
 \subsection{Valores propios complejos conjugados (centro, punto de espiral)}
 
@@ -865,7 +867,10 @@ El punto crítico se llama un \emph{punto espiral} y es estable cuando $\lambda 
 
 Cuando el punto espiral es estable se le llama también \emph{sumidero espiral} y cuando es inestable \emph{fuente espiral}.
 
-% TODO: figure
+\begin{figure}[!ht] \label{fig:centroyespiral} \centering
+    \includegraphics[scale=1.0]{figures/centroyespiral.pdf}  
+    \caption{Centro y punto de espiral.}
+\end{figure}
 
 \section{Clasificación y estabilidad de puntos críticos ($\Delta = 0$)}
 
@@ -877,23 +882,33 @@ Consideramos a continuación varios casos.
 
 \subsection{A es la matriz cero ($A = 0$)}
 En este caso todo punto $x \in \R^2$ es un punto crítico, así que toda trayectoria en el plano de fase es trivial.
-% TODO: figure
+
+\begin{figure}[!ht] \centering
+    \includegraphics[scale=1.0]{figures/amatriz0.pdf}  
+\end{figure}
+
 
 \subsection{$\lambda_1 = 0, \lambda_2 < 0$}
 Es posible demostrar que en este caso el sistema es topológicamente equivalente (ver Kocak teorema 8.16 p239) a uno con matriz de coeficientes
 
 $$ A = \left( \begin{array}{ll} -1 & 0 \\ 0 & 0 \end{array} \right).$$
 
-Por lo tanto, el diagrama de fase es similar a la figura \ref{fig:xx}, donde todo punto $(0,x_2)$ es de equilibrio.
-% TODO: figure
+Por lo tanto, el diagrama de fase es similar a la figura siguiente, donde todo punto $(0,x_2)$ es de equilibrio.
+
+\begin{figure}[!ht] \centering
+    \includegraphics[scale=1.0]{figures/asingular_1.pdf}
+\end{figure}
 
 \subsection{$\lambda_1 = 0, \lambda_2 > 0$}
 De nuevo, como en ((ver Kocak teorema 8.16 p239)) es posible verificar que este sistema es topológicamente equivalente a uno con matriz de coeficientes
 
 $$ A = \left( \begin{array}{ll} 1 & 0 \\ 0 & 0 \end{array} \right).$$
 
-Por lo tanto, el diagrama de fase es similar a la figura \ref{fig:xx}, donde todo punto $(0,x_2)$ es de equilibrio pero el sentido de las flechas es contrario al del caso anterior.
-% TODO: figure
+Por lo tanto, el diagrama de fase es similar a la figura siguiente, donde todo punto $(0,x_2)$ es de equilibrio pero el sentido de las flechas es contrario al del caso anterior.
+
+\begin{figure}[!ht] \centering
+    \includegraphics[scale=1.0]{figures/asingular1.pdf}
+\end{figure}
 
 \subsection{$\lambda_1 = \lambda_2 = 0$}
 En este caso tanto $\Delta$ como $\tau$ son nulos. Esto es, $a_{11}a_{22} - a_{12}a_{21} = 0$ y también $a_{11} + a_{22} = 0$.
@@ -904,7 +919,10 @@ Sin embargo, cualquiera sea el caso el sistema es equivalente ((ver Kocak teorem
 $$ A = \left( \begin{array}{ll} 0 & 1 \\ 0 & 0 \end{array} \right),$$
 
 cuyo diagrama de fase aparece es como a continuación.
-% TODO: figure
+
+\begin{figure}[!ht] \centering
+    \includegraphics[scale=1.0]{figures/asingularr1.pdf}
+\end{figure}
 
 \begin{remark}Aunque no se dijo explícitamente para cada caso, es claro que todos los puntos de equilibrio son \emph{inestables} si $\Delta = 0$.
 \end{remark}
@@ -924,8 +942,6 @@ Debido a lo anterior a menudo la clasificación de puntos críticos y estabilida
 
 \begin{definition}[Matriz hiperbólica] Decimos que $A$ es \emph{hiperbólica} si todos sus valores propios tienen parte real no nula.
 \end{definition}
-
-% TODO: figure (parabola)
 
 Con esta definición, notamos que la estabilidad de un punto de equilibrio de un sistema lineal con matriz de coeficientes hiperbólica depende exclusivamente del signo de la parte real.
 
@@ -1264,7 +1280,7 @@ En el camino a la prueba del teorema, utilizaremos la noción de segmento transv
 \end{definition}
 
 \begin{figure}[h] \centering
-    \includegraphics[scale=1.0]{figures/transversal.png}
+    \includegraphics[scale=1.1]{figures/transversal.pdf}
 \end{figure}
 
 Es claro que en vecindad de un punto regular $x$ (es decir, $f(x) \neq 0$) siempre es posible construir un segmento transversal $L$ por la continuidad de $f$.
@@ -1314,7 +1330,7 @@ Esto implica que $(x_k)_k$ es una sucesión monótona sobre un segmento rectilí
 \end{proof}
 
 \begin{figure}[h] \centering \label{fig:transversalintersections}
-    \includegraphics[scale=0.8]{figures/transversal-intersections.png}
+    \includegraphics[scale=1.0]{figures/transversal-intersections.png}
 \end{figure}
 
 \begin{theorem}[Poincaré-Bendixson] \label{teo:poincarebendixson} Sea $f:\R^2 \to \R^2$ una función de clase $C^1$. Para el sistema plano $\dot{x} = f(x)$, si la semiórbita positiva $\gamma^+(x)$ de algún punto $x$ está acotada y $\omega(x)$ no contiene puntos críticos entonces $\omega(x)$ es una órbita periódica (órbita límite).
@@ -1424,7 +1440,7 @@ que tiene valores propios $-1$ y $\mp 2\sqrt{\lambda}$.
 \end{itemize}
 
 \begin{figure}[ht] \centering
-    \includegraphics[scale=0.8]{figures/bifurcations-saddlenode.png}    
+    \includegraphics[scale=1.0]{figures/bifurcations-saddlenode.pdf}
     \caption{Bifurcación de silla-nodo.}
 \end{figure}
 
@@ -1505,7 +1521,7 @@ Como en ambos puntos $Df$ tiene valores propios $-2\lambda$ y $-1$, estos puntos
 \end{itemize}
 
 \begin{figure}[ht] \centering
-    \includegraphics[scale=0.8]{figures/bifurcations-pitchforksupercritical.png} 
+    \includegraphics[scale=1.0]{figures/bifurcations-pitchforksupercritical.pdf} 
     \caption{Bifurcación \textit{pitchfork} supercrítica.}
 \end{figure}
 
@@ -1558,7 +1574,7 @@ Supongamos además que $\bar{x}$ es estable. Es decir, $\Re(\mu_{1,2}) < 0$, de 
 La única manera en la que la estabilidad del punto crítico cambie es cuando estos eigenvalores (al variar el parámetro $\lambda$) crucen el eje imaginario.
 
 \begin{figure}[ht] \centering
-    \includegraphics[scale=0.8]{figures/bifurcations-2dimensional.png} 
+    \includegraphics[scale=1.0]{figures/bifurcations-2dimensional.pdf}
 \end{figure}
 
 En particular, si los eigenvalores tienen parte imaginaria nula $\Im(\mu_{1,2}) = 0$ entonces se encuentran sobre el eje real y la única posibilidad es que cambien de signo, lo que corresponde a una de las bifurcaciones estudiadas en la sección anterior.

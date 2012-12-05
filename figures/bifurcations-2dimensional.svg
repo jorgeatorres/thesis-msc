@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+    xmlns:latexdraw="http://latexdraw.sourceforge.net/namespaces/latexdraw"
+    version="1.1" baseProfile="full">
+    <defs/>
+    <g>
+        <g stroke-width="2.0" stroke="black" latexdraw:isWest="true"
+            latexdraw:isSouth="true" latexdraw:style="axes"
+            latexdraw:gridStart="-2.0 -2.0" latexdraw:gridEnd="2.0 2.0"
+            latexdraw:origin="0.0 0.0" latexdraw:increment="1.0 1.0"
+            latexdraw:distLabels="0.0 0.0"
+            latexdraw:ticksSize="5.291666507720947"
+            latexdraw:showOrigin="true" latexdraw:showTicks="none"
+            latexdraw:showLabels="none" latexdraw:ticksStyle="full"
+            latexdraw:type="axe" id="id22633">
+            <g latexdraw:type="line" id="id22657">
+                <line x1="25.0" x2="225.0" y1="150.0" y2="150.0"
+                    stroke-width="2.0" stroke="black" latexdraw:rotationAngle="0.0"/>
+            </g>
+            <g latexdraw:type="line" id="id22658">
+                <line x1="125.0" x2="125.0" y1="50.0" y2="250.0"
+                    stroke-width="2.0" stroke="black" latexdraw:rotationAngle="0.0"/>
+            </g>
+        </g>
+        <g latexdraw:type="dot" id="id22637" latexdraw:size="7.0"
+            latexdraw:dotShape="dot" latexdraw:position="115.0 150.0">
+            <circle r="3.5" fill="black" cx="115.0" cy="150.0"/>
+        </g>
+        <g latexdraw:type="dot" id="id22638" latexdraw:size="7.0"
+            latexdraw:dotShape="dot" latexdraw:position="85.0 150.0">
+            <circle r="3.5" fill="black" cx="85.0" cy="150.0"/>
+        </g>
+        <g latexdraw:type="text" id="id22639"
+            font-family="Times New Roman" fill="black" font-size="18" latexdraw:x="115.0">
+            <text x="115.0" y="45.0"><![CDATA[Im]]></text>
+        </g>
+        <g latexdraw:type="text" id="id22642"
+            font-family="Times New Roman" fill="black" font-size="18" latexdraw:x="230.0">
+            <text x="230.0" y="155.0"><![CDATA[Re]]></text>
+        </g>
+        <g stroke-width="2.0" stroke="black" latexdraw:isWest="true"
+            latexdraw:isSouth="true" latexdraw:style="axes"
+            latexdraw:gridStart="-2.0 -2.0" latexdraw:gridEnd="2.0 2.0"
+            latexdraw:origin="0.0 0.0" latexdraw:increment="1.0 1.0"
+            latexdraw:distLabels="0.0 0.0"
+            latexdraw:ticksSize="5.291666507720947"
+            latexdraw:showOrigin="true" latexdraw:showTicks="none"
+            latexdraw:showLabels="none" latexdraw:ticksStyle="full"
+            latexdraw:type="axe" id="id22645">
+            <g latexdraw:type="line" id="id22659">
+                <line x1="310.0" x2="510.0" y1="150.0" y2="150.0"
+                    stroke-width="2.0" stroke="black" latexdraw:rotationAngle="0.0"/>
+            </g>
+            <g latexdraw:type="line" id="id22660">
+                <line x1="410.0" x2="410.0" y1="50.0" y2="250.0"
+                    stroke-width="2.0" stroke="black" latexdraw:rotationAngle="0.0"/>
+            </g>
+        </g>
+        <g latexdraw:type="dot" id="id22649" latexdraw:size="7.0"
+            latexdraw:dotShape="dot" latexdraw:position="390.0 200.0">
+            <circle r="3.5" fill="black" cx="390.0" cy="200.0"/>
+        </g>
+        <g latexdraw:type="dot" id="id22650" latexdraw:size="7.0"
+            latexdraw:dotShape="dot" latexdraw:position="390.0 100.0">
+            <circle r="3.5" fill="black" cx="390.0" cy="100.0"/>
+        </g>
+        <g latexdraw:type="text" id="id22651"
+            font-family="Times New Roman" fill="black" font-size="18" latexdraw:x="400.0">
+            <text x="400.0" y="45.0"><![CDATA[Im]]></text>
+        </g>
+        <g latexdraw:type="text" id="id22654"
+            font-family="Times New Roman" fill="black" font-size="18" latexdraw:x="515.0">
+            <text x="515.0" y="155.0"><![CDATA[Re]]></text>
+        </g>
+    </g>
+    <metadata>
+        <latexdraw:metadata>
+            <latexdraw:displayBorders>false</latexdraw:displayBorders>
+            <latexdraw:autoAdjust>true</latexdraw:autoAdjust>
+            <latexdraw:ppc>50</latexdraw:ppc>
+            <latexdraw:zoom>1.0</latexdraw:zoom>
+            <latexdraw:unit>cm</latexdraw:unit>
+            <latexdraw:classicGrid>true</latexdraw:classicGrid>
+            <latexdraw:gridGap>10</latexdraw:gridGap>
+            <latexdraw:code>0</latexdraw:code>
+            <latexdraw:displayGrid>true</latexdraw:displayGrid>
+            <latexdraw:magneticGrid>true</latexdraw:magneticGrid>
+            <latexdraw:autoUpdate>true</latexdraw:autoUpdate>
+            <latexdraw:version>2.0.8</latexdraw:version>
+            <latexdraw:size>
+                <latexdraw:width>1280</latexdraw:width>
+                <latexdraw:height>774</latexdraw:height>
+            </latexdraw:size>
+            <latexdraw:position>
+                <latexdraw:x>0</latexdraw:x>
+                <latexdraw:y>22</latexdraw:y>
+            </latexdraw:position>
+            <latexdraw:dividerPosition>0.8</latexdraw:dividerPosition>
+            <latexdraw:displayCodePanel>true</latexdraw:displayCodePanel>
+            <latexdraw:displayXScale>true</latexdraw:displayXScale>
+            <latexdraw:displayYScale>true</latexdraw:displayYScale>
+            <latexdraw:delimitorOpacity>130</latexdraw:delimitorOpacity>
+        </latexdraw:metadata>
+    </metadata>
+</svg>

@@ -1,0 +1,25 @@
+\documentclass{minimal}
+
+\usepackage[pdf]{pstricks}
+\usepackage{pst-grad} % For gradients
+\usepackage{pst-plot} % For axes
+
+\begin{document}
+\pagestyle{empty}
+
+\begin{pspicture}(0,-3.15)(6.3,3.15)
+\definecolor{color3}{rgb}{0.6,0.6,0.6}
+\psline[linewidth=0.04cm,linecolor=color3,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(3.2,0.05)(5.2,1.05)
+\psline[linewidth=0.04cm,linecolor=color3,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(3.2,0.05)(4.8,-2.75)
+\pscircle[linewidth=0.04,linecolor=color3,linestyle=dashed,dash=0.16cm 0.16cm,dimen=outer](3.15,0.0){3.15}
+\psdots[dotsize=0.12](3.2,0.05)
+\pscircle[linewidth=0.04,linecolor=color3,linestyle=dashed,dash=0.16cm 0.16cm,dimen=outer](3.2,0.15){2.2}
+\rput(4.293955,0.855){$\delta$}
+\rput(3.7681153,-1.345){$\epsilon$}
+\rput(2.271211,1.255){$x^0$}
+\rput(3.1854296,0.355){$\bar{x}$}
+\psdots[dotsize=0.12](2.3,1.55)
+\psbezier[linewidth=0.04](1.7,2.35)(1.7,1.55)(5.0400934,2.1379673)(5.5,1.25)(5.9599066,0.36203274)(5.414589,-0.7699615)(4.6,-1.35)(3.785411,-1.9300386)(1.029753,-2.323249)(0.8,-1.35)(0.57024705,-0.376751)(3.403884,-0.9305807)(3.6,0.05)(3.796116,1.0305806)(2.0486953,1.3127639)(1.7,2.25)
+\end{pspicture}
+
+\end{document}

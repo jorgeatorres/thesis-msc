@@ -1,0 +1,19 @@
+\documentclass{standalone}
+\usepackage{pgfplots}
+
+\begin{document}
+
+\pgfplotsset{every axis plot/.append style={line width=1.5pt, tick style={line width=0.5pt}}}
+
+\begin{tikzpicture}
+\begin{axis}[xlabel=$t$,ylabel=$x_1$,zlabel=$x_2$]
+\addplot3+[color=black, domain=-3*pi:2*pi, samples=100, samples y=0, no marks, smooth](
+  {x},
+  {cos(deg(x))},
+  {sin(deg(x))}
+);
+\end{axis}
+
+
+\end{tikzpicture}
+\end{document}
