@@ -1,0 +1,24 @@
+\documentclass{standalone}
+
+\usepackage[usenames,dvipsnames]{pstricks}
+\usepackage{pst-grad} % For gradients
+\usepackage{pst-plot} % For axes
+
+\begin{document}
+\pagestyle{empty}
+
+\begin{pspicture}(0,-2.05)(6.7,2.05)
+\psframe[linewidth=0.04,dimen=outer](6.7,2.05)(0.0,-2.05)
+\rput(6.4265623,1.755){X}
+\psbezier[linewidth=0.04,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{>->}(0.7,-1.05)(1.0,-0.65)(1.4,-0.35)(1.5,-0.25)(1.6,-0.15)(3.1,1.25)(6.0,1.45)
+\psdots[dotsize=0.12](2.0,0.15)
+\psdots[dotsize=0.12](3.9,1.05)
+\rput(0.7712109,-1.345){$x_0$}
+\rput(2.2513475,-0.045){$x_s$}
+\rput(4.1079006,0.755){$x_{s+t}$}
+\rput(0.9167774,-0.245){$\phi^s$}
+\rput(2.8033302,1.055){$\phi^t$}
+\psdots[dotsize=0.12](0.7,-1.05)
+\end{pspicture} 
+
+\end{document}

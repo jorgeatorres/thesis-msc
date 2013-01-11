@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+    xmlns:latexdraw="http://latexdraw.sourceforge.net/namespaces/latexdraw"
+    version="1.1" baseProfile="full">
+    <defs>
+        <marker overflow="visible" orient="auto" id="arrow1-639">
+            <path
+                d="M 4.652083333333334 0.0 L 0.0 1.6614583333333335 L 1.8608333333333338 0.0 L 0.0 -1.6614583333333335 z "
+                latexdraw:arrSizeNum="2.0" fill="black"/>
+        </marker>
+        <marker overflow="visible" orient="auto" id="arrow2-639">
+            <path
+                d="M 0.0 0.0 L 4.652083333333334 1.6614583333333335 L 2.79125 0.0 L 4.652083333333334 -1.6614583333333335 z "
+                latexdraw:arrSizeNum="2.0" fill="black"/>
+        </marker>
+    </defs>
+    <g>
+        <g latexdraw:type="rectangle" id="id635">
+            <rect x="46.0" y="51.0" width="333.0" height="203.0"
+                latexdraw:borderPos="outer" stroke-width="2.0"
+                stroke="black" fill="none"/>
+        </g>
+        <g latexdraw:type="text" id="id636"
+            font-family="Times New Roman" fill="black" font-size="18" latexdraw:x="360.0">
+            <text x="360.0" y="70.0"><![CDATA[X]]></text>
+        </g>
+        <g latexdraw:type="bezierCurve" id="id639">
+            <path
+                d="M 80.0 205.0 C 95.0 185.0 115.0 170.0 120.0 165.0 C 125.0 160.0 200.0 90.0 345.0 80.0 "
+                stroke-width="2.0" stroke="black" fill="none"
+                latexdraw:rotationAngle="0.0"
+                marker-start="url(#arrow1-639)" marker-end="url(#arrow2-639)"/>
+        </g>
+        <g latexdraw:type="dot" id="id642" latexdraw:size="6.0"
+            latexdraw:dotShape="dot" latexdraw:position="145.0 145.0">
+            <circle r="3.0" fill="black" cx="145.0" cy="145.0"/>
+        </g>
+        <g latexdraw:type="dot" id="id643" latexdraw:size="6.0"
+            latexdraw:dotShape="dot" latexdraw:position="240.0 100.0">
+            <circle r="3.0" fill="black" cx="240.0" cy="100.0"/>
+        </g>
+        <g latexdraw:type="text" id="id644"
+            font-family="Times New Roman" fill="black" font-size="18" latexdraw:x="75.0">
+            <text x="75.0" y="225.0"><![CDATA[x0]]></text>
+        </g>
+        <g latexdraw:type="text" id="id647"
+            font-family="Times New Roman" fill="black" font-size="18" latexdraw:x="150.0">
+            <text x="150.0" y="160.0"><![CDATA[xs]]></text>
+        </g>
+        <g latexdraw:type="text" id="id650"
+            font-family="Times New Roman" fill="black" font-size="18" latexdraw:x="240.0">
+            <text x="240.0" y="120.0"><![CDATA[xst]]></text>
+        </g>
+        <g latexdraw:type="text" id="id653"
+            font-family="Times New Roman" fill="black" font-size="18" latexdraw:x="85.0">
+            <text x="85.0" y="170.0"><![CDATA[fs]]></text>
+        </g>
+        <g latexdraw:type="text" id="id656"
+            font-family="Times New Roman" fill="black" font-size="18" latexdraw:x="180.0">
+            <text x="180.0" y="105.0"><![CDATA[ft]]></text>
+        </g>
+        <g latexdraw:type="dot" id="id659" latexdraw:size="6.0"
+            latexdraw:dotShape="dot" latexdraw:position="80.0 205.0">
+            <circle r="3.0" fill="black" cx="80.0" cy="205.0"/>
+        </g>
+    </g>
+    <metadata>
+        <latexdraw:metadata>
+            <latexdraw:displayBorders>false</latexdraw:displayBorders>
+            <latexdraw:autoAdjust>true</latexdraw:autoAdjust>
+            <latexdraw:ppc>50</latexdraw:ppc>
+            <latexdraw:zoom>1.0</latexdraw:zoom>
+            <latexdraw:unit>cm</latexdraw:unit>
+            <latexdraw:classicGrid>true</latexdraw:classicGrid>
+            <latexdraw:gridGap>10</latexdraw:gridGap>
+            <latexdraw:code>0</latexdraw:code>
+            <latexdraw:displayGrid>true</latexdraw:displayGrid>
+            <latexdraw:magneticGrid>true</latexdraw:magneticGrid>
+            <latexdraw:autoUpdate>true</latexdraw:autoUpdate>
+            <latexdraw:version>2.0.8</latexdraw:version>
+            <latexdraw:size>
+                <latexdraw:width>1280</latexdraw:width>
+                <latexdraw:height>774</latexdraw:height>
+            </latexdraw:size>
+            <latexdraw:position>
+                <latexdraw:x>48</latexdraw:x>
+                <latexdraw:y>22</latexdraw:y>
+            </latexdraw:position>
+            <latexdraw:dividerPosition>0.8</latexdraw:dividerPosition>
+            <latexdraw:displayCodePanel>true</latexdraw:displayCodePanel>
+            <latexdraw:displayXScale>true</latexdraw:displayXScale>
+            <latexdraw:displayYScale>true</latexdraw:displayYScale>
+            <latexdraw:delimitorOpacity>130</latexdraw:delimitorOpacity>
+        </latexdraw:metadata>
+    </metadata>
+</svg>

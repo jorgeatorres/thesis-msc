@@ -1,0 +1,23 @@
+\documentclass{standalone}
+
+\usepackage{pstricks}
+\usepackage{pst-grad} % For gradients
+\usepackage{pst-plot} % For axes
+
+\begin{document}
+\pagestyle{empty}
+
+\begin{pspicture}(0,-2.1691797)(10.229589,2.2091796)
+\rput(2.0,-0.1691797){\psaxes[linewidth=0.04,labels=none,ticks=none,ticksize=0.10583333cm](0,0)(-2,-2)(2,2)}
+\psdots[dotsize=0.14](1.8,-0.1691797)
+\psdots[dotsize=0.14](1.2,-0.1691797)
+\rput(1.9947363,2.0358202){$\Im\mu$}
+\rput(4.291719,-0.16417968){$\Re\mu$}
+\rput(7.7,-0.1691797){\psaxes[linewidth=0.04,labels=none,ticks=none,ticksize=0.10583333cm](0,0)(-2,-2)(2,2)}
+\psdots[dotsize=0.14](7.3,-1.1691797)
+\psdots[dotsize=0.14](7.3,0.8308203)
+\rput(7.6947365,2.0358202){$\Im\mu$}
+\rput(9.991718,-0.16417968){$\Re\mu$}
+\end{pspicture} 
+
+\end{document}
