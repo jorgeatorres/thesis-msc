@@ -80,7 +80,7 @@ Sea $f$ de clase $C^1$, $\dot{x} = f(x)$ un sistema plano y $\bar{x}$ un punto c
 
 \begin{enumerate}[(a)]
 	\item Si todos los valores propios de $Df(\bar{x})$ tienen parte real negativa, entonces $\bar{x}$ es un punto crítico asintóticamente estable (y por lo tanto, estable).
-	\item Si al menos un valor propio de $Df(\bar{x})$ tiene parte real positiva entones $\bar{x}$ es un punto crítico inestable.
+	\item Si al menos un valor propio de $Df(\bar{x})$ tiene parte real positiva entonces $\bar{x}$ es un punto crítico inestable.
 \end{enumerate}
 \end{theorem}
 
@@ -125,7 +125,7 @@ $$
 	\end{array}
 $$
 
-La linealizacíon del sistema en el punto crítico $\bar{x} = 0$ es $\dot{x} = Df(\bar{x})x = \left( \begin{array}{ll} 0 & 1 \\ -1 & 0 \end{array} \right) x,$ sin importar el valor de $\mu$.
+La linealización del sistema en el punto crítico $\bar{x} = 0$ es $\dot{x} = Df(\bar{x})x = \left( \begin{array}{ll} 0 & 1 \\ -1 & 0 \end{array} \right) x,$ sin importar el valor de $\mu$.
 Los valores propios de $Df(\bar{x})$ son $\lambda_{1,2} = \pm i$, de manera que no podemos utilizar el criterio de estabilidad pues tienen parte real nula. La razón la ofrece el siguiente argumento.
 
 Notemos que
@@ -172,30 +172,31 @@ Para puntos críticos no hiperbólicos es necesario utilizar otras técnicas (o 
 Combinando el teorema \ref{teo:hartmangrobman} con el criterio de estabilidad (teorema \ref{teo:criterioestabilidadnolineales}) es posible construir la tabla \ref{tab:clasificacionequilibrios}, que clasifica los equilibrios de sistemas no lineales (por supuesto, también aplica para lineales).
 
 \begin{table}[ht!]
-{\small
+\renewcommand{\tablename}{Tabla}
+{\footnotesize
 	\begin{tabular}{|c|c|c|c|c|}
 		\hline
-		\textbf{Vlrs propios de $Df(\bar{x})$} & \multicolumn{2}{|c|}{\textbf{Linealización}} & \multicolumn{2}{|c|}{\textbf{Sistema no lineal}} \\
+		\textbf{Vlrs propios $Df$} & \multicolumn{2}{|c|}{\textbf{Linealización}} & \multicolumn{2}{|c|}{\textbf{Sistema no lineal}} \\
 		\hline
 		 & \textbf{Tipo} &\textbf{Estabilidad} & \textbf{Tipo} & \textbf{Estabilidad} \\
 		\hline
 		\multicolumn{5}{|c|}{\textit{Equilibrios Hiperbólicos}} \\
 		\hline
-		$\lambda_1 > \lambda_2 > 0$ & nodo & inestable & nodo & inestable \\
+		$\lambda_1 > \lambda_2 > 0$ & nodo & I. & nodo & I. \\
 		$\lambda_1 < \lambda_2 < 0$ & nodo & A. E. & nodo & A. E. \\
-		$\lambda_2 < 0 < \lambda_1$ & punto silla & inestable & punto silla & inestable \\
-		$\lambda_{1,2} = a \pm ib, a > 0$ & punto espiral & inestable & punto espiral & inestable \\
+		$\lambda_2 < 0 < \lambda_1$ & punto silla & I. & punto silla & I. \\
+		$\lambda_{1,2} = a \pm ib, a > 0$ & punto espiral & I. & punto espiral & I. \\
 		$\lambda_{1,2} = a \pm ib, a < 0$ & punto espiral & A. E. & punto espiral & A. E. \\
 
 		\hline
 		\multicolumn{5}{|c|}{\textit{Equilibrios no Hiperbólicos}} \\
 		\hline
-		$\lambda_1 = \lambda_2 >0$ & nodo propio o impropio & inestable & nodo o punto espiral & inestable \\
-		$\lambda_1 = \lambda_2 < 0$ & nodo propio o impropio & A. E. & nodo o punto espiral & A. E. \\
-		$\lambda_{1,2} = \pm ib$ & centro & estable & centro o punto espiral & \textbf{?} \\
+		$\lambda_1 = \lambda_2 >0$ & nodo propio/impropio & I. & nodo/punto espiral & I. \\
+		$\lambda_1 = \lambda_2 < 0$ & nodo propio/impropio & A. E. & nodo/punto espiral & A. E. \\
+		$\lambda_{1,2} = \pm ib$ & centro & E. & centro/punto espiral & \textbf{?} \\
 		\hline
 	\end{tabular}
 }
-	\label{tab:clasificacionequilibrios}
 	\caption{Clasificación de equilibrios en sistemas no lineales.}
+	\label{tab:clasificacionequilibrios}
 \end{table}

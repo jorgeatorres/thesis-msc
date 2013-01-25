@@ -3,7 +3,7 @@
 \section{Conjuntos límite y nociones básicas}
 
 Ya hemos encontrado diversos tipos de órbitas en sistemas planos: órbitas constantes de la forma $\gamma_{\bar{x}} = \{\bar{x}\}$ en el caso de equilibrios $\bar{x}$, órbitas periódicas y órbitas que se ``alejan'' hacia infinito.
-De hecho la situación es más rica, existen órbitas límites a las cuales se acercan arbitrariamente órbitas cercanas (por ejemplo, vistas en el diagrama de fase \ref{fig:vanderpol}). Esto no es inusual y se trata de hecho es una situación típica en el plano.
+De hecho la situación es más rica, existen órbitas límites a las cuales se acercan arbitrariamente órbitas cercanas (por ejemplo, vistas en el diagrama de fase \ref{fig:vanderpol}). Esto no es inusual y se trata de hecho de una situación típica en el plano.
 
 Hemos estudiado también lo que sucede con soluciones que empiezan ``cerca'' de puntos de equilibrio y hemos visto que algunas tienden a dichos puntos de equilibrio cuando $t \to \infty$ (o más precisamente $t \to \beta_{x_0}$) cuando los puntos son asintóticamente estables, se alejan (cuando los equilibrios son inestables) o corresponden a órbitas periódicas en el caso de equilibrios que son centros.
 
@@ -24,7 +24,7 @@ donde $\phi(t,x)$ es el flujo a través de $x$ e $I_x = (\alpha_x, \beta_x)$ es 
 
 Debido a que si $x$ es un punto de la órbita $\gamma$ entonces $\phi(t,x) \in \gamma$ para todo $t$ por definición de órbita, utilizamos indistintamente la notación $\omega(x)$ u $\omega(\gamma)$ para denotar el conjunto límite de dicha órbita.
 
-Ahora, la discusión precedente, implica, entonces, que las órbitas $\gamma$ cercanas a puntos de equilibrio asintóticamente estables $\bar{x}$ tienen conjunto límite $\omega(\gamma) = \{\bar{x}\}$. Si $\bar{x}$ no es asintóticamente estable podría suceder que $\gamma$ sea no acotada (y se aleja a infinito), $\gamma$ es periódica y en este caso coincide con su conjunto límite $\omega(\gamma)$ o bien, $\gamma$ se acerca arbitrariamente a otra órbita $\tau$ que debe ser periódica.
+Ahora, la discusión precedente implica que las órbitas $\gamma$ cercanas a puntos de equilibrio asintóticamente estables $\bar{x}$ tienen conjunto límite $\omega(\gamma) = \{\bar{x}\}$. Si $\bar{x}$ no es asintóticamente estable podría suceder que $\gamma$ sea no acotada (y se aleja a infinito), $\gamma$ es periódica y en este caso coincide con su conjunto límite $\omega(\gamma)$ o bien, $\gamma$ se acerca arbitrariamente a otra órbita $\tau$ que debe ser periódica.
 
 Este tipo de comportamientos límite de las órbitas se han evidenciado hasta ahora en los ejemplos estudiados pero resulta que, de hecho, el comportamiento de las órbitas en el plano es siempre uno de este tipo, como asegura el Teorema de Poincaré-Bendixson que probaremos en la sección siguiente.
 
@@ -172,17 +172,19 @@ Consideramos dos casos:
 
 (i) Si $(x_k)_k$ es una sucesión constante entonces la órbita de $x$ es periódica y $\omega(x) = \gamma(x)$, así que el $\omega$-límite de $x$ solo puede intersectar a $L$ en el valor constante $(x_k)_k$ y por lo tanto $\omega(x) \cap L = \{q\}$.
 
-(ii) Si $(x_k)_k$ no es constante consideremos dos puntos sucesivos $x_k$ y $x_{k+1}$ donde $\omega(x)$ intersecta a $L$, como en la figura \ref{fig:transversalintersections}. Notamos que a lo largo de $L$ el campo vectorial $f$ siempre apunta en la misma dirección o de lo contrario por continuidad de $f$ existiría un punto $z \in L$ tal que $f(z) = 0$ o $f(z)$ está en la dirección de $L$ pero esto contradice que $L$ es transversal a $f$.
-Ahora, el segmento de órbita entre $x_k$ y $x_{k+1}$ junto con el segmento rectilíneo entre esos dos puntos forma una curva cerrada $C$, de manera que como consecuencia del Teorema de la Curva de Jordan divide al plano $\R^2$ en dos componentes conexas.
+(ii) Si $(x_k)_k$ no es constante consideremos dos puntos sucesivos $x_k$ y $x_{k+1}$ donde $\omega(x)$ intersecta a $L$, como en la figura \ref{fig:transversalintersections}. Como $L$ es transversal a $f$ entonces a lo largo de $L$ el campo vectorial $f$ debe apuntar en una dirección diferente a la de $L$ (esto pues $L$ no es tangencial a $f$ en ningún punto) y además debe hacerlo siempre en esa misma dirección ya que de lo contrario, por continuidad de $f$, sería posible encontrar $z \in L$ tal que $f(z) = 0$, lo que contradice la definición de $L$.
 
-Como se ve en la figura, debido a la dirección de $f$ sobre el segmento entre $x_k$ y $x_{k+1}$ la semiórbita positiva $\gamma^+(x_k)$ está contenida en la componente no acotada. Esto implica que la siguiente intersección $x_{k+2}$ de la órbita con $L$ está fuera del segmento entre $x_k$ y $x_{k+1}$, así que los puntos $x_k$, $x_{k+1}$ y $x_{k+2}$ están ordenados en la transversal $L$.
+Ahora, el segmento de órbita entre $x_k$ y $x_{k+1}$ junto con el segmento rectilíneo entre esos dos puntos forma una curva cerrada $C$. Como consecuencia del Teorema de la Curva de Jordan, esta curva $C$ divide al plano $\R^2$ en dos componentes conexas: una acotada y otra no acotada.
 
-Esto implica que $(x_k)_k$ es una sucesión monótona sobre un segmento rectilíneo $L$ así que puede tener a lo más un punto de acumulación en $L$ y por tanto $\omega(x) \cap L = \{q\}$.
+Dependiendo de la ubicación de $x_k$ y $x_{k+1}$ sobre $L$ y debido a la dirección de $f$ sobre dicha transversal las únicas posibilidades son que la semiórbita positiva $\gamma^+(x_k)$ esté siempre contenida en la componente acotada o siempre contenida en la no acotada, como ilustra la figura \ref{fig:transversalintersections}. En cualquier caso, debe tenerse que la siguiente intersección $x_{k+2}$ se encuentre por fuera del segmento entre $x_k$ y $x_{k+1}$, lo que obliga a que los puntos $x_k$, $x_{k+1}$ y $x_{k+2}$ estén ordenados en la transversal $L$.
+
+En estas condiciones $(x_k)_k$ es una sucesión monótona sobre un segmento rectilíneo y puede tener, por tanto, a lo más un punto de acumulación en $L$, como se quería probar. Esto es, $\omega(x) \cap L = \{q\}$.
 
 \end{proof}
 
 \begin{figure}[h] \centering
-    \includegraphics[scale=0.8]{figures/transversal-intersections.png}
+    \includegraphics[scale=1.15]{figures/transversalintersections.pdf}
+	\caption{Intersecciones con la transversal $L$.}
 	\label{fig:transversalintersections}
 \end{figure}
 
@@ -220,7 +222,7 @@ Estamos en condiciones de probar que las únicas posibilidades para los conjunto
 \begin{enumerate}[(a)]
 	\item Como $\omega(\gamma^+) \subseteq \overline{\gamma^+} \subseteq K$ entonces $\omega(\gamma^+)$ contiene a lo más un número finito de puntos críticos. Si contiene alguno entonces debe ser necesariamente un solo punto crítico pues $\omega(x)$ es conexo (no puede ser unión de varios puntos críticos). Claramente $\gamma^+$ tiende a este punto crítico cuando $t \to \infty$.
 	\item Supongamos ahora que $\omega(\gamma^+)$ no contiene puntos críticos. Por teorema \ref{teo:poincarebendixson} $\omega(\gamma^+)$ debe ser una órbita periódica.
-	\item Asumimos ahora que $\omega(\gamma^+)$ contiene un número finito de puntos críticos pero ninguna órbita periódica. Sea $\gamma_0$ cualquier órbita en $\omega(\gamma^+)$. Por el caso (a) debe tenerse que $\alpha(\gamma_0)$ o $\omega(\gamma_0)$ consisten de un único punto crítico y por lo tanto $\gamma_0$ tiende a uno de estos cuando $t \to \pm \infty$.
+	\item Suponemos ahora que $\omega(\gamma^+)$ contiene un número finito de puntos críticos pero ninguna órbita periódica. Sea $\gamma_0$ cualquier órbita en $\omega(\gamma^+)$. Por el caso (a) debe tenerse que $\alpha(\gamma_0)$ o $\omega(\gamma_0)$ consisten de un único punto crítico y por lo tanto $\gamma_0$ tiende a uno de estos cuando $t \to \pm \infty$.
 \end{enumerate}
 \end{proof}
 
@@ -238,7 +240,7 @@ El diagrama de fase de este sistema es el mostrado en la figura \ref{fig:expoinc
 
 Es fácil verificar que $\omega(x) = S^1$ para todo $x$, donde $S^1$ es el círculo de radio 1 con centro en el origen. Con esto sabemos, de antemano, de la existencia de un ciclo límite en este sistema (a saber, $S^1$).
 
-Las ecuaciones \ref{eq:expoincarebendixson} permite este análisis por su naturaleza sencilla, pero podemos corroborar este hecho a través del teorema \ref{teo:poincarebendixson} utilizando únicamente el acotamiento.
+Las ecuaciones \ref{eq:expoincarebendixson} permiten este análisis por su naturaleza sencilla, pero podemos corroborar este hecho a través del teorema \ref{teo:poincarebendixson} utilizando únicamente el acotamiento.
 
 \begin{figure}[!htb] \centering
 	\includegraphics[scale=1.1]{figures/expoincarebendixson.pdf}
