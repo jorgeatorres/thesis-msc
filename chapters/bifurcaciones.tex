@@ -1,3 +1,4 @@
+%!TEX root=../thesis.tex
 \chapter{Bifurcaciones}
 Ya hemos estudiado y clasificado el comportamiento cualitativo global de sistemas lineales y local en sistemas no lineales, cerca de puntos críticos. En general, en presencia de equilibrios hiperbólicos esta clasificación está completa. En caso contrario es necesario hacer un análisis propio del sistema.
 
@@ -207,17 +208,17 @@ Ver \cite{strogatz,swiggins}.
 
 Supongamos que un sistema plano $\dot{x} = f(x, \lambda)$ que depende de un parámetro $\lambda$ tiene un punto fijo en $\bar{x}$ y que la matriz jacobiana $Df(\bar{x}, \lambda)$ tiene valores propios $\mu_1, \mu_2$.
 
-Supongamos además que $\bar{x}$ es estable. Es decir, $\Re(\mu_{1,2}) < 0$, de manera que los eigenvalores se encuentran del lado izquierdo del plano complejo.
-La única manera en la que la estabilidad del punto crítico cambie es cuando estos eigenvalores (al variar el parámetro $\lambda$) crucen el eje imaginario.
+Supongamos además que $\bar{x}$ es estable. Es decir, $\Re(\mu_{1,2}) < 0$, de manera que los valores propios se encuentran del lado izquierdo del plano complejo.
+La única manera en la que la estabilidad del punto crítico cambie es cuando estos valores propios (al variar el parámetro $\lambda$) crucen el eje imaginario.
 
 \begin{figure}[ht] \centering
     \includegraphics[scale=1.0]{figures/bifurcations-2dimensional.pdf}
 \end{figure}
 
-En particular, si los eigenvalores tienen parte imaginaria nula $\Im(\mu_{1,2}) = 0$ entonces se encuentran sobre el eje real y la única posibilidad es que cambien de signo, lo que corresponde a una de las bifurcaciones estudiadas en la sección anterior.
+En particular, si los valores propios tienen parte imaginaria nula $\Im(\mu_{1,2}) = 0$ entonces se encuentran sobre el eje real y la única posibilidad es que cambien de signo, lo que corresponde a una de las bifurcaciones estudiadas en la sección anterior.
 De ahí que se dijera que son esencialmente unidimensionales.
 
-Si en cambio los eigenvalores no tienen parte imaginaria nula, lo que únicamente ocurre en sistemas dinámicos de al menos 2 dimensiones, el comportamiento puede ser más amplio y, debido a la parte imaginaria, involucrar la aparición o desaparición de órbitas periódicas (u órbitas límite).
+Si en cambio los valores propios no tienen parte imaginaria nula, lo que únicamente ocurre en sistemas dinámicos de al menos 2 dimensiones, el comportamiento puede ser más amplio y, debido a la parte imaginaria, involucrar la aparición o desaparición de órbitas periódicas (u órbitas límite).
 
 Uno de estas bifurcaciones más comunes es la de Poincaré-Andronov-Hopf, que estudiamos a continuación.
 

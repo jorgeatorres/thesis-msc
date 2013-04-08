@@ -1,3 +1,4 @@
+%!TEX root=../thesis.tex
 \chapter{Sistemas Dinámicos Planos}
 \label{cap:sistemasplanosautonomos}
 
@@ -7,7 +8,7 @@
 Sean $T \subseteq \R$ un semigrupo aditivo, $X$ un subconjunto de $\R^2$ y $\phi: T \times X \to X: (t,x) \mapsto \phi^t(x)$ una función. Un \emph{sistema dinámico plano} es una tupla $(T, X, \phi)$ que satisface las propiedades
 
 \begin{enumerate}[(1)]
-    \item $\phi \left( 0, x \right) = \phi \left( x \right)$ para todo $x \in
+    \item $\phi \left( 0, x \right) = x$ para todo $x \in
     X$. Equivalentemente $\phi^0 \equiv \text{id}_X$.
     
     \item $\phi \left( t, \phi \left( s, x \right) \right) = \phi \left(
@@ -49,20 +50,20 @@ Para tal fin introducimos el concepto de órbita.
   $\gamma^+_{x_0}$}}, {\emph{\'orbita negativa $\gamma^-_{x_0}$}} y
   {\emph{\'orbita $\gamma_{x_0}$}} de $x_0$ (o a trav\'es de $x_0$) son
   los subconjuntos del espacio de estados $X$, definidos por
-  \[ \gamma^+_{x_0} := \left\{ \phi \left( t, x \right) : t \in I_{x_0},
+  \[ \gamma^+_{x_0} := \left\{ \phi \left( t, x_0 \right) : t \in I_{x_0},
      t \geq 0 \right\} = \left\{ \phi^t \left( x_0 \right) \right\}_{t
      \in I_{x_0}, t \geq 0}, \]
   \[ \gamma^-_{x_0} := \left\{ \phi^t \left( x_0 \right) \right\}_{t \in
      I_{x_0}, t \leq 0}, \]
   \[ \gamma_{x_0} := \gamma_{x_0}^+ \cup \gamma_{x_0}^- = \left\{ \phi
-     \left( t, x \right) : t \in I_{x_0} \right\} = \left\{ \phi^t \left( x_0
+     \left( t, x_0 \right) : t \in I_{x_0} \right\} = \left\{ \phi^t \left( x_0
      \right) \right\}_{t \in I_{x_0}} . \]
   Una \'orbita que consiste de un solo punto se llama {\emph{\'orbita
   constante}}.
 \end{definition}
 
 Mientras que las \'orbitas de un sistema din\'amico continuo son curvas en el
-espacio $M$ parametrizadas por $t$ y orientadas en la direcci\'on de
+espacio $X$ parametrizadas por $t$ y orientadas en la direcci\'on de
 crecimiento, las de un sistema din\'amico discreto son sucesiones de puntos
 $\ldots ., f^{- 1} \left( x_0 \right), x_0, f \left( x_0 \right), f^2 \left(
 x_0 \right), \ldots$ indizadas por enteros, como en la figura \ref{fig:orbits}.
@@ -107,6 +108,12 @@ tanto, una \'orbita peri\'odica de un sistema continuo es una curva
   (con sus direcciones) obtenemos un {\emph{diagrama de fase}}.
 \end{definition}
 En la pr\'actica, solo unas \'orbitas representativas son consideradas en el diagrama de fase.
+
+\begin{definition}[Equivalencia Topológica] \label{def:topologicalequivalence}
+Dos sistemas dinámicos planos $(T_1, X_1, \phi_1)$ y $(T_2, X_2, \phi_2)$ son \emph{topológicamente equivalentes} si existe un homeomorfismo $h: X_1 \to X_2$ tal que $h$ envía las órbitas del operador de evolución $\phi_1$ en las órbitas de $\phi_2$ y preserva el sentido de avance del tiempo.
+\end{definition}
+
+Así pues, dos sistemas dinámicos topológicamente equivalentes comparten el mismo comportamiento y estructura cualitativa.
 
 \begin{example}[Mapa Logístico]
 Aunque se trata de un sistema unidimensional ($X \subseteq \R$) este es un buen ejemplo introductorio a la temática de sistemas dinámicos.
@@ -229,7 +236,7 @@ Justificamos ahora el uso del nombre ``sistema dinámico'' al tratar un sistema 
 \begin{proposition}Si $f$ es localmente Lipschitz entonces el sistema dinámico autónomo plano $\dot{x} = f(x)$ (definición \ref{def:sistema_dinamico_plano}) es un sistema dinámico (definición \ref{def:dynamicalsystem}).
 \begin{proof}
 
-Por teorema \ref{teo:existenciayunicidad} sabemos que existe una solución $x(t,x^0)$ tal que $x(0,x^0) = x^0$. En particular, la propiedad (2) de la definición \ref{def:dynamicalsystem} se satisface trivialmente.
+Por teorema \ref{teo:existenciayunicidad} sabemos que existe una única solución $x(t,x^0)$ tal que $x(0,x^0) = x^0$. En particular, la propiedad (2) de la definición \ref{def:dynamicalsystem} se satisface trivialmente.
 
 Debemos demostrar que $\phi^t(x^0) = x(t,x^0)$ constituye un flujo (operador de evolución) como en la definición \ref{def:dynamicalsystem}. Esto es, satisface la propiedad (2).
 
@@ -287,7 +294,7 @@ $$ V(x_1,x_2) = (\dot{x_1}, \dot{x_2})$$
 nos permite describir el comportamiento aproximado de la trayectoria de la partícula (esto es, una solución del sistema) para cualquiera condiciones iniciales aún sin conocer las funciones $x_1(t)$ o $x_2(t)$.
 
 \begin{example} \label{ej:sistemahiperbolas}
-Volvemos al oscilador armónico \ref{ex:osciladorarmonico}, cuyo campo de direcciones aparece en la figura \ref{fig:osciladorarmonico} (c).
+Volvemos al oscilador armónico \ref{ex:osciladorarmonico}, cuyo campo de direcciones aparece en la figura \ref{fig:osciladorarmonico} (b).
 Al observar el campo no resulta difícil imaginar que todas las órbitas deben ser círculos con centro en $(0,0)$. Esto puede formalizarse a partir del estudio de su campo vectorial:
 
 $$ V(x_1,x_2) = (x_2, -x_1). $$
@@ -407,7 +414,7 @@ Toda solución periódica de la ecuación autónoma \ref{eq:sistema_dinamico_pla
 \end{lemma}
 \begin{proof}
 La primera parte es trivial. Para la segunda parte, supongamos que $\gamma$ es una órbita cerrada (ciclo) en el espacio de fase y que $x^0 \in \gamma$.
-Por el teorema \ref{teo:existenciayunicidad} hay una solución $x = x(t)$ tal que $x(0) = x^0$ cuya trayectoria es precisamente el ciclo $C$ y, por unicidad, no puede contener ningún punto crítico, de manera que $|| f(x) || \geq a > 0$ para todo $x \in C$.
+Por el teorema \ref{teo:existenciayunicidad} hay una solución $x = x(t)$ tal que $x(0) = x^0$ cuya trayectoria es precisamente el ciclo $C$ y, por unicidad, no puede contener ningún punto crítico. Por lo tanto, existe una constante $a > 0$ tal que $|| f(x) || \geq a > 0$ para todo $x \in C$.
 Esto es equivalente a que $|| \dot{x} || \geq a > 0$ así que debe tenerse para algún $t = T$ que $x(T) = x^0$ de nuevo. Queremos probar que $T$ es el período de la solución, es decir, que $x(t+T) = x(t)$ para todo $t \in \R$. Para ello, considérese $t = nT + t_1$ donde $n \in \Z$ y $0 < t_1 < T$. Por la propiedad de traslación como $x(t)$ es una solución con $x(t_1) = x^1$ entonces $x(t - nT)$ es una solución con $x(t - nT) = x^1$. Es decir, $$ x(t_1) = x(t_1 + nT)$$ para todo $t_1$ tal que $0 < t_1 < T$.
 
 Esto implica que $x$ es $T$-periódica.
@@ -453,7 +460,7 @@ Si se separan las variables y se integra se encuentra que las soluciones deben s
 
 $$ \frac{1}{2}x_1^2 + \frac{1}{2}x_2^2 = c.$$
 
-Es decir, el conjunto de curvas integrales es una familia de círculos centrados en el origen con radio $2c$ para $c \in \R^+$. El punto de equilibrio $x = 0$ se obtiene cuando $c = 0$.
+Es decir, el conjunto de curvas integrales es una familia de círculos centrados en el origen con radio $\sqrt{2c}$ para $c \in \R^+$. El punto de equilibrio $x = 0$ se obtiene cuando $c = 0$.
 
 Esto coincide con lo que ya habíamos visto antes.
 \end{example}

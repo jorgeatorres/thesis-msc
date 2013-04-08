@@ -1,3 +1,4 @@
+%!TEX root=../thesis.tex
 \chapter{Acerca de DYNAMITE} \label{chap:dynamite}
 
 DYNAMITE es una herramienta de software que fue desarrollada por el autor de la presente monografía como una forma didáctica de apoyo para el trabajo con sistemas dinámicos planos, los continuos en particular y que fue utilizada para generar todos los diagramas de fase en este documento.
@@ -36,6 +37,56 @@ A continuación hacemos una lista, no extensiva, de las principales característ
 		\end{itemize}
 	\item DYNAMITE permite utilizar dos tipos de integradores diferentes para aproximar numéricamente las soluciones de los sistemas de ecuaciones diferenciales involucrados: un método Runge-Kutta combinado de órdenes 4 y 5 \cites[p.~518]{analisisnumerico}{fehlberg} y el método ``backward Euler'' \cites[p.~584]{analisisnumerico}{butcher}. De esta manera DYNAMITE  trata con ecuaciones ``stiff'' \cites{stiff}[p.~583]{analisisnumerico} y ``non-stiff'' \cite{nonstiff}.
 \end{itemize}
+
+\section{Ejemplos de uso de DYNAMITE}
+
+A continuación desarrollamos un par de ejemplos para ilustrar los principios de funcionamiento de DYNAMITE.
+
+\begin{example}[Sistema Dinámico Plano]
+Consideremos el sistema dinámico no lineal descrito por las ecuaciones
+
+\begin{equation} \label{eq:dynamite-formula1}
+	\begin{array}{ll}
+		\dot{x_1} = x_2 - x_2^3 \\
+		\dot{x_2} = -x_1 - x_2^2
+	\end{array}
+\end{equation}
+
+DYNAMITE, para facilitar la introducción de texto en la aplicación, utiliza la convención de llamar $x$ e $y$ a las variables involucradas en el sistema (si se trata de un sistema de ecuaciones diferenciales) en lugar de $x_1$ y $x_2$ como en este texto. En consecuencia, las derivadas $\dot{x_1}$ y $\dot{x_2}$ corresponden en DYNAMITE a $dx/dt$ y $dy/dt$ respectivamente.
+
+Para introducir las ecuaciones \ref{eq:dynamite-formula1} se puede recurrir al ítem de menú \textit{Plots -- New Equation} o bien utilizar el atajo de teclado \texttt{Ctrl + N} (o \texttt{Cmd + N} si se trata de un sistema operativo OS X), como en la figura \ref{fig:dynamite-formula1}.
+
+Por defecto, DYNAMITE interpreta esta instrucción, como es de esperarse, como un sistema de ecuaciones diferenciales y por tanto genera un campo de pendientes, como lo ilustra la figura \ref{fig:dynamite-fplot}.
+
+DYNAMITE deja en manos del usuario la tarea de decidir cuáles órbitas del sistema dinámico desea observar: para visualizar una nueva órbita el usuario puede moverse a través de la vista con el cursor y con el click del medio (o la combinación de click derecho e izquierdo) indicar a DYNAMITE que desea graficar la órbita que tiene por punto inicial aquel donde se hizo click. El procedimiento se puede repetir cuantas veces se desee para obtener un resultado similar al de la figura \ref{fig:dynamite-orbits}. 
+\end{example}
+
+\begin{figure} \centering
+	\includegraphics[scale=0.5]{figures/dynamite-eq1.png}
+	\caption{$\clubsuit$ Pantalla para introducción de ecuaciones de DYNAMITE.}
+	\label{fig:dynamite-formula1}
+\end{figure}
+
+\begin{figure} \centering
+	\includegraphics[scale=0.4]{figures/dynamite-fplot.png}
+	\caption{$\clubsuit$ Campo de direcciones en DYNAMITE.}
+	\label{fig:dynamite-fplot}
+\end{figure}
+
+\begin{figure} \centering
+	\includegraphics[scale=0.4]{figures/dynamite-orbits.png}
+	\caption{$\clubsuit$ Algunas órbitas del sistema \ref{eq:dynamite-formula1} en DYNAMITE.}
+	\label{fig:dynamite-orbits}
+\end{figure}
+
+\newpage
+
+\begin{example}[Conjunto de Julia]
+DYNAMITE permite graficar también conjuntos de Julia utilizando la sintaxis \texttt{JuliaSet(c)}.
+Aquí, \texttt{c} puede ser un valor complejo y es utilizado como parámetro para la familia de polinomios cuadráticos $f_c(z) = z^2 + c$ que se iteran para producir el resultado final. Los puntos cuyas órbitas permanecen acotados se colorean de negro y las órbitas que escapan a infinito se omiten.
+
+La figura \ref{fig:dynamite}, ubicada al inicio de esta sección, fue creada con la instrucción \begin{verbatim}JuliaSet(0.835-0.2321j).\end{verbatim}
+\end{example}
 
 \section{Información de descarga y licencia}
 

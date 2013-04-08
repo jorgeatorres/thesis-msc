@@ -1,3 +1,4 @@
+%!TEX root=../thesis.tex
 \chapter{Teorema de Poincaré-Bendixson} \label{cap:poincarebendixson}
 
 \section{Conjuntos límite y nociones básicas}
@@ -9,18 +10,16 @@ Hemos estudiado también lo que sucede con soluciones que empiezan ``cerca'' de 
 
 Formalizamos esto con el concepto de $\alpha$-límite y $\omega$-límite.
 
-\begin{definition}Dado $x \in \R^2$ definimos los conjuntos $\alpha$-límite y $\omega$-límite de $x$ respectivamente por:
+\begin{definition}Sean $x \in \R^2$, $\phi(t,x)$ el flujo a través de $x$ e $I_x = (\alpha_x, \beta_x)$ el intervalo (posiblemente infinito) de definición de la solución a través de $x$ garantizada por el teorema de existencia.
 
-$$
-	\alpha(x) = \lim_{t \to \alpha_{x}^+}{\phi(t,x)},
-$$
+\begin{enumerate}[(a)]
+	\item $y\in \R^2$ se dice un \emph{punto $\alpha$-límite de $x$} si existe una sucesión de tiempos $\{ t_k \}_k \subseteq I_x$ tal que $t_k \to \alpha_x$ y $\phi(t_k, x) \to y$ cuando $k \to \infty$.
+	\item $z\in \R^2$ se dice un \emph{punto $\omega$-límite de $x$} si existe una sucesión de tiempos $\{ t_k \}_k \subseteq I_x$ tal que $t_k \to \beta_x$ y $\phi(t_k, x) \to z$ cuando $k \to \infty$.
+\end{enumerate}
 
-$$
-	\omega(x) = \lim_{t \to \beta_{x}^-}{\phi(t,x)},
-$$
-
-donde $\phi(t,x)$ es el flujo a través de $x$ e $I_x = (\alpha_x, \beta_x)$ es el intervalo de definición de la solución a través de $x$ garantizada por el teorema de existencia.
 \end{definition}
+
+Al conjunto de todos los puntos $\alpha$-límite de $x$ se le llama \emph{conjunto $\alpha$-límite de $x$} y se denota por $\alpha(x)$. Análogamente, $\omega(x)$ denota al conjunto de todos los puntos $\omega$-límite de $x$, llamado \emph{conjunto $\omega$-límite de $x$}.
 
 Debido a que si $x$ es un punto de la órbita $\gamma$ entonces $\phi(t,x) \in \gamma$ para todo $t$ por definición de órbita, utilizamos indistintamente la notación $\omega(x)$ u $\omega(\gamma)$ para denotar el conjunto límite de dicha órbita.
 
