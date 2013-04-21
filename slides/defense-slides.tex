@@ -88,7 +88,7 @@ Se puede pensar en un operador de evolución $\phi$ como una colección de funci
 \begin{figure}[!ht] \centering
     \includegraphics[scale=0.75]{../figures/evolution-operator.pdf}
 \end{figure}
-\pause
+
 Conocer el comportamiento \emph{cualitativo} a largo plazo de todos los puntos en el estado de fase es el objetivo principal de la teoría de sistemas dinámicos.
 \end{frame}
 
@@ -98,7 +98,6 @@ Sea $x_0 \in \R^2$. La órbita (o trayectoria) $\gamma_{x_0}$ de $x_0$ a trav\'e
      \left( t, x_0 \right) : t \in T \right\} = \left\{ \phi^t \left( x_0
      \right) \right\}_{t \in T} . \]
 \end{definition}
-\pause
 
 La gráfica del conjunto de órbitas de un sistema dinámico se llama \emph{diagrama de fase}.
 \end{frame}
@@ -131,7 +130,7 @@ $$ \phi(t,x_0) = \phi(t, (x^0, y^0) ) = \left[{
 		-x^0 \sin(t) + y^0 \cos(t)
 	\end{array}} \right].
 $$
-\pause
+
 Esta función, así definida, es un \emph{operador de evolución} para un sistema dinámico con estado de fases $X = \R^2$ y de tiempos $T = \R$, conocido como ``oscilador armónico lineal''.
 \end{frame}
 
@@ -149,8 +148,8 @@ Este retrato de fase presenta dos tipos importantes de órbitas: \emph{puntos cr
 
 \begin{frame}{Sistemas Autónomos y PVIs}
 En general, se puede definir el operador de evolución de un sistema dinámico plano a partir de un sistema de dos EDOs simultáneas (o una EDO de segundo orden), de la forma
-$$\dot{X} = (\dot{x}, \dot{y}) = f(X) = (f_1(x,y), f_2(x,y)). $$
-Un resultado clásico de la teoría de ecuaciones diferenciales garantiza que esto es posible siempre que $f$ sea continua y localmente Lipschitz sobre $\R^2$.
+$$\dot{X} = (\dot{x}, \dot{y}) = F(X) = (F_1(x,y), F_2(x,y)). $$
+Un resultado clásico de la teoría de ecuaciones diferenciales garantiza que esto es posible siempre que $F$ sea continua y localmente Lipschitz sobre $\R^2$.
 \end{frame}
 
 %\begin{frame}{Sistemas Autónomos y PVIs - Otro ejemplo lineal}
@@ -511,15 +510,10 @@ DYNAMITE está inspirado en \textit{Phaser}, aplicación propietaria que acompa�
 Algunas de las características de DYNAMITE:
 
 	\begin{itemize}
-		\pause
 		\item Es software libre: su distribución y modificación está permitida sin restricción alguna.
-		\pause
 		\item Puede ejecutarse (sin necesidad de software especial o \textit{plugins}) en cualquier navegador y, por ende, en cualquier plataforma (Mac OS X, Linux, Windows y móviles).
-		\pause
 		\item Produce gráficos vectoriales con calidad apta para publicación.
-		\pause
 		\item Soporta \textit{typesetting} de expresiones matemáticas utilizando MathML y ASCIIMath.
-		\pause
 		\item Tiene un diseño modular con dos integradores: Runge-Kutta combinado de orden 4-5 y ``backward Euler''.
 	\end{itemize}
 \end{frame}
@@ -528,13 +522,9 @@ Algunas de las características de DYNAMITE:
 	DYNAMITE está en capacidad de generar cualquiera de las siguientes gráficas:
 	
 	\begin{itemize}
-		\pause
 		\item Gráficas de funciones cartesianas $y = f(x)$ en una variable real.
-		\pause
 		\item Campos de pendientes $\vec{F}(x,y)$ asociados a un sistema dinámico plano $\dot{X} = \vec{F}(x,y)$.
-		\pause
 		\item Diagramas de fase con órbitas arbitrarias calculadas por DYNAMITE y con puntos iniciales definidos por el usuario.
-		\pause
 		\item Conjuntos de Julia asociados a sistemas dinámicos discretos obtenidos por iteración de polinomios cuadráticos complejos $f_c(z) = z^2 + c$, $z \in \C$.
 	\end{itemize}
 \end{frame}
@@ -542,7 +532,6 @@ Algunas de las características de DYNAMITE:
 \begin{frame}{Código Fuente y Descarga}
 El código fuente de la última versión de DYNAMITE se encuentra disponible en línea en
 $$ \text{\url{https://github.com/jorgeatorres/dynamite}}. $$
-\pause
 También allí pueden \sout{reportarse errores o comportamientos inesperados} colaborar con el proyecto.
 \end{frame}
 
@@ -581,12 +570,12 @@ El \emph{conjunto de Julia} de $f$ corresponde a la frontera del conjunto de pun
 %\end{figure}
 %\end{frame}
 
-\begin{frame}{Ejemplos de uso - Conjuntos de Julia}
-Conjunto de Julia asociado al polinomio $f_c(z) = z^2 + c$ con $c = 0.1 + 0.651i$.
-\begin{figure}[!ht] \centering
- \includegraphics[scale=0.1]{figures/juliaset.png}
-\end{figure}
-\end{frame}
+%\begin{frame}{Ejemplos de uso - Conjuntos de Julia}
+%Conjunto de Julia asociado al polinomio $f_c(z) = z^2 + c$ con $c = 0.1 + 0.651i$.
+%\begin{figure}[!ht] \centering
+% \includegraphics[scale=0.1]{figures/juliaset.png}
+%\end{figure}
+%\end{frame}
 
 \begin{frame}{Licencia de DYNAMITE}
 DYNAMITE está distribuído bajo licencia WTFPL (\textit{Do What The Fuck You Want To Public License}) cuyo inventor describe como
