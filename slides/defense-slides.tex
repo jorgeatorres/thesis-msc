@@ -153,35 +153,35 @@ $$\dot{X} = (\dot{x}, \dot{y}) = f(X) = (f_1(x,y), f_2(x,y)). $$
 Un resultado clásico de la teoría de ecuaciones diferenciales garantiza que esto es posible siempre que $f$ sea continua y localmente Lipschitz sobre $\R^2$.
 \end{frame}
 
-\begin{frame}{Sistemas Autónomos y PVIs - Otro ejemplo lineal}
-Considérese la ecuación de segundo orden $$ \ddot{y} - y = 0,$$ que puede transformarse en el sistema de ecuaciones de primer orden:
-
-$$
-\left \{
-\begin{array}{l}
-	\dot{x} = y \\
-	\dot{y} = x
-\end{array} \right..
-$$
-\end{frame}
-
-\begin{frame}{Sistemas Autónomos y PVIs - Otro ejemplo lineal}
-Notamos que las órbitas en el plano de fase satisfacen
-
-$$ \dfrac{dy}{dx} = \frac{x}{y}. $$
-
-La integración de esta expresión produce la familia de hipérbolas
-
-$$ x^2 - y^2 = c.$$
-
-En particular, cuando $c = 0$ obtenemos la solución constante $x = y = 0$ correspondiente a la órbita de $(0,0)$. Todas las demás órbitas son no constantes.
-\end{frame}
-
-\begin{frame}{Sistemas Autónomos y PVIs - Otro ejemplo lineal}
-\begin{figure}[!ht] \centering
-	\includegraphics[scale=0.5]{../figures/linearsystem-hyperbolas.png}
-\end{figure}
-\end{frame}
+%\begin{frame}{Sistemas Autónomos y PVIs - Otro ejemplo lineal}
+%Considérese la ecuación de segundo orden $$ \ddot{y} - y = 0,$$ que puede transformarse en el sistema de ecuaciones de primer orden:
+%
+%$$
+%\left \{
+%\begin{array}{l}
+%	\dot{x} = y \\
+%	\dot{y} = x
+%\end{array} \right..
+%$$
+%\end{frame}
+%
+%\begin{frame}{Sistemas Autónomos y PVIs - Otro ejemplo lineal}
+%Notamos que las órbitas en el plano de fase satisfacen
+%
+%$$ \dfrac{dy}{dx} = \frac{x}{y}. $$
+%
+%La integración de esta expresión produce la familia de hipérbolas
+%
+%$$ x^2 - y^2 = c.$$
+%
+%En particular, cuando $c = 0$ obtenemos la solución constante $x = y = 0$ correspondiente a la órbita de $(0,0)$. Todas las demás órbitas son no constantes.
+%\end{frame}
+%
+%\begin{frame}{Sistemas Autónomos y PVIs - Otro ejemplo lineal}
+%\begin{figure}[!ht] \centering
+%	\includegraphics[scale=0.5]{../figures/linearsystem-hyperbolas.png}
+%\end{figure}
+%\end{frame}
 
 
 % Ejemplos Clásicos
@@ -216,7 +216,7 @@ $$
 \end{frame}
 
 \begin{frame}{Péndulo Matemático}
-El péndulo matemático es un sistema plano \emph{no lineal} y tiene puntos de equilibrio (órbitas constantes) en todos los puntos $(0,n\pi)$ para $n \in \N$. \\
+El péndulo matemático es un sistema plano \emph{no lineal} y tiene puntos de equilibrio (órbitas constantes) en todos los puntos $(n\pi,0)$ para $n \in \N$. \\
 \pause
 El retrato de fase del péndulo matemático es el siguiente:
 \begin{figure}[!ht] \centering
@@ -230,7 +230,7 @@ Consideremos dos poblaciones que interactúan entre sí: una especie de presa $x
 
 \begin{enumerate}
 	\item La población de presa $x_1$ no sufre de escasez de comida ni otros factores ambientales en su contra.
-	\item La alimentación de la población depredadora $x_2$ depende exclusivamente del tamaño de la población presa $x_2$.
+	\item La alimentación de la población depredadora $x_2$ depende exclusivamente del tamaño de la población presa $x_1$.
 	\item La tasa de cambio de la población es proporcional a su tamaño.
 \end{enumerate}
 \end{frame}
@@ -358,22 +358,22 @@ Sea $\dot{X} = F(X)$ un sistema dinámico plano.
 \end{figure}
 \end{frame}
 
-\begin{frame}{Sistemas Lineales $\dot{X} = F(X)$ con $A$ singular}
-Cuando $A$ es una matriz 2x2 singular (no invertible) el comportamiento del sistema es ``especial'': existen una infinidad de puntos críticos $x \in \R^2$ además del origen y el retrato de fase del sistema debe ser equivalente a uno de los siguientes.
-
-\begin{figure} \centering
-    \includegraphics[scale=1.0]{../figures/amatriz0.pdf}  
-    \includegraphics[scale=1.0]{../figures/asingular_1.pdf}
-\end{figure}
-
-\end{frame}
-
-\begin{frame}{Sistemas Lineales $\dot{X} = F(X)$ con $A$ singular}
-\begin{figure} \centering
-    \includegraphics[scale=1.0]{../figures/asingular1.pdf}
-    \includegraphics[scale=1.0]{../figures/asingularr1.pdf}
-\end{figure}
-\end{frame}
+%\begin{frame}{Sistemas Lineales $\dot{X} = F(X)$ con $A$ singular}
+%Cuando $A$ es una matriz 2x2 singular (no invertible) el comportamiento del sistema es ``especial'': existen una infinidad de puntos críticos $x \in \R^2$ además del origen y el retrato de fase del sistema debe ser equivalente a uno de los siguientes.
+%
+%\begin{figure} \centering
+%    \includegraphics[scale=1.0]{../figures/amatriz0.pdf}  
+%    \includegraphics[scale=1.0]{../figures/asingular_1.pdf}
+%\end{figure}
+%
+%\end{frame}
+%
+%\begin{frame}{Sistemas Lineales $\dot{X} = F(X)$ con $A$ singular}
+%\begin{figure} \centering
+%    \includegraphics[scale=1.0]{../figures/asingular1.pdf}
+%    \includegraphics[scale=1.0]{../figures/asingularr1.pdf}
+%\end{figure}
+%\end{frame}
 
 \begin{frame}{Sistemas No Lineales y Linealización}
 Si $\dot{X} = F(X)$ es un sistema no lineal entonces cerca de un punto crítico $X_0$ se tiene:
@@ -548,13 +548,9 @@ También allí pueden \sout{reportarse errores o comportamientos inesperados} co
 
 \begin{frame}{Ejemplos de uso}
 \begin{enumerate}
-\pause
 \item Oscilador Armónico Lineal
-\pause
 \item Péndulo matemático
-\pause
 \item Modelo presa-depredador de Lotka-Volterra
-\pause
 \item Oscilador de Van der Pol
 \end{enumerate}
 \end{frame}
@@ -562,28 +558,28 @@ También allí pueden \sout{reportarse errores o comportamientos inesperados} co
 \begin{frame}{Ejemplos de uso}
 \begin{example}[Otro sistema no lineal]
 Construya el retrato de fase para sistema dinámico no lineal descrito por las ecuaciones:
-
-\begin{equation} \label{eq:dynamite-formula1}
+$$
+\left \{
 	\begin{array}{ll}
 		\dot{x} = y - y^3 \\
 		\dot{y} = -x - y^2.
-	\end{array}
-\end{equation}
+	\end{array} \right.
+$$
 \end{example}
 \end{frame}
 
 \begin{frame}{Ejemplos de uso - Conjuntos de Julia}
 La iteración de funciones racionales complejas de la forma $f(z) = p(z) / q(z)$ define también un sistema dinámico plano en el cual las órbitas de cualquier punto se obtienen por composición:
-$$ \gamma(z_0) = \{f(z_0), f\circ f(z_0), f \circ f \circ f(z_0), ..., f^k(z_0), ...\}. $$
+$$ \gamma(z_0) = \{z_0, f(z_0), f\circ f(z_0), f \circ f \circ f(z_0), ..., f^k(z_0), ...\}. $$
 El \emph{conjunto de Julia} de $f$ corresponde a la frontera del conjunto de puntos cuyas órbitas son no acotadas (i.e. $f^n(z_0) \to \infty$ cuando $n \to \infty$).
 \end{frame}
 
-\begin{frame}{Ejemplos de uso - Conjuntos de Julia}
-Conjunto de Julia asociado a la función racional del método de Newton para hallar las raíces del polinomio cúbico $p(z) = z^3 - 1$:
-\begin{figure}[!ht] \centering
- \includegraphics[scale=0.1]{figures/juliaset-newton.png}
-\end{figure}
-\end{frame}
+%\begin{frame}{Ejemplos de uso - Conjuntos de Julia}
+%Conjunto de Julia asociado a la función racional del método de Newton para hallar las raíces del polinomio cúbico $p(z) = z^3 - 1$:
+%\begin{figure}[!ht] \centering
+% \includegraphics[scale=0.1]{figures/juliaset-newton.png}
+%\end{figure}
+%\end{frame}
 
 \begin{frame}{Ejemplos de uso - Conjuntos de Julia}
 Conjunto de Julia asociado al polinomio $f_c(z) = z^2 + c$ con $c = 0.1 + 0.651i$.
